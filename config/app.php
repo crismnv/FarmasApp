@@ -181,7 +181,9 @@ return [
         Acacha\AdminLTETemplateLaravel\Providers\AdminLTETemplateServiceProvider::class,
         //adminlte-idioma
         Laraveles\Spanish\SpanishServiceProvider::class,
-
+        // entrust -gui
+       Acoustep\EntrustGui\EntrustGuiServiceProvider::class,     
+       
 
     ],
 
@@ -233,6 +235,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         //adminlte
         'AdminLTE' => Acacha\AdminLTETemplateLaravel\Facades\AdminLTE::class,
+        //entrust-gui
+        'Entrust' => Zizaco\Entrust\EntrustFacade::class,
 
     ],
 
