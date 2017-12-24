@@ -25,3 +25,5 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 // Auth::routes();
+
+Route::get('consulta_dni',['as' => 'consulta_dni', 'uses' => 'DniController@getUsuario']);
