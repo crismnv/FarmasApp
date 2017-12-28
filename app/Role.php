@@ -20,4 +20,10 @@ class Role extends EntrustRole implements ValidatingModelInterface
     'name'      => 'required|unique:roles',
     'display_name'      => 'required|unique:roles',
   ];
+
+  // public static function obtenerId_x_rol($rol)
+  // {
+
+  //   return Role::select("roles.id as id")->where("name", '=', $rol)->get();
+  // }
 }

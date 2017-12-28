@@ -2,7 +2,7 @@
 
 @section('heading', 'Create Permission')
 
-@section('main-content')
+@section('content')
 <form action="{{ route('entrust-gui::permissions.store') }}" method="post" role="form">
     @include('entrust-gui::permissions.partials.form')
     <button type="submit" class="btn btn-labeled btn-primary"><span class="btn-label"><i class="fa fa-plus"></i></span>{{ trans('entrust-gui::button.create') }}</button>

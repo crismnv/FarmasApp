@@ -76,7 +76,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
+    public function create(array $data)
     {
         $fields = [
             'name'     => $data['name'],

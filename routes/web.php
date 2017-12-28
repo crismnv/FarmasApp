@@ -25,5 +25,14 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 // Auth::routes();
+// Route::get('registro', function () {
+//     return view('registro::registro');
+// });
 
-Route::get('consulta_dni',['as' => 'consulta_dni', 'uses' => 'DniController@getUsuario']);
+
+//api de reniecc
+Route::post('consulta_dni/{dni}', ['as' => 'consulta_dni', 'uses' => 'DniController@getUsuario']);
+//registro
+Route::get('registro',['as' => 'registro', 'uses' => 'RegistroController@registro']);
+// Route::post('registro', ['as' => 'registro', 'uses' => 'RegistroController@registrar']);
+Route::post('registro/registro', ['as' =>'registro/registro', 'uses' => 'RegistroController@registrar']);
