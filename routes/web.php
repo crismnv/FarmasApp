@@ -33,6 +33,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('ingredientes/crud', ['as' => 'ingredientes/crud', 'uses' => 'IngredienteController@MostrarCrud']);
 Route::post('ingredientes/listar', ['as' => 'ingredientes/listar', 'uses' => 'IngredienteController@ListarIngredientes']);
+Route::get('ingredientes/añadir', ['as' => 'ingredientes/añadir', 'uses' => 'IngredienteController@AñadirIngrediente']);
+Route::post('ingredientes/añadir', ['as' => 'ingredientes/añadir', 'uses' => 'IngredienteController@GuardarIngrediente']);
 
 //fin modulo ingredientes
 

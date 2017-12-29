@@ -10,6 +10,32 @@ class Ingrediente extends Model
     protected $table = 'ingredientes';
     public $primarykey = 'id';
 
+
+    public static function GuardarIngrediente($datos)
+    {
+    	try
+         {
+            DB::beginTransaction();
+            $ingrediente = new Ingrediente();
+            $ingrediente->nombre = $datos['nombre'];	
+            $ingrediente->unidad_de_medida = $datos['unidad_de_medida'];	
+            $ingrediente->stock = $datos['stock'];	
+            $ingrediente->created_at = date_create()->format('Y-m-d H:i:s');
+			$ingrediente->updated_at = date_create()->format('Y-m-d H:i:s');	
+			$ingrediente->save();
+
+          	DB::commit();
+
+          	return true;  
+
+         } catch(Exception $e)
+         {
+            DB::rollback();
+
+            return false; 
+
+    	 }
+    }
     public static function ListarIngredientes($datos)
     {
 
@@ -43,13 +69,15 @@ class Ingrediente extends Model
         
         $query .= " SELECT ingredientes.id, ingredientes.nombre, 
                           ingredientes.unidad_de_medida,
-                          ingredientes.estado
+                          ingredientes.estado,
+                          ingredientes.stock
                     FROM ingredientes ";
 
         if(!empty($_POST["searchPhrase"]))
         {
          $query .= ' WHERE (ingredientes.id LIKE "%'.$_POST["searchPhrase"].'%" ';
          $query .= 'OR ingredientes.nombre LIKE "%'.$_POST["searchPhrase"].'%" ';
+         $query .= 'OR ingredientes.stock LIKE "%'.$_POST["searchPhrase"].'%" ';
          $query .= 'OR ingredientes.unidad_de_medida LIKE "%'.$_POST["searchPhrase"].'%" ';
          $query .= 'OR ingredientes.estado LIKE "%'.$_POST["searchPhrase"].'%" )';
         }

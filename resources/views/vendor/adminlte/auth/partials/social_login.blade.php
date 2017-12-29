@@ -1,4 +1,4 @@
-<div class="social-auth-links text-center">
+<div class="social-auth-links text-center" style="display: none;">
     <p>- OR -</p>
     <a href="{{ url('/auth/github') }}" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i> {{ trans('adminlte_lang::message.signGithub') }}</a>
     <a href="{{ url('/auth/facebook') }}" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> {{ trans('adminlte_lang::message.signFacebook') }}</a>

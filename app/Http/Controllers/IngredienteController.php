@@ -17,4 +17,26 @@ class IngredienteController extends Controller
     	$datos = $request->all();
     	return Ingrediente::ListarIngredientes($datos);
     }
+
+    public function AñadirIngrediente()
+    {
+    	return view('adminlte::ingredientes.ingrediente_añadir');
+    }
+
+    public function GuardarIngrediente(Request $request)
+    {
+    	$data = $request->all();
+    	$bresultado = Ingrediente::GuardarIngrediente($data);
+    	 if ($bresultado) 
+    	 {
+            // Exito
+            return redirect()->back()->with('status','Los Datos han sido guardados exitosamente');
+            //echo "Grabacion Correcta";
+        } else {
+                
+            //echo "Grabacion no realizada";    
+            return redirect()->back()->with('errors','Los Datos no han sido guardados correctamente.');
+
+        }
+    } 
 }

@@ -28,4 +28,7 @@
             echo json_encode($trans);
         @endphp
     </script>
+    
+    @yield('css')
+    @yield('script-inicio')
 </head>

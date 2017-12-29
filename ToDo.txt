@@ -1,0 +1,63 @@
+General:
+	Login - modificar el existente
+	Landing Page
+
+DB:
+	Trigger:
+		After insert pedido 
+		After update reserva(cuando la reserva se ponga en "preparando" se quitará)
+	Store Procedure:
+		Modificar Estado de la reserva, como parametro adicional el id del usuario que hizo la modificacion
+		Busqueda de preparado con un array de ingredientes como entrada 
+
+
+Modulo Usuarios
+	Admin:
+		Crear Usuario
+		Modificar Usuario
+		Ver Usuario
+		Eliminar Usuario
+
+Modulo Reservas
+	Cliente:
+		Crea reservas
+		Realiza cotizacion
+		Ve su historial de reservas
+	Empleado:
+		Ve Reservas
+		Modifica Reservas
+	Quimico
+		Ve Reservas
+		Modifica Reservas
+	Admin:
+		Crea reservas
+		Realiza cotizacion
+		Ve su historial de reservas
+		Modifica Reservas
+		Ver Reservas
+		Eliminar Reservas
+Modulo Proveedores
+	Admin:
+		Añadir Proveedor
+		Ver Provedor
+		Modificar Proveedor
+		Borrar Proveedor
+Modulo Reportes
+	Admin:
+		Buscar Reporte
+		Crear Reporte
+
+Modulo Ingredientes
+	Admin:
+		Añadir Ingredientes
+		Ver Ingredientes
+		Modificar Ingrediente
+		Eliminar Ingredientes
+	Quimico:
+		Ver Ingrediente
+		Modificar Ingrediente
+
+
+
+
+>>>>>>>>>>>>>>>>REALIZADO<<<<<<<<<<<<<<<<<<<<<<<<
