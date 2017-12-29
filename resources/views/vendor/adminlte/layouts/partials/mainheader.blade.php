@@ -19,7 +19,7 @@
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
                 <!-- Messages: style can be found in dropdown.less-->
-                <li class="dropdown messages-menu">
+                <li class="dropdown messages-menu"  style=" display: none;">
                     <!-- Menu toggle button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope-o"></i>
@@ -53,7 +53,7 @@
                 </li><!-- /.messages-menu -->
 
                 <!-- Notifications Menu -->
-                <li class="dropdown notifications-menu">
+                <li class="dropdown notifications-menu"  style=" display: none;">
                     <!-- Menu toggle button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-bell-o"></i>
@@ -75,7 +75,7 @@
                     </ul>
                 </li>
                 <!-- Tasks Menu -->
-                <li class="dropdown tasks-menu">
+                <li class="dropdown tasks-menu"  style=" display: none;">
                     <!-- Menu Toggle Button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-flag-o"></i>
@@ -114,7 +114,7 @@
                     <li><a href="{{ url('/login') }}">{{ trans('adminlte_lang::message.login') }}</a></li>
                 @else
                     <!-- User Account Menu -->
-                    <li class="dropdown user user-menu" id="user_menu">
+                    <li class="dropdown user user-menu" id="user_menu" >
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
@@ -170,7 +170,7 @@
 
                 <!-- Control Sidebar Toggle Button -->
                 <li>
-                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    <a href="#" data-toggle="control-sidebar"  style=" display: none;"><i class="fa fa-gears"></i></a>
                 </li>
             </ul>
         </div>

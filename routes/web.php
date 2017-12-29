@@ -29,6 +29,13 @@ Route::group(['middleware' => 'auth'], function () {
 //     return view('registro::registro');
 // });
 
+// Modulo Ingredientes
+
+Route::get('ingredientes/crud', ['as' => 'ingredientes/crud', 'uses' => 'IngredienteController@MostrarCrud']);
+Route::post('ingredientes/listar', ['as' => 'ingredientes/listar', 'uses' => 'IngredienteController@ListarIngredientes']);
+
+//fin modulo ingredientes
+
 
 //api de reniecc
 Route::post('consulta_dni/{dni}', ['as' => 'consulta_dni', 'uses' => 'DniController@getUsuario']);
