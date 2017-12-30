@@ -14,7 +14,7 @@ DB:
 Modulo Usuarios
 	Admin:
 		Crear Usuario
-		Modificar Usuario
+		Modificar Usuario -> editar datos personales
 		Ver Usuario
 		Eliminar Usuario
 
@@ -47,6 +47,12 @@ Modulo Reportes
 		Buscar Reporte
 		Crear Reporte
 
+
+
+
+>>>>>>>>>>>>>>>>REALIZADO<<<<<<<<<<<<<<<<<<<<<<<<
+
+
 Modulo Ingredientes
 	Admin:
 		Añadir Ingredientes
@@ -57,7 +63,3 @@ Modulo Ingredientes
 		Ver Ingrediente
 		Modificar Ingrediente
 
-
-
-
->>>>>>>>>>>>>>>>REALIZADO<<<<<<<<<<<<<<<<<<<<<<<<
