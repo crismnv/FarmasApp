@@ -11,6 +11,104 @@ class Ingrediente extends Model
     public $primarykey = 'id';
 
 
+    public static function DesactivarIngrediente($id)
+    {
+    	 try {
+            
+            DB::beginTransaction();
+
+            $ingrediente = array('estado' => 'INACTIVO'
+                                    );
+
+
+           // $productos = array('precio' => 9999999);
+            Ingrediente::where('id',$id)
+                            ->update($ingrediente);
+
+            DB::commit();
+
+            $ingrediente = null;
+            // $categorias = null;
+                        
+            return true;
+
+        } catch (Exception $e) {
+            // echo "<script>alert('2');<\script>";
+
+            DB::rollback();
+            return false;
+
+        }
+    }
+
+    public static function ActivarIngrediente($id)
+    {
+    	 try {
+            
+            DB::beginTransaction();
+
+            $ingrediente = array('estado' => 'ACTIVO'
+                                    );
+
+
+           // $productos = array('precio' => 9999999);
+            Ingrediente::where('id',$id)
+                            ->update($ingrediente);
+
+            DB::commit();
+
+            $ingrediente = null;
+            // $categorias = null;
+                        
+            return true;
+
+        } catch (Exception $e) {
+            // echo "<script>alert('2');<\script>";
+
+            DB::rollback();
+            return false;
+
+        }
+    }
+
+    public static function Listar_Ingrediente_Id($id)
+    {
+    	return Ingrediente::select('ingredientes.id', 'ingredientes.nombre', 'ingredientes.stock', 'ingredientes.unidad_de_medida', 'ingredientes.estado')
+    	->where('ingredientes.id', $id)->get();
+    }
+
+    public static function EditarPersonaNatural($data)
+    {
+    	 try {
+            
+            DB::beginTransaction();
+
+            $ingrediente = array('nombre' => $data['nombre'],
+                                    'unidad_de_medida' => $data['unidad_de_medida'],
+                                    'stock' => $data['stock'],
+                                    'estado' => $data['estado']
+                                    );
+
+
+           // $productos = array('precio' => 9999999);
+            Ingrediente::where('id', $data['id'])
+                            ->update($ingrediente);
+
+            DB::commit();
+
+            $ingrediente = null;
+            // $categorias = null;
+                        
+            return true;
+
+        } catch (Exception $e) {
+            // echo "<script>alert('2');<\script>";
+
+            DB::rollback();
+            return false;
+
+        }
+    }
     public static function GuardarIngrediente($datos)
     {
     	try

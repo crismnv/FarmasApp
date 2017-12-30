@@ -44,6 +44,34 @@
                     <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li>
                 </ul>
             </li> --}}
+
+
+            {{-- MODULO INGREDIENTES --}}
+
+            @role('admin')
+            <li class="treeview">
+                <a href="#"><i class='sidebar-seguridad fa fa-list-alt'></i> <span>Ingredientes</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="{{url('ingredientes/añadir')}}">Añadir</a></li>
+                    <li><a href="{{url('ingredientes/crud')}}">Administrar</a></li>
+                    {{-- <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li> --}}
+                </ul>
+            </li>
+            @endrole
+
+            @role('quimico')
+            <li class="treeview">
+                <a href="#"><i class='sidebar-seguridad fa fa-list-alt'></i> <span>Ingredientes</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="{{url('ingredientes/crud')}}">Administrar</a></li>
+                    {{-- <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li> --}}
+                </ul>
+            </li>
+            @endrole
+
+            {{-- FIN DE MODULO INGREDIENTES --}}
+
+            {{-- MODULO SEGURIDAD --}}
             @role('admin')
             <li class="treeview">
                 <a href="#"><i class='sidebar-seguridad fa fa-unlock'></i> <span>Seguridad</span> <i class="fa fa-angle-left pull-right"></i></a>

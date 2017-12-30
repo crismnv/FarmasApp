@@ -35,7 +35,7 @@
                                         <div class="pull-left">
                                             <!-- User Image -->
                                            {{--  <img src="{{ Gravatar::get($user->email) }}" class="img-circle" alt="User Image"/> --}}
-                                           <img src="/img/avatar.png" class="img-circle" alt="Imagen" /
+                                           <img src="/img/avatar.png" class="img-circle" alt="Imagen"/>
                                         </div>
                                         <!-- Message title and timestamp -->
                                         <h4>
@@ -127,7 +127,7 @@
                             <!-- The user image in the menu -->
                             <li class="user-header">
                                 {{-- <img src="{{ Gravatar::get($user->email) }}" class="img-circle" alt="User Image" /> --}}
-                                <img src="/img/avatar.png" class="img-circle" alt="Imagen" /
+                                <img src="/img/avatar.png" class="img-circle" alt="Imagen" />
                                 <p>
                                     {{ Auth::user()->name }}
                                     <small>{{ trans('adminlte_lang::message.login') }} Nov. 2012</small>

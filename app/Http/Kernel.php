@@ -58,5 +58,7 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'entrust-gui.admin' => \Acoustep\EntrustGui\Http\Middleware\AdminAuth::class,
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
+        'quimico' => \App\Http\Middleware\QuimicoMiddleware::class,
     ];
 }

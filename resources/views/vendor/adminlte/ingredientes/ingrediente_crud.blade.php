@@ -67,9 +67,16 @@
 @endsection
 
 @section('script-inicio')
+<script>
+
+</script>
 @endsection
 
 @section('main-content')
+
+<button type="button" id="prueba"  onclick="mostrarVentana();" class="btn btn-default"><i class="fa fa-minus-square"  aria-hidden="true"></i></button>
+
+<button type="button" class="btn btn-default" data-toggle="modal" data-target="#termsModal"><i class="fa fa-minus-square"  aria-hidden="true"></i></button>
 
 	<div class="container-fluid spark-screen">
 		<div class="row">
@@ -92,10 +99,67 @@
                     </div> 
         	</div>
 		</div>
+
+	</div>
+	<div id="miVentanaParaDesactivar" class="container-fluid" style= "position: fixed; width: 350px; height: 150px; top: 0; left: 0; font-family:Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; border: #333333 3px solid; background-color: #FAFAFA; color: #000000; display:none;">
+
+			{{-- <div class="row">
+				<p>¿Estas seguro de que quieres desactivar el ingrediente?</p>
+			</div> --}}
+			<br>
+			<div class="row color-azul">
+				<div class="col-sm-10 col-sm-offset-1">
+					<div class="row">
+						<div class="col-sm-12">
+							<h4>¿Estas seguro de que quieres desactivar el ingrediente?</h4>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-4 col-sm-offset-2">
+							<button type="button" class="btn btn-default" onclick="desactivarIngrediente($ingrediente_id);">        SI      </button>
+						</div>
+						<div class="col-sm-4 ">
+							<button type="button" class="btn btn-default" onclick="ocultarVentana(); ">        NO        </button>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+
+		{{-- <button type="button" class="btn btn-default" onclick="ocultarVentana();">button</button> --}}
+	</div>
+
+	<div id="miVentanaParaActivar" class="container-fluid" style= "position: fixed; width: 350px; height: 150px; top: 0; left: 0; font-family:Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; border: #333333 3px solid; background-color: #FAFAFA; color: #000000; display:none;">
+
+			{{-- <div class="row">
+				<p>¿Estas seguro de que quieres desactivar el ingrediente?</p>
+			</div> --}}
+			<br>
+			<div class="row color-azul">
+				<div class="col-sm-10 col-sm-offset-1">
+					<div class="row">
+						<div class="col-sm-12">
+							<h4>¿Estas seguro de que quieres activar el ingrediente?</h4>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-4 col-sm-offset-2">
+							<button type="button" class="btn btn-default" onclick="activarIngrediente($ingrediente_id);">        SI      </button>
+						</div>
+						<div class="col-sm-4 ">
+							<button type="button" class="btn btn-default" onclick=" ocultarVentana(); ">        NO        </button>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+
+		{{-- <button type="button" class="btn btn-default" onclick="ocultarVentana();">button</button> --}}
 	</div>
 	
-	
-</div>
+	@include('adminlte::ingredientes.ingrediente_eliminar')
 @endsection
 
 @section('script-fin')
@@ -104,6 +168,7 @@
 
 $(document).ready(function()
 {
+	// var row = [];
 	$.ajaxSetup({
 	    headers: {
 	        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -134,15 +199,131 @@ $(document).ready(function()
 		        {
 
 		            // return  "<a  class=\"btn btn-default btn-info\" href=\"../PersonaJuridica/Ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../PersonaJuridica/Editar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../ingredientes/añadir" + "\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i>&nbsp;</a>";
-		            return  "<a  class=\"btn btn-default btn-info\" href=\"../PersonaJuridica/Ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../PersonaJuridica/Editar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a>";
+		            // return  "<a  class=\"btn btn-default btn-info\" href=\"../ingredientes/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../ingredientes/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a> <button type=\"button\" id=\"boton-eliminar\" class=\"btn  btn-default\"><i class=\"fa fa-minus-square\" aria-hidden=\"true\"></i></button>";
+		            @role('admin')
+		            console.log(row.estado)
+		            if(row.estado == 'INACTIVO')
+		            {
+
+		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../ingredientes/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../ingredientes/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a> <button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" onclick=\"mostrarVentanaParaActivar(" + row.id +");\" data-target=\"#termsModal\"><i class=\"fa fa-plus-square\"  aria-hidden=\"true\"></i></button>";
+		            }else{
+
+		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../ingredientes/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../ingredientes/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a> <button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" onclick=\"mostrarVentanaParaDesactivar(" + row.id +");\" data-target=\"#termsModal\"><i class=\"fa fa-minus-square\"  aria-hidden=\"true\"></i></button>";
+		            }
+
+		            @else
+
+
+		            if(row.estado == 'INACTIVO')
+		            {
+
+		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../ingredientes/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../ingredientes/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a>";
+		            }else{
+
+		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../ingredientes/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../ingredientes/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a>";
+		            }
+
+		            @endrole
 
 	           		
 		        }
     		}
 	});
 
+
+
+
 });
 
+    function mostrarVentanaParaDesactivar(row)
+	{
+		$ingrediente_id = row;
+		var elemento = row;
+	    var ventana = document.getElementById('miVentanaParaDesactivar');
+	    ventana.style.marginTop = '150px';
+	    ventana.style.left = ((document.body.clientWidth-300) / 2) +  'px';
+	    ventana.style.display = 'block';
+
+	    // console.log("mostrarVentana");
+	    // console.log(row);
+	    // desactivarIngrediente(row)
+	}
+
+	function mostrarVentanaParaActivar(row)
+	{
+		$ingrediente_id = row;
+		var elemento = row;
+	    var ventana = document.getElementById('miVentanaParaActivar');
+	    ventana.style.marginTop = '150px';
+	    ventana.style.left = ((document.body.clientWidth-300) / 2) +  'px';
+	    ventana.style.display = 'block';
+
+	    // console.log("mostrarVentana");
+	    // console.log(row);
+	    // desactivarIngrediente(row)
+	}
+	function ocultarVentana()
+	{
+	    var ventana = document.getElementById('miVentanaParaActivar');
+	    ventana.style.display = 'none';
+	    var ventana2 = document.getElementById('miVentanaParaDesactivar');
+	    ventana2.style.display = 'none';
+	}
+	
+
+	function desactivarIngrediente(in_id)
+	{
+	 //    console.log("desactivarIngrediente");
+		// console.log(in_id)
+		jQuery.ajax({
+					url: '/ingredientes/desactivar/' + in_id,
+					type: 'POST',
+					data: {id: in_id,
+						 "_token": "{{ csrf_token() }}",},
+					success: function(respuesta){
+
+					// ocultarVentana();	
+				  window.location.replace("./crud");
+				  }
+				})
+				.fail(function() {
+		          // console.log(error);
+		    })
+
+		      event.preventDefault();
+	}
+
+	function activarIngrediente(in_id)
+	{
+	 //    console.log("desactivarIngrediente");
+		// console.log(in_id)
+		jQuery.ajax({
+					url: '/ingredientes/activar/' + in_id,
+					type: 'POST',
+					data: {id: in_id,
+						 "_token": "{{ csrf_token() }}",},
+					success: function(respuesta){
+
+					// ocultarVentana();	
+				  window.location.replace("./crud");
+				  }
+				})
+				.fail(function() {
+		          // console.log(error);
+		    })
+
+		      event.preventDefault();
+	}
+
+	
+
+// function prueba() 
+// 	{
+// 		alert();
+// 	}
+
 </script>
+
+
 
 @endsection
