@@ -15,14 +15,18 @@ class ClienteMiddleware
      */
     public function handle($request, Closure $next)
     {
-        try{
-            if ($request->user()->hasRole('admin') ||  $request->user()->hasRole('cliente') ) 
+        if (is_null($request->user()))
+        {
+            abort(403);
+            return;
+        }else{
+            
+            if ($request->user()->hasRole('admin') || $request->user()->hasRole('cliente')) 
             {
                 return $next($request);
             }
             abort(403);
-        } catch (Exception $e) {
-            abort(403);
+            
         }
     }
 }

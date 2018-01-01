@@ -77,7 +77,7 @@ class Ingrediente extends Model
     	->where('ingredientes.id', $id)->get();
     }
 
-    public static function EditarPersonaNatural($data)
+    public static function EditarIngrediente($data)
     {
     	 try {
             

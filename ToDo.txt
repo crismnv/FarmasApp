@@ -14,7 +14,7 @@ DB:
 Modulo Usuarios
 	Admin:
 		Crear Usuario
-		Modificar Usuario -> editar datos personales
+		Modificar Usuario -> editar datos personales -> si sobra tiempo lo hacemos con bootgrid
 		Ver Usuario
 		Eliminar Usuario
 
@@ -36,12 +36,14 @@ Modulo Reservas
 		Modifica Reservas
 		Ver Reservas
 		Eliminar Reservas
+		
 Modulo Proveedores
 	Admin:
 		Añadir Proveedor
 		Ver Provedor
 		Modificar Proveedor
 		Borrar Proveedor
+
 Modulo Reportes
 	Admin:
 		Buscar Reporte

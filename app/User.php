@@ -59,4 +59,31 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         $this->save();
     }
 
+    // public static function CambiarNombre($nombre, $id)
+    // {
+    //     try {
+            
+    //         DB::beginTransaction();
+
+    //         $user = array('name' => $nombre);
+
+    //         User::where('id', $id)
+    //                         ->update($user);
+
+    //         DB::commit();
+
+    //         $user = null;
+    //         // $categorias = null;
+                        
+    //         return true;
+
+    //     } catch (Exception $e) {
+    //         // echo "<script>alert('2');<\script>";
+
+    //         DB::rollback();
+    //         return false;
+
+    //     }
+    // }
+
 }

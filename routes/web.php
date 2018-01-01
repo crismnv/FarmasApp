@@ -29,13 +29,17 @@ Route::group(['middleware' => 'auth'], function () {
 //     return view('registro::registro');
 // });
 
-// Modulo Ingredientes
+
+
+// ---------------------------------------------------------------------------------------------------------------------------
+
+// MODULO INGREDIENTES
 
 Route::get('ingredientes/crud', ['as' => 'ingredientes/crud', 'middleware' => 'quimico', 'uses' => 'IngredienteController@MostrarCrud']);
 
 Route::post('ingredientes/listar', ['as' => 'ingredientes/listar', 'middleware' => 'quimico', 'uses' => 'IngredienteController@ListarIngredientes']);
 
-Route::get('ingredientes/añadir', ['as' => 'ingredientes/añadir', 'middleware' => 'quimico', 'uses' => 'IngredienteController@AñadirIngrediente']);
+Route::get('ingredientes/añadir', ['as' => 'ingredientes/añadir', 'middleware' => 'admin', 'uses' => 'IngredienteController@AñadirIngrediente']);
 
 Route::post('ingredientes/añadir', ['as' => 'ingredientes/añadir', 'middleware' => 'quimico', 'uses' => 'IngredienteController@GuardarIngrediente']);
 
@@ -51,7 +55,19 @@ Route::post('ingredientes/desactivar/{id}', ['as' => 'ingredientes/desactivar', 
 
 Route::post('ingredientes/activar/{id}', ['as' => 'ingredientes/activar', 'middleware' => 'quimico', 'uses' => 'IngredienteController@ActivarIngrediente']);
 
-//fin modulo ingredientes
+//FIN MODULO INGREDIENTES
+// ---------------------------------------------------------------------------------------------------------------------------
+// MODULO USUARIOS
+
+Route::get('users/modificarpersonales/{id}', ['as' => 'users/modificarpersonales', 'middleware' => 'admin', 'uses' => 'UsuarioController@MostrarModificarUsuario']);
+
+
+Route::post('users/modificarpersonales', ['as' => 'users/modificarpersonales', 'middleware' => 'admin', 'uses' => 'UsuarioController@GuardarModificarUsuario']);
+	
+
+// FIN MODULO USUARIOS
+
+// ---------------------------------------------------------------------------------------------------------------------------
 
 
 //api de reniecc

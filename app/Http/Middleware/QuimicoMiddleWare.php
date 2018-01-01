@@ -16,14 +16,20 @@ class QuimicoMiddleWare
     public function handle($request, Closure $next)
     {
       
-        try{
+        if (is_null($request->user()))
+        {
+            abort(403);
+            return;
+        }else{
+            
             if ($request->user()->hasRole('admin') || $request->user()->hasRole('quimico')) 
             {
                 return $next($request);
             }
             abort(403);
-        } catch (Exception $e) {
-            abort(403);
+            
         }
+
+        
     }
 }

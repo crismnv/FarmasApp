@@ -30,7 +30,7 @@ class IngredienteController extends Controller
 
         // dd($data);
 
-        $bresultado = Ingrediente::EditarPersonaNatural($data);
+        $bresultado = Ingrediente::EditarIngrediente($data);
 
         if ($bresultado) {
             

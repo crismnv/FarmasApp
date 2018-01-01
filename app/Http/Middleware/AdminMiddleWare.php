@@ -15,15 +15,19 @@ class AdminMiddleWare
      */
     public function handle($request, Closure $next)
     {
-    	try{
-    		if ($request->user()->hasRole('admin')) 
-	        {
-	            return $next($request);
-	        }
-	        abort(403);
-    	} catch (Exception $e) {
-    		abort(403);
-    	}
+    	if (is_null($request->user()))
+        {
+            abort(403);
+            return;
+        }else{
+            
+            if ($request->user()->hasRole('admin')) 
+            {
+                return $next($request);
+            }
+            abort(403);
+            
+        }
         
         
     }

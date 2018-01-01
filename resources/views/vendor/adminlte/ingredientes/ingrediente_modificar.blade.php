@@ -95,38 +95,38 @@
 	                                   
 	                                    
 	                                   	<div class="form-group row">
-                                        <div class="col-sm-6 col-md-offset-3">
-                                          <label class="color-azul">Estado:</label>
-                                          <select class="form-control text-center" name="estado" id="estado">
-                                           
-                                              @if($ingrediente[0]->estado == 'ACTIVO')
-                                                <option selected value="ACTIVO" >ACTIVO</option>
-                                                <option  value="INACTIVO" >INACTIVO</option>
-                                              @else
-                                                <option  value="ACTIVO" >ACTIVO</option>
-                                                <option  selected="" value="INACTIVO" >INACTIVO</option>
-                                              @endif
-                                            
-                                    		</select>      
-										<br>
+	                                        <div class="col-sm-6 col-md-offset-3">
+	                                          <label class="color-azul">Estado:</label>
+	                                          <select class="form-control text-center" name="estado" id="estado">
+	                                           
+	                                              @if($ingrediente[0]->estado == 'ACTIVO')
+	                                                <option selected value="ACTIVO" >ACTIVO</option>
+	                                                <option  value="INACTIVO" >INACTIVO</option>
+	                                              @else
+	                                                <option  value="ACTIVO" >ACTIVO</option>
+	                                                <option  selected="" value="INACTIVO" >INACTIVO</option>
+	                                              @endif
+	                                            
+	                                    		</select>      
+											<br>
 
 
-                                   
-	                                    <div class="form-group row"> 
-	                                      <div class="col-xs-8 col-xs-offset-2">
-	                                       <button type="submit" id="btnAñadirCategoria" class="btn btn-block pull-left boton-azul"><i class="fa fa-plus fa-2x" aria-hidden="true"></i><span style="font-size:20px;">&nbsp; Modificar Ingrediente</span></button>
-	                                      
-	                                      </div>
-	                                      
-	                                    </div>             
+	                                   
+		                                    <div class="form-group row"> 
+		                                      <div class="col-xs-8 col-xs-offset-2">
+		                                       <button type="submit" id="btnAñadirCategoria" class="btn btn-block pull-left boton-azul"><i class="fa fa-plus fa-2x" aria-hidden="true"></i><span style="font-size:20px;">&nbsp; Modificar Ingrediente</span></button>
+		                                      
+		                                      </div>
+		                                      
+		                                    </div>             
 
 
 
 
-		<input type="text" name="id" id="id" class="form-control text-center" value="{{ $ingrediente[0]->id}}" style="display:none;">
-	          </form>
-        	</div>
-		</div>
+										<input type="text" name="id" id="id" class="form-control text-center" value="{{ $ingrediente[0]->id}}" style="display:none;">
+									          </form>
+								        	</div>
+										</div>
 	</div>
 @endsection
 
