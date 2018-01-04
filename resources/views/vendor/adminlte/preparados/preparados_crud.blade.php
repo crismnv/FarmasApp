@@ -77,16 +77,15 @@
 	<div class="container-fluid spark-screen">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
-        		<h3 class="text-center color-azul"><strong><i class="fa fa-list" aria-hidden="true"></i>&nbsp; INGREDIENTES&nbsp;<i class="fa fa-list" aria-hidden="true"></i></strong></h3>  
+        		<h3 class="text-center color-azul"><strong><i class="fa fa-list" aria-hidden="true"></i>&nbsp; Preparados&nbsp;<i class="fa fa-list" aria-hidden="true"></i></strong></h3>  
 
                     <div class="table-responsive" id="lista-personanatural">
-                        <table class="table table-hover" id="tbl-ingredientes">
+                        <table class="table table-hover" id="tbl-preparadoss">
 						  <thead>
 						     <tr>
 						      <th class="text-center" style="vertical-align:middle;" data-column-id="id" data-type="numeric">ID</th>
-						      <th class="text-center" style="vertical-align:middle;" data-column-id="nombre">Nombre</th>
-						      <th class="text-center" style="vertical-align:middle;" data-column-id="stock">Stock</th>
-						      <th class="text-center" style="vertical-align:middle;" data-column-id="unidad_de_medida">U. de Medida</th>
+						      <th class="text-center" style="vertical-align:middle;" data-column-id="descripcion">Descripcion</th>
+						      <th class="text-center" style="vertical-align:middle;" data-column-id="precio">Precio</th>
 						      <th class="text-center" style="vertical-align:middle;" data-column-id="estado">estado</th>
 						      <th class="text-center" style="vertical-align:middle;" data-column-id="commands" data-formatter="commands" data-sortable="false">Acciones</th>
 						    </tr>
@@ -100,20 +99,20 @@
 	<div id="miVentanaParaDesactivar" class="container-fluid" style= "position: fixed; width: 350px; height: 150px; top: 0; left: 0; font-family:Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; border: #333333 3px solid; background-color: #FAFAFA; color: #000000; display:none;">
 
 			{{-- <div class="row">
-				<p>¿Estas seguro de que quieres desactivar el ingrediente?</p>
+				<p>¿Estas seguro de que quieres desactivar el preparados?</p>
 			</div> --}}
 			<br>
 			<div class="row color-azul">
 				<div class="col-sm-10 col-sm-offset-1">
 					<div class="row">
 						<div class="col-sm-12">
-							<h4>¿Estas seguro de que quieres desactivar el ingrediente?</h4>
+							<h4>¿Estas seguro de que quieres desactivar el preparados?</h4>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-sm-4 col-sm-offset-2">
-							<button type="button" class="btn btn-default" onclick="desactivarIngrediente($ingrediente_id);">        SI      </button>
+							<button type="button" class="btn btn-default" onclick="desactivarPreparado($preparado_id);">        SI      </button>
 						</div>
 						<div class="col-sm-4 ">
 							<button type="button" class="btn btn-default" onclick="ocultarVentana(); ">        NO        </button>
@@ -129,20 +128,20 @@
 	<div id="miVentanaParaActivar" class="container-fluid" style= "position: fixed; width: 350px; height: 150px; top: 0; left: 0; font-family:Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; border: #333333 3px solid; background-color: #FAFAFA; color: #000000; display:none;">
 
 			{{-- <div class="row">
-				<p>¿Estas seguro de que quieres desactivar el ingrediente?</p>
+				<p>¿Estas seguro de que quieres desactivar el preparados?</p>
 			</div> --}}
 			<br>
 			<div class="row color-azul">
 				<div class="col-sm-10 col-sm-offset-1">
 					<div class="row">
 						<div class="col-sm-12">
-							<h4>¿Estas seguro de que quieres activar el ingrediente?</h4>
+							<h4>¿Estas seguro de que quieres activar el preparados?</h4>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-sm-4 col-sm-offset-2">
-							<button type="button" class="btn btn-default" onclick="activarIngrediente($ingrediente_id);">        SI      </button>
+							<button type="button" class="btn btn-default" onclick="activarPreparado($preparado_id);">        SI      </button>
 						</div>
 						<div class="col-sm-4 ">
 							<button type="button" class="btn btn-default" onclick=" ocultarVentana(); ">        NO        </button>
@@ -155,7 +154,6 @@
 		{{-- <button type="button" class="btn btn-default" onclick="ocultarVentana();">button</button> --}}
 	</div>
 	
-	@include('adminlte::ingredientes.ingrediente_eliminar')
 @endsection
 
 @section('script-fin')
@@ -171,7 +169,7 @@ $(document).ready(function()
 	    }
 	});
 
-	var gridtable= $('#tbl-ingredientes').bootgrid({
+	var gridtable= $('#tbl-preparadoss').bootgrid({
 			
 			ajax:true,
 			labels: {
@@ -187,24 +185,24 @@ $(document).ready(function()
 				            id: "b0df282a-0d67-40e5-8558-c9e93b7befed"
 				        };
 			},
-			url:"../ingredientes/listar",
+			url:"../preparados/listar",
 
 			formatters: {
 
 		        "commands": function(column, row)
 		        {
 
-		            // return  "<a  class=\"btn btn-default btn-info\" href=\"../PersonaJuridica/Ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../PersonaJuridica/Editar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../ingredientes/añadir" + "\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i>&nbsp;</a>";
-		            // return  "<a  class=\"btn btn-default btn-info\" href=\"../ingredientes/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../ingredientes/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a> <button type=\"button\" id=\"boton-eliminar\" class=\"btn  btn-default\"><i class=\"fa fa-minus-square\" aria-hidden=\"true\"></i></button>";
+		            // return  "<a  class=\"btn btn-default btn-info\" href=\"../PersonaJuridica/Ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../PersonaJuridica/Editar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../preparadoss/añadir" + "\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i>&nbsp;</a>";
+		            // return  "<a  class=\"btn btn-default btn-info\" href=\"../preparadoss/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../preparadoss/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a> <button type=\"button\" id=\"boton-eliminar\" class=\"btn  btn-default\"><i class=\"fa fa-minus-square\" aria-hidden=\"true\"></i></button>";
 		            @role('admin')
 		            console.log(row.estado)
 		            if(row.estado == 'INACTIVO')
 		            {
 
-		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../ingredientes/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../ingredientes/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a> <button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" onclick=\"mostrarVentanaParaActivar(" + row.id +");\" data-target=\"#termsModal\"><i class=\"fa fa-plus-square\"  aria-hidden=\"true\"></i></button>";
+		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../preparadoss/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../preparadoss/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a> <button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" onclick=\"mostrarVentanaParaActivar(" + row.id +");\" data-target=\"#termsModal\"><i class=\"fa fa-plus-square\"  aria-hidden=\"true\"></i></button>";
 		            }else{
 
-		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../ingredientes/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../ingredientes/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a> <button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" onclick=\"mostrarVentanaParaDesactivar(" + row.id +");\" data-target=\"#termsModal\"><i class=\"fa fa-minus-square\"  aria-hidden=\"true\"></i></button>";
+		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../preparadoss/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../preparadoss/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a> <button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" onclick=\"mostrarVentanaParaDesactivar(" + row.id +");\" data-target=\"#termsModal\"><i class=\"fa fa-minus-square\"  aria-hidden=\"true\"></i></button>";
 		            }
 
 		            @else
@@ -213,10 +211,10 @@ $(document).ready(function()
 		            if(row.estado == 'INACTIVO')
 		            {
 
-		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../ingredientes/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../ingredientes/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a>";
+		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../preparadoss/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../preparadoss/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a>";
 		            }else{
 
-		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../ingredientes/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../ingredientes/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a>";
+		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../preparadoss/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../preparadoss/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a>";
 		            }
 
 		            @endrole
@@ -233,7 +231,8 @@ $(document).ready(function()
 
     function mostrarVentanaParaDesactivar(row)
 	{
-		$ingrediente_id = row;
+		$preparado_id = row;
+		// alert($preparado_id);
 		var elemento = row;
 	    var ventana = document.getElementById('miVentanaParaDesactivar');
 	    ventana.style.marginTop = '150px';
@@ -242,12 +241,12 @@ $(document).ready(function()
 
 	    // console.log("mostrarVentana");
 	    // console.log(row);
-	    // desactivarIngrediente(row)
+	    // desactivarPreparado(row)
 	}
 
 	function mostrarVentanaParaActivar(row)
 	{
-		$ingrediente_id = row;
+		$preparado_id = row;
 		var elemento = row;
 	    var ventana = document.getElementById('miVentanaParaActivar');
 	    ventana.style.marginTop = '150px';
@@ -256,7 +255,7 @@ $(document).ready(function()
 
 	    // console.log("mostrarVentana");
 	    // console.log(row);
-	    // desactivarIngrediente(row)
+	    // desactivarPreparado(row)
 	}
 	function ocultarVentana()
 	{
@@ -267,12 +266,12 @@ $(document).ready(function()
 	}
 	
 
-	function desactivarIngrediente(in_id)
+	function desactivarPreparado(in_id)
 	{
-	 //    console.log("desactivarIngrediente");
+	 //    console.log("desactivarPreparado");
 		// console.log(in_id)
 		jQuery.ajax({
-					url: '/ingredientes/desactivar/' + in_id,
+					url: '/preparados/desactivar/' + in_id,
 					type: 'POST',
 					data: {id: in_id,
 						 "_token": "{{ csrf_token() }}",},
@@ -289,12 +288,12 @@ $(document).ready(function()
 		      event.preventDefault();
 	}
 
-	function activarIngrediente(in_id)
+	function activarPreparado(in_id)
 	{
-	 //    console.log("desactivarIngrediente");
+	 //    console.log("desactivarPreparado");
 		// console.log(in_id)
 		jQuery.ajax({
-					url: '/ingredientes/activar/' + in_id,
+					url: '/preparados/activar/' + in_id,
 					type: 'POST',
 					data: {id: in_id,
 						 "_token": "{{ csrf_token() }}",},

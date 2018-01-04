@@ -57,6 +57,23 @@
                     {{-- <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li> --}}
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="#"><i class='sidebar-seguridad fa fa-flask'></i> <span>Preparados</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="{{url('preparados/añadir')}}">Añadir</a></li>
+                    <li><a href="{{url('preparados/crud')}}">Administrar</a></li>
+                    {{-- <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li> --}}
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#"><i class='sidebar-seguridad fa fa-id-card'></i> <span>Proveedores</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="{{url('proveedores/añadir')}}">Añadir</a></li>
+                    <li><a href="{{url('proveedores/crud')}}">Administrar</a></li>
+                    {{-- <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li> --}}
+                </ul>
+            </li>
             @endrole
 
             @role('quimico')
@@ -66,6 +83,13 @@
                     <li><a href="{{url('ingredientes/crud')}}">Administrar</a></li>
                     {{-- <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li> --}}
                 </ul>
+                <li class="treeview">
+                <a href="#"><i class='sidebar-seguridad fa fa-flask'></i> <span>Preparados</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="{{url('preparados/crud')}}">Administrar</a></li>
+                    {{-- <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li> --}}
+                </ul>
+            </li>
             </li>
             @endrole
 
@@ -76,7 +100,7 @@
             <li class="treeview">
                 <a href="#"><i class='sidebar-seguridad fa fa-users'></i> <span>Usuarios</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="{{url('admin/users')}}">Usuarios</a></li>
+                    <li><a href="{{url('admin/users')}}">Administrar</a></li>
                     {{-- <li><a href="{{url('admin/roles')}}">Roles</a></li> --}}
                     {{-- <li><a href="{{url('admin/permissions')}}">Permisos</a></li> --}}
                     {{-- <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li> --}}

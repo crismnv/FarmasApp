@@ -69,7 +69,50 @@ Route::post('users/modificarpersonales', ['as' => 'users/modificarpersonales', '
 
 // ---------------------------------------------------------------------------------------------------------------------------
 
+// Modulo Preparados
 
+
+Route::get('preparados/añadir', ['as' => 'preparados/añadir', 'middleware' => 'admin', 'uses' => 'PreparadoController@AñadirPreparado']);
+Route::post('preparados/añadir', ['as' => 'preparados/añadir', 'middleware' => 'admin', 'uses' => 'PreparadoController@AñadirGuardarPreparado']);
+Route::get('preparados/crud', ['as' => 'preparados/crud', 'middleware' => 'admin', 'uses' => 'PreparadoController@MostrarCrud']);
+Route::post('preparados/listar', ['as' => 'preparados/listar', 'middleware' => 'admin', 'uses' => 'PreparadoController@ListarPreparados']);
+
+Route::post('preparados/desactivar/{id}', ['as' => 'preparados/desactivar', 'middleware' => 'admin', 'uses' => 'PreparadoController@DesactivarPreparado']);
+
+Route::post('preparados/activar/{id}', ['as' => 'preparados/activar', 'middleware' => 'admin', 'uses' => 'PreparadoController@ActivarPreparado']);
+
+
+// FIN MODULO PREPARADS
+
+// MODULO PROVEEDORES
+
+Route::get('proveedores/añadir', ['as' => 'proveedores/añadir', 'middleware' => 'admin', 'uses' => 'ProveedorController@AñadirProveedor']);
+Route::post('proveedores/añadir', ['as' => 'proveedores/añadir', 'middleware' => 'admin', 'uses' => 'ProveedorController@AñadirGuardarProveedor']);
+
+
+
+Route::get('proveedores/crud', ['as' => 'proveedores/crud', 'middleware' => 'quimico', 'uses' => 'ProveedorController@MostrarCrud']);
+
+Route::post('proveedores/listar', ['as' => 'proveedores/listar', 'middleware' => 'quimico', 'uses' => 'ProveedorController@ListarProveedores']);
+
+
+
+
+Route::get('proveedores/modificar/{id}', ['as' => 'proveedores/modificar', 'middleware' => 'quimico', 'uses' => 'ProveedorController@ModificarProveedor']);
+
+Route::post('proveedores/modificar', ['as' => 'proveedores/modificar', 'middleware' => 'quimico', 'uses' => 'ProveedorController@ModificarGuardarProveedor']);
+
+Route::get('proveedores/ver/{id}', ['as' => 'proveedores/ver', 'middleware' => 'quimico', 'uses' => 'ProveedorController@VerProveedor']);
+
+Route::post('proveedores/desactivar/{id}', ['as' => 'proveedores/desactivar', 'middleware' => 'admin', 'uses' => 'ProveedorController@DesactivarProveedor']);
+
+Route::post('proveedores/activar/{id}', ['as' => 'proveedores/activar', 'middleware' => 'admin', 'uses' => 'ProveedorController@ActivarProveedor']);
+// FIN MODULO PROVEEDORES
+
+// PRUEBA DE ARRAY SQL
+
+Route::get('prueba', ['as' => 'prueba', 'uses' => 'ContieneController@prueba']);
+// FIN ARRAY
 //api de reniecc
 Route::post('consulta_dni/{dni}', ['as' => 'consulta_dni', 'uses' => 'DniController@getUsuario']);
 //registro

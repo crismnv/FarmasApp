@@ -77,16 +77,17 @@
 	<div class="container-fluid spark-screen">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
-        		<h3 class="text-center color-azul"><strong><i class="fa fa-list" aria-hidden="true"></i>&nbsp; INGREDIENTES&nbsp;<i class="fa fa-list" aria-hidden="true"></i></strong></h3>  
+        		<h3 class="text-center color-azul"><strong><i class="fa fa-list" aria-hidden="true"></i>&nbsp; PROVEEDORES&nbsp;<i class="fa fa-list" aria-hidden="true"></i></strong></h3>  
 
                     <div class="table-responsive" id="lista-personanatural">
                         <table class="table table-hover" id="tbl-ingredientes">
 						  <thead>
 						     <tr>
 						      <th class="text-center" style="vertical-align:middle;" data-column-id="id" data-type="numeric">ID</th>
-						      <th class="text-center" style="vertical-align:middle;" data-column-id="nombre">Nombre</th>
-						      <th class="text-center" style="vertical-align:middle;" data-column-id="stock">Stock</th>
-						      <th class="text-center" style="vertical-align:middle;" data-column-id="unidad_de_medida">U. de Medida</th>
+						      <th class="text-center" style="vertical-align:middle;" data-column-id="ruc">RUC</th>
+						      <th class="text-center" style="vertical-align:middle;" data-column-id="razon_social">Razon Social</th>
+						      <th class="text-center" style="vertical-align:middle;" data-column-id="telefono">Telefono</th>
+						      <th class="text-center" style="vertical-align:middle;" data-column-id="correo">Correo</th>
 						      <th class="text-center" style="vertical-align:middle;" data-column-id="estado">estado</th>
 						      <th class="text-center" style="vertical-align:middle;" data-column-id="commands" data-formatter="commands" data-sortable="false">Acciones</th>
 						    </tr>
@@ -113,7 +114,7 @@
 
 					<div class="row">
 						<div class="col-sm-4 col-sm-offset-2">
-							<button type="button" class="btn btn-default" onclick="desactivarIngrediente($ingrediente_id);">        SI      </button>
+							<button type="button" class="btn btn-default" onclick="desactivarProveedor($ingrediente_id);">        SI      </button>
 						</div>
 						<div class="col-sm-4 ">
 							<button type="button" class="btn btn-default" onclick="ocultarVentana(); ">        NO        </button>
@@ -142,7 +143,7 @@
 
 					<div class="row">
 						<div class="col-sm-4 col-sm-offset-2">
-							<button type="button" class="btn btn-default" onclick="activarIngrediente($ingrediente_id);">        SI      </button>
+							<button type="button" class="btn btn-default" onclick="activarProveedor($ingrediente_id);">        SI      </button>
 						</div>
 						<div class="col-sm-4 ">
 							<button type="button" class="btn btn-default" onclick=" ocultarVentana(); ">        NO        </button>
@@ -187,7 +188,7 @@ $(document).ready(function()
 				            id: "b0df282a-0d67-40e5-8558-c9e93b7befed"
 				        };
 			},
-			url:"../ingredientes/listar",
+			url:"../proveedores/listar",
 
 			formatters: {
 
@@ -201,10 +202,10 @@ $(document).ready(function()
 		            if(row.estado == 'INACTIVO')
 		            {
 
-		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../ingredientes/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../ingredientes/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a> <button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" onclick=\"mostrarVentanaParaActivar(" + row.id +");\" data-target=\"#termsModal\"><i class=\"fa fa-plus-square\"  aria-hidden=\"true\"></i></button>";
+		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../proveedores/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../proveedores/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a> <button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" onclick=\"mostrarVentanaParaActivar(" + row.id +");\" data-target=\"#termsModal\"><i class=\"fa fa-plus-square\"  aria-hidden=\"true\"></i></button>";
 		            }else{
 
-		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../ingredientes/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../ingredientes/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a> <button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" onclick=\"mostrarVentanaParaDesactivar(" + row.id +");\" data-target=\"#termsModal\"><i class=\"fa fa-minus-square\"  aria-hidden=\"true\"></i></button>";
+		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../proveedores/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../proveedores/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a> <button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" onclick=\"mostrarVentanaParaDesactivar(" + row.id +");\" data-target=\"#termsModal\"><i class=\"fa fa-minus-square\"  aria-hidden=\"true\"></i></button>";
 		            }
 
 		            @else
@@ -213,10 +214,10 @@ $(document).ready(function()
 		            if(row.estado == 'INACTIVO')
 		            {
 
-		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../ingredientes/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../ingredientes/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a>";
+		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../proveedores/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../proveedores/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a>";
 		            }else{
 
-		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../ingredientes/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../ingredientes/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a>";
+		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../proveedores/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../proveedores/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a>";
 		            }
 
 		            @endrole
@@ -242,7 +243,7 @@ $(document).ready(function()
 
 	    // console.log("mostrarVentana");
 	    // console.log(row);
-	    // desactivarIngrediente(row)
+	    // desactivarProveedor(row)
 	}
 
 	function mostrarVentanaParaActivar(row)
@@ -256,7 +257,7 @@ $(document).ready(function()
 
 	    // console.log("mostrarVentana");
 	    // console.log(row);
-	    // desactivarIngrediente(row)
+	    // desactivarProveedor(row)
 	}
 	function ocultarVentana()
 	{
@@ -267,12 +268,12 @@ $(document).ready(function()
 	}
 	
 
-	function desactivarIngrediente(in_id)
+	function desactivarProveedor(in_id)
 	{
-	 //    console.log("desactivarIngrediente");
+	 //    console.log("desactivarProveedor");
 		// console.log(in_id)
 		jQuery.ajax({
-					url: '/ingredientes/desactivar/' + in_id,
+					url: '/proveedores/desactivar/' + in_id,
 					type: 'POST',
 					data: {id: in_id,
 						 "_token": "{{ csrf_token() }}",},
@@ -289,12 +290,12 @@ $(document).ready(function()
 		      event.preventDefault();
 	}
 
-	function activarIngrediente(in_id)
+	function activarProveedor(in_id)
 	{
-	 //    console.log("desactivarIngrediente");
+	 //    console.log("desactivarProveedor");
 		// console.log(in_id)
 		jQuery.ajax({
-					url: '/ingredientes/activar/' + in_id,
+					url: '/proveedores/activar/' + in_id,
 					type: 'POST',
 					data: {id: in_id,
 						 "_token": "{{ csrf_token() }}",},

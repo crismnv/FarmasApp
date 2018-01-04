@@ -1,22 +1,19 @@
 General:
 	Login - modificar el existente
 	Landing Page
+	Crear una pagina en facebook con farmasapp y hacer que se vea decente con info casi real
 
 DB:
 	Trigger:
-		After insert pedido 
-		After update reserva(cuando la reserva se ponga en "preparando" se quitará)
+		After insert pedido aumenta el stock en ingredientes
+		After update reserva(cuando la reserva se ponga en estado de reserva "preparando" se quitarán unidades del stock en ingredientes)
 	Store Procedure:
 		Modificar Estado de la reserva, como parametro adicional el id del usuario que hizo la modificacion
-		Busqueda de preparado con un array de ingredientes como entrada 
+		Uno mas a tu criterio
+	Events:
+		Cada noche o semana, aun no estoy seguro, se revisará dentro de las reservas y las que tengan mas de 4 meses de antiguedad serán desactivadas o eliminadas(por ver la eliminacion). 
 
 
-Modulo Usuarios
-	Admin:
-		Crear Usuario
-		Modificar Usuario -> editar datos personales -> si sobra tiempo lo hacemos con bootgrid
-		Ver Usuario
-		Eliminar Usuario
 
 Modulo Reservas
 	Cliente:
@@ -37,23 +34,13 @@ Modulo Reservas
 		Ver Reservas
 		Eliminar Reservas
 		
-Modulo Proveedores
-	Admin:
-		Añadir Proveedor
-		Ver Provedor
-		Modificar Proveedor
-		Borrar Proveedor
 
 Modulo Reportes
 	Admin:
 		Buscar Reporte
 		Crear Reporte
 
-
-
-
->>>>>>>>>>>>>>>>REALIZADO<<<<<<<<<<<<<<<<<<<<<<<<
-
+>>>>>>>>>>>>>>>>REALIZADO - PARA RETOQUES<<<<<<<<<<<<<<<<<<<<<<<<
 
 Modulo Ingredientes
 	Admin:
@@ -65,3 +52,17 @@ Modulo Ingredientes
 		Ver Ingrediente
 		Modificar Ingrediente
 
+Modulo Usuarios
+	Admin:
+		Crear Usuario
+		Modificar Usuario -> editar datos personales -> si sobra tiempo lo hacemos con bootgrid
+		Ver Usuario
+		Eliminar Usuario
+
+		
+Modulo Proveedores
+	Admin:
+		Añadir Proveedor
+		Ver Provedor
+		Modificar Proveedor
+		Borrar Proveedor
