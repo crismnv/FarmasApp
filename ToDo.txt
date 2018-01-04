@@ -27,10 +27,11 @@ Modulo Reservas
 		Ve Reservas
 		Modifica Reservas
 	Admin:
-		Crea reservas
-		Realiza cotizacion
-		Ve su historial de reservas
+		Crea reservas 
+		Realiza cotizacion(Con la tabla hecha en añadir preparado)
+		Ve su historial de reservas(Con la opcion de volver a pedirla - Parece que se hará con un bootgrid)
 		Modifica Reservas
+			Cada trabajador tendrá su bootgrid, con la diferencia de que solo se mostrará para el admin:Todo, para el quimico cambiar los que estan esperando a aprobado y a preparando, los trabajadores cambian de preparado a entregado.
 		Ver Reservas
 		Eliminar Reservas
 		
@@ -59,7 +60,7 @@ Modulo Usuarios
 		Ver Usuario
 		Eliminar Usuario
 
-		
+
 Modulo Proveedores
 	Admin:
 		Añadir Proveedor
