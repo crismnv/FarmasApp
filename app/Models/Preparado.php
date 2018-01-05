@@ -14,6 +14,65 @@ class Preparado extends Model
 
 
 
+    // public static function Listar 
+
+    
+    public static function ModificarPreparado($datos)
+    {
+        
+        try {
+            
+             DB::beginTransaction();
+
+             DB::table('contiene')->where('preparado_id', '=', $datos['id'])->delete();
+                
+             $codigo_preparado_generado = DB::table('Preparados')->insertGetId(
+                        [
+                            'descripcion' => $datos['descripcion'],
+                            'precio'  =>  $datos['precio']
+                        ]
+                    );
+
+                // Insertando Preparado.
+
+                for ($i=0; $i < count($datos['idingrediente']); $i++) 
+                { 
+
+                    $cantidad = $datos['cantidad'][$i];                   
+                    $ingrediente = $datos['idingrediente'][$i];
+
+                    // $subtotal = floatval($datos['precio_venta'][$i])*intval($datos['cantidad'][$i]);
+
+                        $contiene = new Contiene();
+
+                        $contiene->preparado_id = $codigo_preparado_generado;
+                        $contiene->ingrediente_id = $ingrediente;
+                        $contiene->cantidad = $cantidad;
+
+
+                        $contiene->save();
+
+                        // Producto::ActualizarStockProducto($datos['idingrediente'][$i],$cantidad);
+
+                        // $total = $total + $subtotal;
+
+
+                }
+
+
+            DB::commit();
+
+            return true;  
+        } catch (Exception $e) {
+            B::rollback();
+
+            return false; 
+        }
+    }
+    public static function Listar_Preparado_x_Id($id)
+    {
+        return Preparado::select('*')->where('id', $id)->get();
+    }
     public static function DesactivarPreparado($id)
     {
          try {
@@ -205,23 +264,6 @@ class Preparado extends Model
 
 				}
 
-             //   $igv = 0.18*$total;
-
-             //   $totaligv = $total + $igv;
-
-             //   // Actualizando los Datos.
-
-             //    $valores=array('igv'=> $igv,
-             //    			   'subtotal' =>$total,
-             //    			   'total' => $totaligv );
-
-            	// Documento::where('id',$codigo_documento_generado)
-             //    	->update($valores);
-
-             //    $valores= null;
-             //    $igv = null;
-             //    $totaligv = null; 
-             //    $total =null;
 
             DB::commit();
 

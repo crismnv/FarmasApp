@@ -77,15 +77,17 @@
 	<div class="container-fluid spark-screen">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
-        		<h3 class="text-center color-azul"><strong><i class="fa fa-list" aria-hidden="true"></i>&nbsp; Preparados&nbsp;<i class="fa fa-list" aria-hidden="true"></i></strong></h3>  
+        		<h3 class="text-center color-azul"><strong><i class="fa fa-list" aria-hidden="true"></i>&nbsp; RESERVAS&nbsp;<i class="fa fa-list" aria-hidden="true"></i></strong></h3>  
 
                     <div class="table-responsive" id="lista-personanatural">
-                        <table class="table table-hover" id="tbl-preparadoss">
+                        <table class="table table-hover" id="tbl-ingredientes">
 						  <thead>
 						     <tr>
 						      <th class="text-center" style="vertical-align:middle;" data-column-id="id" data-type="numeric">ID</th>
-						      <th class="text-center" style="vertical-align:middle;" data-column-id="descripcion">Descripcion</th>
-						      <th class="text-center" style="vertical-align:middle;" data-column-id="precio">Precio</th>
+						      <th class="text-center" style="vertical-align:middle;" data-column-id="nombres">Nombres</th>
+						      <th class="text-center" style="vertical-align:middle;" data-column-id="apellidos">Apellidos</th>
+						      <th class="text-center" style="vertical-align:middle;" data-column-id="descripcion">Descripcion del Preparado</th>
+						      <th class="text-center" style="vertical-align:middle;" data-column-id="estado_reserva">Estado de la Reserva</th>
 						      <th class="text-center" style="vertical-align:middle;" data-column-id="estado">estado</th>
 						      <th class="text-center" style="vertical-align:middle;" data-column-id="commands" data-formatter="commands" data-sortable="false">Acciones</th>
 						    </tr>
@@ -99,20 +101,20 @@
 	<div id="miVentanaParaDesactivar" class="container-fluid" style= "position: fixed; width: 350px; height: 150px; top: 0; left: 0; font-family:Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; border: #333333 3px solid; background-color: #FAFAFA; color: #000000; display:none;">
 
 			{{-- <div class="row">
-				<p>¿Estas seguro de que quieres desactivar el preparados?</p>
+				<p>¿Estas seguro de que quieres desactivar la reserva?</p>
 			</div> --}}
 			<br>
 			<div class="row color-azul">
 				<div class="col-sm-10 col-sm-offset-1">
 					<div class="row">
 						<div class="col-sm-12">
-							<h4>¿Estas seguro de que quieres desactivar el preparados?</h4>
+							<h4>¿Estas seguro de que quieres desactivar la reserva?</h4>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-sm-4 col-sm-offset-2">
-							<button type="button" class="btn btn-default" onclick="desactivarPreparado($preparado_id);">        SI      </button>
+							<button type="button" class="btn btn-default" onclick="desactivarIngrediente($reserva_id);">        SI      </button>
 						</div>
 						<div class="col-sm-4 ">
 							<button type="button" class="btn btn-default" onclick="ocultarVentana(); ">        NO        </button>
@@ -128,20 +130,20 @@
 	<div id="miVentanaParaActivar" class="container-fluid" style= "position: fixed; width: 350px; height: 150px; top: 0; left: 0; font-family:Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; border: #333333 3px solid; background-color: #FAFAFA; color: #000000; display:none;">
 
 			{{-- <div class="row">
-				<p>¿Estas seguro de que quieres desactivar el preparados?</p>
+				<p>¿Estas seguro de que quieres desactivar la reserva?</p>
 			</div> --}}
 			<br>
 			<div class="row color-azul">
 				<div class="col-sm-10 col-sm-offset-1">
 					<div class="row">
 						<div class="col-sm-12">
-							<h4>¿Estas seguro de que quieres activar el preparados?</h4>
+							<h4>¿Estas seguro de que quieres activar la reserva?</h4>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-sm-4 col-sm-offset-2">
-							<button type="button" class="btn btn-default" onclick="activarPreparado($preparado_id);">        SI      </button>
+							<button type="button" class="btn btn-default" onclick="activarIngrediente($reserva_id);">        SI      </button>
 						</div>
 						<div class="col-sm-4 ">
 							<button type="button" class="btn btn-default" onclick=" ocultarVentana(); ">        NO        </button>
@@ -169,7 +171,7 @@ $(document).ready(function()
 	    }
 	});
 
-	var gridtable= $('#tbl-preparadoss').bootgrid({
+	var gridtable= $('#tbl-ingredientes').bootgrid({
 			
 			ajax:true,
 			labels: {
@@ -185,24 +187,24 @@ $(document).ready(function()
 				            id: "b0df282a-0d67-40e5-8558-c9e93b7befed"
 				        };
 			},
-			url:"../preparados/listar",
+			url:"../reservas/listar",
 
 			formatters: {
 
 		        "commands": function(column, row)
 		        {
 
-		            // return  "<a  class=\"btn btn-default btn-info\" href=\"../PersonaJuridica/Ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../PersonaJuridica/Editar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../preparadoss/añadir" + "\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i>&nbsp;</a>";
-		            // return  "<a  class=\"btn btn-default btn-info\" href=\"../preparadoss/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../preparadoss/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a> <button type=\"button\" id=\"boton-eliminar\" class=\"btn  btn-default\"><i class=\"fa fa-minus-square\" aria-hidden=\"true\"></i></button>";
+		            // return  "<a  class=\"btn btn-default btn-info\" href=\"../PersonaJuridica/Ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../PersonaJuridica/Editar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../ingredientes/añadir" + "\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i>&nbsp;</a>";
+		            // return  "<a  class=\"btn btn-default btn-info\" href=\"../ingredientes/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../ingredientes/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a> <button type=\"button\" id=\"boton-eliminar\" class=\"btn  btn-default\"><i class=\"fa fa-minus-square\" aria-hidden=\"true\"></i></button>";
 		            @role('admin')
 		            console.log(row.estado)
 		            if(row.estado == 'INACTIVO')
 		            {
 
-		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../preparados/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../preparados/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a> <button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" onclick=\"mostrarVentanaParaActivar(" + row.id +");\" data-target=\"#termsModal\"><i class=\"fa fa-plus-square\"  aria-hidden=\"true\"></i></button>";
+		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../reservas/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../reservas/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a> <button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" onclick=\"mostrarVentanaParaActivar(" + row.id +");\" data-target=\"#termsModal\"><i class=\"fa fa-plus-square\"  aria-hidden=\"true\"></i></button>";
 		            }else{
 
-		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../preparados/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../preparados/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a> <button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" onclick=\"mostrarVentanaParaDesactivar(" + row.id +");\" data-target=\"#termsModal\"><i class=\"fa fa-minus-square\"  aria-hidden=\"true\"></i></button>";
+		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../reservas/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../reservas/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a> <button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" onclick=\"mostrarVentanaParaDesactivar(" + row.id +");\" data-target=\"#termsModal\"><i class=\"fa fa-minus-square\"  aria-hidden=\"true\"></i></button>";
 		            }
 
 		            @else
@@ -211,10 +213,10 @@ $(document).ready(function()
 		            if(row.estado == 'INACTIVO')
 		            {
 
-		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../preparados/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../preparados/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a>";
+		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../reservas/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../reservas/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a>";
 		            }else{
 
-		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../preparados/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../preparados/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a>";
+		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../reservas/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../reservas/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a>";
 		            }
 
 		            @endrole
@@ -231,8 +233,7 @@ $(document).ready(function()
 
     function mostrarVentanaParaDesactivar(row)
 	{
-		$preparado_id = row;
-		// alert($preparado_id);
+		$reserva_id = row;
 		var elemento = row;
 	    var ventana = document.getElementById('miVentanaParaDesactivar');
 	    ventana.style.marginTop = '150px';
@@ -241,12 +242,12 @@ $(document).ready(function()
 
 	    // console.log("mostrarVentana");
 	    // console.log(row);
-	    // desactivarPreparado(row)
+	    // desactivarIngrediente(row)
 	}
 
 	function mostrarVentanaParaActivar(row)
 	{
-		$preparado_id = row;
+		$reserva_id = row;
 		var elemento = row;
 	    var ventana = document.getElementById('miVentanaParaActivar');
 	    ventana.style.marginTop = '150px';
@@ -255,7 +256,7 @@ $(document).ready(function()
 
 	    // console.log("mostrarVentana");
 	    // console.log(row);
-	    // desactivarPreparado(row)
+	    // desactivarIngrediente(row)
 	}
 	function ocultarVentana()
 	{
@@ -266,12 +267,12 @@ $(document).ready(function()
 	}
 	
 
-	function desactivarPreparado(in_id)
+	function desactivarIngrediente(in_id)
 	{
-	 //    console.log("desactivarPreparado");
+	 //    console.log("desactivarIngrediente");
 		// console.log(in_id)
 		jQuery.ajax({
-					url: '/preparados/desactivar/' + in_id,
+					url: '/reservas/desactivar/' + in_id,
 					type: 'POST',
 					data: {id: in_id,
 						 "_token": "{{ csrf_token() }}",},
@@ -288,12 +289,12 @@ $(document).ready(function()
 		      event.preventDefault();
 	}
 
-	function activarPreparado(in_id)
+	function activarIngrediente(in_id)
 	{
-	 //    console.log("desactivarPreparado");
+	 //    console.log("desactivarIngrediente");
 		// console.log(in_id)
 		jQuery.ajax({
-					url: '/preparados/activar/' + in_id,
+					url: '/reservas/activar/' + in_id,
 					type: 'POST',
 					data: {id: in_id,
 						 "_token": "{{ csrf_token() }}",},
