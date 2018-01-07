@@ -140,6 +140,20 @@
 
             {{-- FIN MODULO USUARIOS --}}
 
+
+
+            {{--  MODULO REPORTES --}}
+            @role('admin')
+            <li class="treeview">
+                <a href="#"><i class='sidebar-reportes fa fa-area-chart'></i> <span>Reportes</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    {{-- <li><a href="{{url('Reportes')}}">Reportes</a></li> --}}
+                    <li><a href="{{url('graficas/ver')}}">Graficas</a></li>
+                </ul>
+            </li>
+            @endrole
+            {{-- FIN MODULO REPORTES --}}
+
         </ul><!-- /.sidebar-menu -->
 
     </section>

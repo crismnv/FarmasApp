@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 30-12-2017 a las 23:38:21
+-- Tiempo de generación: 07-01-2018 a las 04:23:02
 -- Versión del servidor: 5.7.19
 -- Versión de PHP: 7.1.9
 
@@ -82,14 +82,14 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   UNIQUE KEY `clientes_telefono_unique` (`telefono`),
   UNIQUE KEY `clientes_dni_unique` (`dni`),
   KEY `clientes_user_id_foreign` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `clientes`
 --
 
 INSERT INTO `clientes` (`id`, `nombres`, `apellido1`, `apellido2`, `telefono`, `direccion`, `dni`, `user_id`, `estado`, `created_at`, `updated_at`) VALUES
-(21, 'CARLOS ENRIQUE', 'YCOCHEA', 'PINO', '981018346', 'asd', '32783440', 27, 'ACTIVO', '2017-12-26 01:49:55', '2017-12-26 01:49:55'),
+(21, 'CARLOS ENRIQUE', 'YCOCHEA', 'PINO', '981018348', 'asd', '32783440', 27, 'ACTIVO', '2017-12-26 01:49:55', '2018-01-01 22:48:21'),
 (22, 'ARIS JAHIR', 'MONCADA', 'LEIVA', '975857465', '21 de abril', '70606685', 28, 'ACTIVO', '2017-12-28 01:31:20', '2017-12-28 01:31:20'),
 (23, 'GLADYS', 'CARHUAJULCA', 'ROJAS', '942875641', 'Av. Pardo 5444', '32782488', 29, 'ACTIVO', '2017-12-28 01:32:30', '2017-12-28 01:32:30'),
 (24, 'LUIS MANUEL', 'MELENDEZ', 'RODRIGUEZ', '975658457', 'Trapecio 2° etapa Mz H Lote 4', '72579826', 30, 'ACTIVO', '2017-12-28 01:35:12', '2017-12-28 01:35:12'),
@@ -105,7 +105,8 @@ INSERT INTO `clientes` (`id`, `nombres`, `apellido1`, `apellido2`, `telefono`, `
 (34, 'NATHALY ALEJANDRA', 'DEL CARPIO', 'PEREDA', '934657865', 'La Caleta Mz U Lote 8', '72775439', 40, 'ACTIVO', '2017-12-28 02:10:23', '2017-12-28 02:10:23'),
 (35, 'SERGIO ANTONIO', 'RUEDA', 'LOPEZ', '945876598', 'Av.Santa Rosa 549', '75155923', 41, 'ACTIVO', '2017-12-28 02:16:42', '2017-12-28 02:16:42'),
 (36, 'LAURA GABRIELA', 'MELGAREJO', 'ALVARADO', '965874752', 'Garatea Mz T Lote 9', '73692514', 42, 'ACTIVO', '2017-12-28 04:57:53', '2017-12-28 04:57:53'),
-(37, 'CARLOS FELIPE', 'RODRIGUEZ', 'MELENDEZ', '981564782', 'San Juan Mz 29 Lote 13', '72364486', 43, 'ACTIVO', '2017-12-28 05:49:07', '2017-12-28 05:49:07');
+(37, 'CARLOS FELIPE', 'RODRIGUEZ', 'MELENDEZ', '981564782', 'San Juan Mz 29 Lote 13', '72364486', 43, 'ACTIVO', '2017-12-28 05:49:07', '2017-12-28 05:49:07'),
+(38, 'FRANCISCO', 'LOPEZ', 'ZAPATA', '978456578', 'San luis Mz P Lote 5', '75104074', 50, 'ACTIVO', '2018-01-06 20:09:10', '2018-01-06 20:09:10');
 
 -- --------------------------------------------------------
 
@@ -125,19 +126,13 @@ CREATE TABLE IF NOT EXISTS `contiene` (
   PRIMARY KEY (`id`),
   KEY `contiene_preparado_id_foreign` (`preparado_id`),
   KEY `contiene_ingrediente_id_foreign` (`ingrediente_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=195 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `contiene`
 --
 
 INSERT INTO `contiene` (`id`, `preparado_id`, `ingrediente_id`, `cantidad`, `estado`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 800.00, 'ACTIVO', NULL, NULL),
-(2, 1, 2, 10.00, 'ACTIVO', NULL, NULL),
-(3, 1, 3, 20.00, 'ACTIVO', NULL, NULL),
-(4, 2, 1, 1200.00, 'ACTIVO', NULL, NULL),
-(5, 2, 3, 30.00, 'ACTIVO', NULL, NULL),
-(6, 2, 19, 15.00, 'ACTIVO', NULL, NULL),
 (7, 3, 1, 3500.00, 'ACTIVO', NULL, NULL),
 (8, 3, 5, 5.00, 'ACTIVO', NULL, NULL),
 (9, 4, 1, 800.00, 'ACTIVO', NULL, NULL),
@@ -147,7 +142,56 @@ INSERT INTO `contiene` (`id`, `preparado_id`, `ingrediente_id`, `cantidad`, `est
 (13, 4, 9, 2.00, 'ACTIVO', NULL, NULL),
 (14, 5, 1, 600.00, 'ACTIVO', NULL, NULL),
 (15, 5, 2, 5.00, 'ACTIVO', NULL, NULL),
-(16, 5, 19, 62.00, 'ACTIVO', NULL, NULL);
+(16, 5, 19, 62.00, 'ACTIVO', NULL, NULL),
+(21, 22, 20, 120.00, 'ACTIVO', '2018-01-04 18:43:22', '2018-01-04 18:43:22'),
+(22, 22, 9, 10.00, 'ACTIVO', '2018-01-04 18:43:22', '2018-01-04 18:43:22'),
+(112, 6, 1, 800.00, 'ACTIVO', NULL, NULL),
+(113, 6, 2, 10.00, 'ACTIVO', NULL, NULL),
+(114, 6, 3, 20.00, 'ACTIVO', NULL, NULL),
+(118, 8, 1, 800.00, 'ACTIVO', NULL, NULL),
+(119, 8, 2, 10.00, 'ACTIVO', NULL, NULL),
+(120, 8, 3, 20.00, 'ACTIVO', NULL, NULL),
+(124, 10, 1, 800.00, 'ACTIVO', NULL, NULL),
+(125, 10, 2, 10.00, 'ACTIVO', NULL, NULL),
+(126, 10, 3, 20.00, 'ACTIVO', NULL, NULL),
+(127, 11, 1, 1200.00, 'ACTIVO', NULL, NULL),
+(128, 11, 3, 30.00, 'ACTIVO', NULL, NULL),
+(129, 11, 19, 15.00, 'ACTIVO', NULL, NULL),
+(130, 12, 1, 800.00, 'ACTIVO', NULL, NULL),
+(131, 12, 2, 10.00, 'ACTIVO', NULL, NULL),
+(132, 12, 3, 20.00, 'ACTIVO', NULL, NULL),
+(133, 13, 1, 1200.00, 'ACTIVO', NULL, NULL),
+(134, 13, 3, 30.00, 'ACTIVO', NULL, NULL),
+(135, 13, 19, 15.00, 'ACTIVO', NULL, NULL),
+(136, 14, 1, 800.00, 'ACTIVO', NULL, NULL),
+(137, 14, 2, 10.00, 'ACTIVO', NULL, NULL),
+(138, 14, 3, 20.00, 'ACTIVO', NULL, NULL),
+(139, 15, 1, 1200.00, 'ACTIVO', NULL, NULL),
+(140, 15, 3, 30.00, 'ACTIVO', NULL, NULL),
+(141, 15, 19, 15.00, 'ACTIVO', NULL, NULL),
+(142, 16, 1, 800.00, 'ACTIVO', NULL, NULL),
+(143, 16, 2, 10.00, 'ACTIVO', NULL, NULL),
+(144, 16, 3, 20.00, 'ACTIVO', NULL, NULL),
+(145, 17, 1, 1200.00, 'ACTIVO', NULL, NULL),
+(146, 17, 3, 30.00, 'ACTIVO', NULL, NULL),
+(147, 17, 19, 15.00, 'ACTIVO', NULL, NULL),
+(160, 26, 10, 250.00, 'ACTIVO', '2018-01-06 04:34:54', '2018-01-06 04:34:54'),
+(161, 26, 1, 800.00, 'ACTIVO', '2018-01-06 04:34:54', '2018-01-06 04:34:54'),
+(162, 26, 2, 10.00, 'ACTIVO', '2018-01-06 04:34:54', '2018-01-06 04:34:54'),
+(163, 26, 3, 20.00, 'ACTIVO', '2018-01-06 04:34:54', '2018-01-06 04:34:54'),
+(164, 26, 5, 30.00, 'ACTIVO', '2018-01-06 04:34:54', '2018-01-06 04:34:54'),
+(172, 29, 1, 1200.00, 'ACTIVO', '2018-01-06 05:45:57', '2018-01-06 05:45:57'),
+(173, 29, 3, 30.00, 'ACTIVO', '2018-01-06 05:45:58', '2018-01-06 05:45:58'),
+(174, 29, 19, 15.00, 'ACTIVO', '2018-01-06 05:45:58', '2018-01-06 05:45:58'),
+(175, 30, 1, 1200.00, 'ACTIVO', '2018-01-06 05:46:12', '2018-01-06 05:46:12'),
+(176, 30, 3, 30.00, 'ACTIVO', '2018-01-06 05:46:12', '2018-01-06 05:46:12'),
+(177, 30, 19, 15.00, 'ACTIVO', '2018-01-06 05:46:12', '2018-01-06 05:46:12'),
+(178, 31, 1, 1200.00, 'ACTIVO', '2018-01-06 05:47:04', '2018-01-06 05:47:04'),
+(179, 31, 3, 30.00, 'ACTIVO', '2018-01-06 05:47:04', '2018-01-06 05:47:04'),
+(180, 31, 19, 15.00, 'ACTIVO', '2018-01-06 05:47:04', '2018-01-06 05:47:04'),
+(192, 34, 19, 1200.00, 'ACTIVO', NULL, NULL),
+(193, 37, 2, 10.00, 'ACTIVO', '2018-01-06 19:54:46', '2018-01-06 19:54:46'),
+(194, 37, 3, 20.00, 'ACTIVO', '2018-01-06 19:54:46', '2018-01-06 19:54:46');
 
 -- --------------------------------------------------------
 
@@ -165,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `ingredientes` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `ingredientes`
@@ -181,7 +225,7 @@ INSERT INTO `ingredientes` (`id`, `nombre`, `unidad_de_medida`, `stock`, `estado
 (7, 'vitamina c', 'mg', 35000.00, 'ACTIVO', NULL, NULL),
 (8, 'ácido retinoico', 'mg', 55000.00, 'ACTIVO', NULL, NULL),
 (9, 'acetónico de fluocinolona', 'mg', 25000.00, 'ACTIVO', NULL, NULL),
-(10, 'hidrocortisona', 'mg', 35000.00, 'ACTIVO', NULL, NULL),
+(10, 'hidrocortisona', 'mg', 35000.00, 'ACTIVO', NULL, '2018-01-04 19:15:45'),
 (12, 'minoxidil', 'ml', 720.00, 'ACTIVO', NULL, '2017-12-31 00:52:48'),
 (13, 'mupirocina', 'mg', 75000.00, 'ACTIVO', NULL, NULL),
 (14, 'miconazol', 'mg', 65000.00, 'ACTIVO', NULL, '2017-12-31 04:35:22'),
@@ -191,7 +235,8 @@ INSERT INTO `ingredientes` (`id`, `nombre`, `unidad_de_medida`, `stock`, `estado
 (18, 'metronidazol', 'mg', 2000.00, 'ACTIVO', NULL, NULL),
 (19, 'acetato fluocinolona', 'mg', 33000.00, 'ACTIVO', NULL, '2017-12-31 00:49:14'),
 (20, 'Acetato de Ciproterona', 'ml', 9500.00, 'ACTIVO', '2017-12-30 03:51:25', '2017-12-31 00:49:02'),
-(21, 'Nitrato de Calcio', 'ml', 232323.00, 'ACTIVO', '2017-12-30 04:15:25', '2017-12-31 04:35:25');
+(21, 'Nitrato de Calcio', 'ml', 232323.00, 'ACTIVO', '2017-12-30 04:15:25', '2018-01-04 00:47:01'),
+(22, 'pelotas', 'g', 2000.00, 'ACTIVO', '2018-01-05 03:57:46', '2018-01-06 19:40:57');
 
 -- --------------------------------------------------------
 
@@ -334,22 +379,18 @@ CREATE TABLE IF NOT EXISTS `preparados` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `preparados`
 --
 
 INSERT INTO `preparados` (`id`, `descripcion`, `precio`, `estado`, `created_at`, `updated_at`) VALUES
-(1, 'crema beeler', 40.00, 'ACTIVO', NULL, NULL),
-(2, 'crema beeler', 50.00, 'ACTIVO', NULL, NULL),
 (3, 'alcohol', 40.00, 'ACTIVO', NULL, NULL),
 (4, 'crema', 30.00, 'ACTIVO', NULL, NULL),
 (5, 'crema base', 50.00, 'ACTIVO', NULL, NULL),
 (6, 'crema', 30.00, 'ACTIVO', NULL, NULL),
-(7, 'crema', 50.00, 'ACTIVO', NULL, NULL),
 (8, 'crema', 50.00, 'ACTIVO', NULL, NULL),
-(9, 'crema', 40.00, 'ACTIVO', NULL, NULL),
 (10, 'locion capilar', 50.00, 'ACTIVO', NULL, NULL),
 (11, 'locion', 70.00, 'ACTIVO', NULL, NULL),
 (12, 'pasta al agua', 60.00, 'ACTIVO', NULL, NULL),
@@ -358,7 +399,13 @@ INSERT INTO `preparados` (`id`, `descripcion`, `precio`, `estado`, `created_at`,
 (15, 'pasta al agua', 30.00, 'ACTIVO', NULL, NULL),
 (16, 'pasta al agua', 40.00, 'ACTIVO', NULL, NULL),
 (17, 'pasta al agua', 25.00, 'ACTIVO', NULL, NULL),
-(18, 'agua destilada', 55.00, 'ACTIVO', NULL, NULL);
+(22, 'Ciproterona', 23.00, 'ACTIVO', NULL, '2018-01-06 05:30:50'),
+(26, 'agua destilada', 60.00, 'ACTIVO', NULL, '2018-01-06 05:30:46'),
+(29, 'crema', 55.00, 'ACTIVO', NULL, NULL),
+(30, 'crema', 55.00, 'ACTIVO', NULL, NULL),
+(31, 'crema', 50.00, 'ACTIVO', NULL, NULL),
+(34, 'crema beeler', 28.00, 'ACTIVO', NULL, '2018-01-06 19:39:43'),
+(37, 'crema beeler', 40.00, 'ACTIVO', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -380,7 +427,7 @@ CREATE TABLE IF NOT EXISTS `proveedores` (
   UNIQUE KEY `proveedores_ruc_unique` (`ruc`),
   UNIQUE KEY `proveedores_telefono_unique` (`telefono`),
   UNIQUE KEY `proveedores_correo_unique` (`correo`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `proveedores`
@@ -395,8 +442,10 @@ INSERT INTO `proveedores` (`id`, `ruc`, `razon_social`, `telefono`, `correo`, `e
 (6, '54785268456', 'Laboratorio Berman', '955874569', 'Laboratorio.berman.2323@gmail.com', 'ACTIVO', NULL, NULL),
 (7, '64578986532', 'Laboratorio Enstra', '945784513', 'Laboratorio.enstra.2256@gmail.com', 'ACTIVO', NULL, NULL),
 (8, '45781254632', 'Laboratorio Chan', '967845285', 'Laboratorio.chan.1923@gmail.com', 'ACTIVO', NULL, NULL),
-(9, '67985475235', 'Laboratorio Antonio', '934875696', 'Laboratorio.antonio.1879@gmail.com', 'ACTIVO', NULL, NULL),
-(10, '74586413516', 'Laboratorio Fibonacci', '912478569', 'Laboratorio.fibonacci.977@gmail.com', 'INACTIVO', NULL, NULL);
+(9, '67985475235', 'Laboratorio Antonio', '934875696', 'Laboratorio.antonio.1879@gmail.com', 'ACTIVO', NULL, '2018-01-04 20:13:50'),
+(10, '74586413516', 'Laboratorio Fibonacci', '912478569', 'Laboratorio.fibonacci.977@gmail.com', 'ACTIVO', NULL, '2018-01-04 19:59:11'),
+(11, '12345678912', 'Funeraria Pereda', '978546877', 'siempre@presente.com', 'ACTIVO', '2018-01-04 19:07:27', '2018-01-04 20:13:42'),
+(13, '1234569978', 'borrar', '987456578', 'pol@pol', 'ACTIVO', '2018-01-05 04:01:31', '2018-01-06 20:06:53');
 
 -- --------------------------------------------------------
 
@@ -409,7 +458,7 @@ CREATE TABLE IF NOT EXISTS `reservas` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `cliente_id` int(10) UNSIGNED NOT NULL,
   `preparado_id` int(10) UNSIGNED NOT NULL,
-  `estado_reserva` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `estado_reserva` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'PENDIENTE',
   `fecha` date NOT NULL,
   `estado` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'ACTIVO',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -417,23 +466,38 @@ CREATE TABLE IF NOT EXISTS `reservas` (
   PRIMARY KEY (`id`),
   KEY `reservas_cliente_id_foreign` (`cliente_id`),
   KEY `reservas_preparado_id_foreign` (`preparado_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `reservas`
 --
 
 INSERT INTO `reservas` (`id`, `cliente_id`, `preparado_id`, `estado_reserva`, `fecha`, `estado`, `created_at`, `updated_at`) VALUES
-(11, 21, 1, 'ENTREGADO', '2017-06-15', 'ACTIVO', NULL, NULL),
-(12, 22, 2, 'ENTREGADO', '2017-06-15', 'ACTIVO', NULL, NULL),
+(12, 22, 34, 'ENTREGADO', '2017-06-15', 'ACTIVO', NULL, NULL),
 (13, 23, 3, 'PENDIENTE', '2017-06-15', 'ACTIVO', NULL, NULL),
 (14, 24, 4, 'ENTREGADO', '2017-06-15', 'ACTIVO', NULL, NULL),
 (15, 25, 5, 'ENTREGADO', '2017-06-15', 'ACTIVO', NULL, NULL),
-(16, 26, 6, 'RECHAZADO', '2017-06-15', 'iNACTIVO', NULL, NULL),
-(17, 27, 7, 'PENDIENTE', '2017-06-15', 'ACTIVO', NULL, NULL),
-(18, 28, 8, 'ENTREGADO', '2017-06-15', 'ACTIVO', NULL, NULL),
-(19, 29, 9, 'ENTREGADO', '2017-06-15', 'ACTIVO', NULL, NULL),
-(20, 30, 10, 'ENTREGADO', '2017-06-15', 'ACTIVO', NULL, NULL);
+(16, 26, 6, 'RECHAZADO', '2017-06-15', 'ACTIVO', NULL, '2018-01-07 03:25:19'),
+(20, 30, 10, 'ENTREGADO', '2017-06-15', 'ACTIVO', NULL, '2018-01-05 04:59:17'),
+(21, 36, 15, 'PREPARANDO', '2018-01-04', 'INACTIVO', NULL, '2018-01-07 03:39:53'),
+(22, 33, 34, 'RECHAZADO', '2018-01-03', 'INACTIVO', NULL, '2018-01-07 03:25:13'),
+(23, 26, 3, 'PENDIENTE', '2018-01-07', 'ACTIVO', '2018-01-07 06:49:57', '2018-01-07 06:49:57'),
+(24, 21, 3, 'PENDIENTE', '2018-01-07', 'ACTIVO', '2018-01-07 06:50:32', '2018-01-07 06:50:32'),
+(25, 24, 5, 'PENDIENTE', '2018-01-07', 'ACTIVO', '2018-01-07 06:50:50', '2018-01-07 06:50:50'),
+(27, 21, 17, 'PENDIENTE', '2018-01-07', 'ACTIVO', '2018-01-07 07:08:14', '2018-01-07 07:08:14'),
+(28, 33, 16, 'PENDIENTE', '2018-01-07', 'ACTIVO', '2018-01-07 07:09:16', '2018-01-07 07:09:16'),
+(29, 28, 11, 'PENDIENTE', '2018-01-07', 'ACTIVO', '2018-01-07 07:09:40', '2018-01-07 07:09:40'),
+(30, 36, 12, 'PENDIENTE', '2018-01-07', 'ACTIVO', '2018-01-07 07:11:24', '2018-01-07 07:11:24'),
+(31, 27, 16, 'PENDIENTE', '2018-01-07', 'ACTIVO', '2018-01-07 07:11:27', '2018-01-07 07:11:27'),
+(32, 29, 22, 'PENDIENTE', '2018-01-07', 'ACTIVO', '2018-01-07 07:11:30', '2018-01-07 07:11:30'),
+(33, 38, 16, 'PENDIENTE', '2018-01-07', 'ACTIVO', '2018-01-07 07:11:34', '2018-01-07 07:11:34'),
+(34, 28, 15, 'PENDIENTE', '2018-01-07', 'ACTIVO', '2018-01-07 07:11:37', '2018-01-07 07:11:37'),
+(35, 37, 14, 'PENDIENTE', '2018-01-07', 'ACTIVO', '2018-01-07 07:11:41', '2018-01-07 07:11:41'),
+(36, 37, 16, 'PENDIENTE', '2018-01-07', 'ACTIVO', '2018-01-07 07:11:45', '2018-01-07 07:11:45'),
+(37, 37, 15, 'PENDIENTE', '2018-01-07', 'ACTIVO', '2018-01-07 07:11:51', '2018-01-07 07:11:51'),
+(38, 28, 26, 'PENDIENTE', '2018-01-07', 'ACTIVO', '2018-01-07 07:11:55', '2018-01-07 07:11:55'),
+(39, 33, 17, 'PENDIENTE', '2018-01-07', 'ACTIVO', '2018-01-07 07:11:58', '2018-01-07 07:11:58'),
+(40, 36, 22, 'PENDIENTE', '2018-01-07', 'ACTIVO', '2018-01-07 07:12:08', '2018-01-07 07:22:19');
 
 -- --------------------------------------------------------
 
@@ -501,9 +565,12 @@ INSERT INTO `role_user` (`user_id`, `role_id`) VALUES
 (41, 2),
 (42, 2),
 (43, 2),
+(50, 2),
 (45, 3),
 (47, 3),
-(46, 4);
+(49, 3),
+(46, 4),
+(48, 4);
 
 -- --------------------------------------------------------
 
@@ -528,7 +595,7 @@ CREATE TABLE IF NOT EXISTS `trabajadores` (
   UNIQUE KEY `trabajadores_telefono_unique` (`telefono`),
   UNIQUE KEY `trabajadores_dni_unique` (`dni`),
   KEY `trabajadores_user_id_foreign` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `trabajadores`
@@ -538,7 +605,10 @@ INSERT INTO `trabajadores` (`id`, `nombres`, `apellido1`, `apellido2`, `telefono
 (1, 'Maria Julia', 'Placencia', 'Alva', '922438832', 'Trapecio 1da Etapa Mz. D Lt. 13', '72579826', 44, 'ACTIVO', NULL, NULL),
 (2, 'Cristofer Alvaro', 'Baigorria', 'Salazar', '943658645', 'Jr. Cajamarca 254', '72565826', 45, 'ACTIVO', NULL, NULL),
 (3, 'Julio Adrian', 'Cuenca', 'Valerio', '956453987', 'Jr. Manuel Ruiz 365', '75761231', 46, 'INACTIVO', NULL, NULL),
-(4, 'Atrid Pierina', 'Hilario', 'Gamboa', '909087213', 'Urb. El Carmen Mz. E2 Lt. 37 El pacifico Nuevo Chimbote', '72570896', 47, 'ACTIVO', NULL, NULL);
+(4, 'Atrid Pierina', 'Hilario', 'Gamboa', '909087213', 'Urb. El Carmen Mz. E2 Lt. 37 El pacifico Nuevo Chimbote', '72570896', 47, 'ACTIVO', NULL, NULL),
+(5, 'admin', 'admin', 'admin', '987456321', 'Root', '23232323', 1, 'ACTIVO', NULL, NULL),
+(6, 'quimico', 'quimico', 'quimico', '978458745', 'Av Quimico', '70670618', 48, 'ACTIVO', NULL, NULL),
+(7, 'trabajador', 'trabajador', 'trabajador', '978457865', 'Av Trabajador', '70661987', 49, 'ACTIVO', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -557,16 +627,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@gmail.com', '$2y$10$YPgxlHK0d54jpunodkeCruHfdgfs.0dNR5Lm9ICzS1VSm//GaSoxW', 'loElB7AykRdKEX0Cur068qyGi181InhWOf6hznK2HkRmQ6rG9jblUHP9mUul', '2017-12-24 20:16:15', '2017-12-24 20:16:15'),
-(27, 'CARLOS ENRIQUE YCOCHEA PINO', 'enrique.ycochea@gmail.com', '$2y$10$dlrimiZuJJSs2ocpS6cjH.u2q1kuBDHCnKbEIU7DE8Hs5B0SL0Ism', 'c4JJBp4QnMUOERREn2b89ULP3hAxvY9bLso2FZXlH2yluY4X4KHBbJ7lqVWl', '2017-12-26 01:49:55', '2017-12-26 01:49:55'),
-(28, 'ARIS JAHIR MONCADA LEIVA', 'aris.moncada@gmail.com', '$2y$10$Izn4gz.RZvE5JjNTtcF5ZO5xKEvztl9Vq0iXRRKTJVb.Y.gHX5i6y', 'j46uueOK5VHTyprb8SNYnIAlMFu8F9ohnAOt0MUXaZEqsvEgPw0DJZS3TSRe', '2017-12-28 01:31:20', '2017-12-28 01:31:20'),
+(1, 'admin', 'admin@gmail.com', '$2y$10$YPgxlHK0d54jpunodkeCruHfdgfs.0dNR5Lm9ICzS1VSm//GaSoxW', 'oCgpapcT8Vt2Tr0f60Y6hfElUa783gJyBcC9HLpcvn3HvD9isX64PHzZkbAe', '2017-12-24 20:16:15', '2017-12-24 20:16:15'),
+(27, 'CARLOS ENRIQUE YCOCHEA PINO', 'enrique.ycochea@gmail.com', '$2y$10$dlrimiZuJJSs2ocpS6cjH.u2q1kuBDHCnKbEIU7DE8Hs5B0SL0Ism', 'oxC8zIS1kO1axTvjSHftNhrMATuPBRrMzJXUMV6v9VST5cryKmMZfru91gJw', '2017-12-26 01:49:55', '2017-12-26 01:49:55'),
+(28, 'ARIS JAHIR MONCADA LEIVA', 'aris.moncada@gmail.com', '$2y$10$Izn4gz.RZvE5JjNTtcF5ZO5xKEvztl9Vq0iXRRKTJVb.Y.gHX5i6y', 'Avo49Y8JKXwIYyKLvfX2Jt8U7SrNULaDRY0YvAsrSCCJUISmnvgURPbeaHVs', '2017-12-28 01:31:20', '2017-12-28 01:31:20'),
 (29, 'GLADYS CARHUAJULCA ROJAS', 'gladys.carhuajulca@gmail.com', '$2y$10$/piCXkeYdbpryXWD9rbyoeVQDObOyj9ISzt/iot1R77C/UKjJ9szK', 'zYkZdB3PStfjNPQmqPQZI4NvYPyf0puZkLALlDWDFGPjL7j9CJsZyD7ESDkI', '2017-12-28 01:32:30', '2017-12-28 01:32:30'),
 (30, 'LUIS MANUEL MELENDEZ RODRIGUEZ', 'luis.melendez@gmail.com', '$2y$10$Ap0eh7y1oFEl61daGNTlr.0o7W9TH3dD3KkMPg78pF3ULEAfkOefq', 'vTvHJJKpRN9UG7zWDI7r57w95z5sDZw83hxCHGjvhJh6xpS4fJQuijzyUAzc', '2017-12-28 01:35:12', '2017-12-28 01:35:12'),
 (31, 'TAYLI LIZET AYALA RAMOS', 'tayli.ayala@gmail.com', '$2y$10$PfB04QhqYacLuwQkcq2Xj.SAc6IxkPXszsftKMFdddiYiTSlUfuMW', 'sAoFbnKJGMSzhr26v1WMOQnPYPE8KnX9M2HDC1Henps0mMcIFVxkc6XhcP6t', '2017-12-28 01:36:30', '2017-12-28 01:36:30'),
@@ -585,7 +655,10 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `creat
 (44, 'Maria Julia Placencia Alva', 'maria.j.placencia@gmail.com', '$2y$10$SspiICFcWDgB.iB6ILvZweBJOyTpEzpkoTwN.hBB2gubcsM69UYuG', NULL, '2017-12-28 06:59:10', '2017-12-28 06:59:10'),
 (45, 'Cristofer Alvaro Baigorria Salazar', 'crist.asol@gmail.com', '$2y$10$h.rdQJ7zF1EVvNLqlMY3T.tftYDWZCEKc4w7tAWvrMkbvGKLi0yIS', NULL, '2017-12-28 06:59:49', '2017-12-28 06:59:50'),
 (46, 'Julio Adrian Cuenca Valerio', 'julio.cuenca.valerio@gmail.com', '$2y$10$0lXyBm0XHI/uTxFBfRorkO61laO4lwAgqAvq7AxpKlRBOvO85L8cC', 'VtGhBWJFdPXqoyFzNBoWCuXjIThSkK5DuiVXiXUPAM9dhtVtm9z3q8AdULDG', '2017-12-28 07:00:12', '2017-12-28 07:00:12'),
-(47, 'Atrid Pierina Hilario Gamboa', 'perina.hilario@gmail.com', '$2y$10$jAkxXIYJPnNxONQOziO3KOe5SglnkQXJ2kfuX.t8b88FULIpB2akG', NULL, '2017-12-28 07:00:46', '2017-12-28 07:00:46');
+(47, 'Atrid Pierina Hilario Gamboa', 'perina.hilario@gmail.com', '$2y$10$jAkxXIYJPnNxONQOziO3KOe5SglnkQXJ2kfuX.t8b88FULIpB2akG', NULL, '2017-12-28 07:00:46', '2017-12-28 07:00:46'),
+(48, 'quimico', 'quimico@gmail.com', '$2y$10$Nn1HZRJALsiAMjKzz9AzoeHbyM0uatlXGa6I0SIMmsG4bXGPajJ8q', 'jRQfNe0JYsmnXYGnfHdMGsL4HKlwVKC4uzTrgQL6wej84kkzytq3FFzHFWRB', '2018-01-01 22:22:05', '2018-01-01 22:22:05'),
+(49, 'trabajador', 'trabajador@gmail.com', '$2y$10$MFWO3MmM0316cRST8uJXdenLBroAZN0y/50fo1bcOIED1jqNqxTQ2', NULL, '2018-01-01 22:22:48', '2018-01-01 22:22:48'),
+(50, 'FRANCISCO LOPEZ ZAPATA', 'francisco.lopez@gmail.com', '$2y$10$adR/Fe6v6qHGtZq6ksjp8.4jdd2gIjGOrHGAlPbMAbcCQ8lFWOI0O', 'KxFkXBA2pJDPyBohioWyjSdrLtWxdXosNnDgdRgXR2gZXGaQq7OcigvjIC45', '2018-01-06 20:09:10', '2018-01-06 20:09:10');
 
 --
 -- Restricciones para tablas volcadas
