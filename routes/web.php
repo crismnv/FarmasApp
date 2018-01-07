@@ -33,6 +33,14 @@ Route::group(['middleware' => 'auth'], function () {
 
 // ---------------------------------------------------------------------------------------------------------------------------
 
+// MODULO GRAFICAS
+Route::get('graficas/ver',['as' =>'graficas/ver','uses' =>  'GraficaController@Ver']);
+
+
+Route::get('graficas/reservas/{anio}/{mes}',['as' =>'graficas/reservas' ,'uses' => 'GraficaController@Reservas']);
+Route::get('graficas/registros/{anio}/{mes}',['as' =>'graficas/registros' ,'uses' => 'GraficaController@Registros']);
+
+// FIN MODULO GRAFICAS
 // MODULO INGREDIENTES
 
 Route::get('ingredientes/crud', ['as' => 'ingredientes/crud', 'middleware' => 'quimico', 'uses' => 'IngredienteController@MostrarCrud']);
