@@ -145,6 +145,7 @@ class Proveedor extends Model
     public static function ListarProveedores($datos)
     {
 
+
         $query = '';
         
         $records_per_page = 10;
@@ -176,7 +177,7 @@ class Proveedor extends Model
         $query .= " SELECT Proveedores.id, Proveedores.ruc, 
                           Proveedores.razon_social,
                           Proveedores.telefono,
-                          CONCAT(SUBSTR(proveedores.correo ,1 ,25), '...') as 'correo',
+                          CONCAT(SUBSTR(proveedores.correo ,1 ,25)) as 'correo',
                           Proveedores.estado
                     FROM Proveedores ";
 
@@ -201,7 +202,7 @@ class Proveedor extends Model
         }
         else
         {
-         $query .= ' ORDER BY Proveedores.id DESC ';
+         $query .= ' ORDER BY Proveedores.estado, Proveedores.id DESC ';
         }
 
         if($order_by != '')

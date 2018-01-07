@@ -1,10 +1,10 @@
 @extends('adminlte::layouts.app')
 
 @section('htmlheader_title')
-	Añadir Ingrediente
+	{{-- Añadir Ingrediente --}}
 @endsection
 @section('contentheader_title')
-	Nueva Ingrediente
+	{{-- Nueva Ingrediente --}}
 @endsection
 
 @section('css')
@@ -72,14 +72,14 @@
 <div class="container-fluid spark-screen">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
-        		<h3 class="text-center color-azul"><strong><i class="fa fa-bars" aria-hidden="true"></i>&nbsp; Añadir Preparado&nbsp;<i class="fa fa-bars" aria-hidden="true"></i></strong></h3>  
-	        	<form method="POST" action="{{url('preparados/añadir')}}" accept-charset="UTF-8" class="" id="FormPreparado">
+        		<h3 class="text-center color-azul"><strong><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;MODIFICAR PREPARADO&nbsp;<i class="fa fa-bars" aria-hidden="true"></i></strong></h3>  
+	        	<form method="POST" action="{{url('preparados/modificar')}}" accept-charset="UTF-8" class="" id="FormPreparado">
 	        		<input name="_token" type="hidden" value="{{ csrf_token() }}">
                     <div class="form-group row">
                         <div class="col-sm-5 ">
                           <label class="color-azul ">Descripcion</label>
 
-                          <input type="text" class="form-control text-left"  id="descripcion" name="descripcion"  required placeholder="Descripcion" maxlength="250" >
+                          <input type="text" class="form-control text-left"  id="descripcion" name="descripcion"  required placeholder="Descripcion" maxlength="250" value="{{$preparado[0]->descripcion}}">
                           <span  id ="ErrorMensaje-descripcion" class="help-block" ></span>
                         </div>
 
@@ -87,7 +87,7 @@
                         <div class="col-sm-5 col-sm-offset-1">
                           <label class="color-azul ">Precio</label>
 
-                          <input type="text" class="form-control text-left"  id="precio" name="precio"  required placeholder="Precio" maxlength="250" >
+                          <input type="text" class="form-control text-left"  id="precio" name="precio"  required placeholder="Precio" maxlength="250" value="{{$preparado[0]->precio}}" >
                           <span  id ="ErrorMensaje-precio" class="help-block" ></span>
                         </div>
                     </div>
@@ -99,8 +99,8 @@
 									<div class="form-group">
 										<label class="color-azul">Ingredientes</label>
 										<select name="pidingrediente"  id="pidingrediente" class="form-control selectpicker" data-live-search="true">
-											@foreach($ingredientes as $ingrediente)
-							            	 <option value="{{$ingrediente->id}}_{{$ingrediente->unidad_de_medida}}">{{$ingrediente->nombre}}</option>
+											@foreach($ingredientestotales as $ingredientetotal)
+							            	 <option value="{{$ingredientetotal->id}}_{{$ingredientetotal->unidad_de_medida}}">{{$ingredientetotal->nombre}}</option>
 							            	@endforeach
 						            	</select>				
 									</div>
@@ -116,7 +116,7 @@
 			                    <div class="col-lg-2 col-sm-2 col-xs-12">
 									<div class="form-group">
 						            	<label class="color-azul">Unidad de Medida</label>
-						            	<input type="text" name="punidad_de_medida" id="punidad_de_medida" class="form-control text-center" placeholder="Cantidad"  value="{{$ingredientes[0]->unidad_de_medida}}">
+						            	<input type="text" name="punidad_de_medida" id="punidad_de_medida" class="form-control text-center" placeholder="Cantidad"  value="{{$ingredientestotales[0]->unidad_de_medida}}">
 						            </div>
 								</div>
 
@@ -131,8 +131,7 @@
 							            	
 						          	</div>
 								</div>
-
-
+                    		
 
 								<div class="col-lg-12 col-sm-12  col-md-12 col-xs-12 table-responsive">
 									<table id="lista_ingredientes" class="table table-striped table-bordered table-condensed">
@@ -146,31 +145,44 @@
 											<th style="vertical-align:middle;text-align:center;">Subtotal</th> --}}
 
 										</thead>
+										<label style="display: none;">{{$contador = 0}}</label>
+										
+										<tbody>
+											@foreach($ingredientes as $ingrediente)
+											<tr class="selected text-center" id="fila{{$contador}}"><td><button type="button" class="btn btn-warning" onclick="eliminar({{$contador}});">X</button></td><td><input type="hidden" id="idingrediente[]" name="idingrediente[]" value="{{$ingrediente->id}}" class="filaagregada">{{$ingrediente->nombre}}</td><td><input type="number" id="cantidad[]" name="cantidad[]" value="{{$ingrediente->cantidad}}" class="text-center" readonly></td><td><input type="text" name="unidad_de_medida[]" value="{{$ingrediente->unidad_de_medida}}" class="text-center" readonly></td></tr>
+											
+
+											<label style="display: none;">{{$contador++}}</label>
+											
+											
+
+											{{-- <tr class="selected text-center" id="fila{{$contador}}"><td><a href="{{url("ingredientes/ver/" . $ingrediente->id)}}" target="_blank" class="btn btn-warning btn-info">X</a></td><td><input type="hidden" id="idingrediente[]" name="idingrediente[]" value="ingrediente_id" class="filaagregada">{{$ingrediente->nombre}}</td><td><input type="number" id="cantidad[]" name="cantidad[]" value="{{$ingrediente->cantidad}}" class="text-center" readonly></td><td><input type="text" name="unidad_de_medida[]" value="{{$ingrediente->unidad_de_medida}}" class="text-center" readonly></td></tr> --}}
+							            	@endforeach
+											
+										</tbody>
 										{{-- <tfoot class="">
 											<th class="color-azul">TOTAL</th>
 											<th><h4 class="color-azul" id="total">0.00</h4><input type="hidden" name="total_venta" id="total_venta"></th>
 											<th><h4>Nuevos Soles</h4></th>
 										</tfoot> --}}
-
-										<tbody>
-
-										</tbody>
 									</table>
 								</div>
 
                     		</div>
 
-                    		<div class="panel-footer">
-                    			<div class="row">
-									<div class=" col-xs-8 col-xs-offset-2" id="guardar" name="guardar">
-										<div class="form-group">
-								            	<button class="btn btn-primary btn-block" id="boton" style="display: none;" type="submit">Guardar</button>
-								        </div>
-									</div>
-								</div>
-                    		</div>
                     	</div>
                     </div>
+					<input type="text" name="id" id="id" class="form-control text-center" value="{{ $preparado[0]->id}}" style="display:none;">
+
+                    <div class="panel-footer">
+            			<div class="row">
+							<div class=" col-xs-8 col-xs-offset-2" id="guardar" name="guardar">
+								<div class="form-group">
+						            	<button class="btn btn-primary btn-block" id="boton" type="submit">Guardar</button>
+						        </div>
+							</div>
+						</div>
+            		</div>
 
 
 
@@ -187,12 +199,8 @@
 
 @section('script-fin')
 <script>
-	// $(document).ready(function(){
-	// 	evaluar();
-	// }
-
-	var ingredientes = 0;
-	var cont = 0;
+	var ingredientes = {{$contador}};
+	var cont = {{$contador}};
 
 	$('#FormPreparado').submit(function()
 	{
@@ -229,9 +237,11 @@
 	    	
 	    	var repetidos = document.querySelectorAll(".filaagregada");
                 repetidos = [].slice.call(repetidos);
-
-			repetido = false;     
-		      $.each(repetidos, function( index, value ) {
+                console.log(repetidos);
+			repetido = false;
+			try {
+				    $.each(repetidos, function( index, value ) {
+		      	console.log(">>>" + index);
 
 		                    if (parseInt(repetidos[index].value) == data[0]) {
 		                        repetidos = null;                       
@@ -239,6 +249,12 @@
 		                    };
 
 		                });
+				}
+				catch(err) {
+				    repetidos = null;                       
+		                        repetido = true;
+				}     
+		      
 			if(repetido)
 			{
 				alert('No puede agregar ingredientes que ya estan en la lista');
@@ -262,26 +278,27 @@
 		$('#pcantidad').val('');
 	}
 
-	function evaluarRepetido()
-	{
-		data=document.getElementById('pidingrediente').value.split('_');
+	// function evaluarRepetido()
+	// {
+	// 	data=document.getElementById('pidingrediente').value.split('_');
 	    	
-	    	var repetidos = document.querySelectorAll(".filaagregada");
-                repetidos = [].slice.call(repetidos);
+	//     	var repetidos = document.querySelectorAll(".filaagregada");
+ //                repetidos = [].slice.call(repetidos);
 
-			repetido = false;     
-		      $.each(repetidos, function( index, value ) {
+	// 		repetido = false;     
+	// 	      $.each(repetidos, function( index, value ) {
+	// 	      	console.log(">>>" + index);
 
-		                    if (parseInt(repetidos[index].value) == data[0]) {
-		                        repetidos = null;                       
-		                        repetido = true;
-		                    };
+	// 	                    if (parseInt(repetidos[index].value) == data[0]) {
+	// 	                        repetidos = null;                       
+	// 	                        repetido = true;
+	// 	                    };
 
-		                });
-		return repetido;
+	// 	                });
+	// 	return repetido;
 
 
-	}
+	// }
 	function agregar()
 	{
 		datos = document.getElementById('pidingrediente').value.split('_');

@@ -155,7 +155,6 @@
 		{{-- <button type="button" class="btn btn-default" onclick="ocultarVentana();">button</button> --}}
 	</div>
 	
-	@include('adminlte::ingredientes.ingrediente_eliminar')
 @endsection
 
 @section('script-fin')

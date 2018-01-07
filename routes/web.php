@@ -81,8 +81,46 @@ Route::post('preparados/desactivar/{id}', ['as' => 'preparados/desactivar', 'mid
 
 Route::post('preparados/activar/{id}', ['as' => 'preparados/activar', 'middleware' => 'admin', 'uses' => 'PreparadoController@ActivarPreparado']);
 
+Route::get('preparados/ver/{id}', ['as' => 'preparados/ver', 'middleware' => 'quimico', 'uses' => 'PreparadoController@VerPreparado']);
 
-// FIN MODULO PREPARADS
+Route::get('preparados/modificar/{id}', ['as' => 'preparados/modificar', 'middleware' => 'quimico', 'uses' => 'PreparadoController@ModificarPreparado']);
+Route::post('preparados/modificar/', ['as' => 'preparados/modificar', 'middleware' => 'quimico', 'uses' => 'PreparadoController@ModificarGuardarPreparado']);
+
+// FIN MODULO PREPARADOS
+
+
+
+// MODULO RESERVAS
+
+
+Route::get('reservas/crear', ['as' => 'reservas/crear', 'middleware' => 'todos', 'uses' => 'ReservaController@Crear']);
+Route::post('reservas/crear', ['as' => 'reservas/crear', 'middleware' => 'todos', 'uses' => 'ReservaController@GuardarReserva']);
+
+
+Route::get('reservas/crud', ['as' => 'reservas/crud', 'middleware' => 'admin', 'uses' => 'ReservaController@MostrarCrud']);
+Route::post('reservas/listar', ['as' => 'reservas/listar', 'middleware' => 'admin', 'uses' => 'ReservaController@ListarReservas']);
+
+Route::get('reservas/prueba/{id}', ['as' => 'reservas/prueba', 'middleware' => 'cliente', 'uses' => 'ReservaController@Prueba']);
+
+Route::get('reservas/historial', ['as' => 'reservas/historial', 'middleware' => 'cliente', 'uses' => 'ReservaController@VerHistorial']);
+
+Route::post('reservas/listar/historial', ['as' => 'reservas/listarhistorial', 'uses' => 'ReservaController@ListarHistorial']);
+
+Route::post('reservas/desactivar/{id}', ['as' => 'reservas/desactivar', 'middleware' => 'admin', 'uses' => 'ReservaController@DesactivarReserva']);
+
+Route::post('reservas/activar/{id}', ['as' => 'reservas/activar', 'middleware' => 'admin', 'uses' => 'ReservaController@ActivarReserva']);
+
+Route::post('reservas/RePedir/{id}', ['as' => 'reservas/RePedir', 'middleware' => 'cliente', 'uses' => 'ReservaController@RePedir']);
+
+Route::get('reservas/ver/{id}', ['as' => 'reservas/ver', 'middleware' => 'admin', 'uses' => 'ReservaController@Ver']);
+
+Route::post('preparados/listaringredientes/{id}', ['as' => 'preparados/listaringredientes', 'middleware' => 'cliente', 'uses' => 'ContieneController@Listar_Ingredientes_x_IdPreparado']);
+
+
+// FIN MODULO RESERVAS
+
+
+
 
 // MODULO PROVEEDORES
 
@@ -91,18 +129,18 @@ Route::post('proveedores/añadir', ['as' => 'proveedores/añadir', 'middleware' 
 
 
 
-Route::get('proveedores/crud', ['as' => 'proveedores/crud', 'middleware' => 'quimico', 'uses' => 'ProveedorController@MostrarCrud']);
+Route::get('proveedores/crud', ['as' => 'proveedores/crud', 'middleware' => 'admin', 'uses' => 'ProveedorController@MostrarCrud']);
 
-Route::post('proveedores/listar', ['as' => 'proveedores/listar', 'middleware' => 'quimico', 'uses' => 'ProveedorController@ListarProveedores']);
-
-
+Route::post('proveedores/listar', ['as' => 'proveedores/listar', 'middleware' => 'admin', 'uses' => 'ProveedorController@ListarProveedores']);
 
 
-Route::get('proveedores/modificar/{id}', ['as' => 'proveedores/modificar', 'middleware' => 'quimico', 'uses' => 'ProveedorController@ModificarProveedor']);
 
-Route::post('proveedores/modificar', ['as' => 'proveedores/modificar', 'middleware' => 'quimico', 'uses' => 'ProveedorController@ModificarGuardarProveedor']);
 
-Route::get('proveedores/ver/{id}', ['as' => 'proveedores/ver', 'middleware' => 'quimico', 'uses' => 'ProveedorController@VerProveedor']);
+Route::get('proveedores/modificar/{id}', ['as' => 'proveedores/modificar', 'middleware' => 'admin', 'uses' => 'ProveedorController@ModificarProveedor']);
+
+Route::post('proveedores/modificar', ['as' => 'proveedores/modificar', 'middleware' => 'admin', 'uses' => 'ProveedorController@ModificarGuardarProveedor']);
+
+Route::get('proveedores/ver/{id}', ['as' => 'proveedores/ver', 'middleware' => 'admin', 'uses' => 'ProveedorController@VerProveedor']);
 
 Route::post('proveedores/desactivar/{id}', ['as' => 'proveedores/desactivar', 'middleware' => 'admin', 'uses' => 'ProveedorController@DesactivarProveedor']);
 
