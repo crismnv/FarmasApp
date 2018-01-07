@@ -59,8 +59,8 @@
             </li>
             <li class="treeview">
                 <a href="#"><i class='sidebar-seguridad fa fa-flask'></i> <span>Preparados</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href="{{url('preparados/añadir')}}">Añadir</a></li>
+                <ul class="treeview-menu ">
+                    <li class=""><a href="{{url('preparados/añadir')}}">Añadir</a></li>
                     <li><a href="{{url('preparados/crud')}}">Administrar</a></li>
                     {{-- <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li> --}}
                 </ul>
@@ -95,6 +95,36 @@
 
             {{-- FIN DE MODULO INGREDIENTES --}}
 
+            {{-- MODULO RESERVAS --}}
+
+
+            @role('cliente')
+            <li class="treeview">
+                <a href="#"><i class='sidebar-seguridad fa fa-tags'></i> <span>Reservas</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="{{url('reservas/crear')}}">Crear</a></li>
+                    <li><a href="{{url('reservas/historial')}}">Ver Historial</a></li>
+                    {{-- <li><a href="{{url('admin/roles')}}">Roles</a></li> --}}
+                    {{-- <li><a href="{{url('admin/permissions')}}">Permisos</a></li> --}}
+                    {{-- <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li> --}}
+                </ul>
+            </li>
+            
+            @else
+
+            <li class="treeview">
+                <a href="#"><i class='sidebar-seguridad fa fa-tags'></i> <span>Reservas</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    {{-- <li><a href="{{url('reservas/historial')}}">Ver Historial</a></li> --}}
+                    <li><a href="{{url('reservas/crear')}}">Crear</a></li>
+                    <li><a href="{{url('reservas/crud')}}">Administrar</a></li>
+                </ul>
+            </li>
+
+            @endrole
+
+            {{-- FIN MODULO RESERVAS --}}
+
             {{-- MODULO USUARIOS --}}
             @role('admin')
             <li class="treeview">
@@ -109,6 +139,7 @@
             @endrole
 
             {{-- FIN MODULO USUARIOS --}}
+
         </ul><!-- /.sidebar-menu -->
 
     </section>

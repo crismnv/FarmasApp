@@ -60,5 +60,7 @@ class Kernel extends HttpKernel
         'entrust-gui.admin' => \Acoustep\EntrustGui\Http\Middleware\AdminAuth::class,
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'quimico' => \App\Http\Middleware\QuimicoMiddleware::class,
+        'cliente' => \App\Http\Middleware\ClienteMiddleware::class,
+        'todos' => \App\Http\Middleware\ClienteMiddleware::class,
     ];
 }

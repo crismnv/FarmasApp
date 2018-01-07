@@ -93,13 +93,28 @@ Route::post('preparados/modificar/', ['as' => 'preparados/modificar', 'middlewar
 // MODULO RESERVAS
 
 
+Route::get('reservas/crear', ['as' => 'reservas/crear', 'middleware' => 'todos', 'uses' => 'ReservaController@Crear']);
+Route::post('reservas/crear', ['as' => 'reservas/crear', 'middleware' => 'todos', 'uses' => 'ReservaController@GuardarReserva']);
+
+
 Route::get('reservas/crud', ['as' => 'reservas/crud', 'middleware' => 'admin', 'uses' => 'ReservaController@MostrarCrud']);
 Route::post('reservas/listar', ['as' => 'reservas/listar', 'middleware' => 'admin', 'uses' => 'ReservaController@ListarReservas']);
+
+Route::get('reservas/prueba/{id}', ['as' => 'reservas/prueba', 'middleware' => 'cliente', 'uses' => 'ReservaController@Prueba']);
+
+Route::get('reservas/historial', ['as' => 'reservas/historial', 'middleware' => 'cliente', 'uses' => 'ReservaController@VerHistorial']);
+
+Route::post('reservas/listar/historial', ['as' => 'reservas/listarhistorial', 'uses' => 'ReservaController@ListarHistorial']);
 
 Route::post('reservas/desactivar/{id}', ['as' => 'reservas/desactivar', 'middleware' => 'admin', 'uses' => 'ReservaController@DesactivarReserva']);
 
 Route::post('reservas/activar/{id}', ['as' => 'reservas/activar', 'middleware' => 'admin', 'uses' => 'ReservaController@ActivarReserva']);
 
+Route::post('reservas/RePedir/{id}', ['as' => 'reservas/RePedir', 'middleware' => 'cliente', 'uses' => 'ReservaController@RePedir']);
+
+Route::get('reservas/ver/{id}', ['as' => 'reservas/ver', 'middleware' => 'admin', 'uses' => 'ReservaController@Ver']);
+
+Route::post('preparados/listaringredientes/{id}', ['as' => 'preparados/listaringredientes', 'middleware' => 'cliente', 'uses' => 'ContieneController@Listar_Ingredientes_x_IdPreparado']);
 
 
 // FIN MODULO RESERVAS

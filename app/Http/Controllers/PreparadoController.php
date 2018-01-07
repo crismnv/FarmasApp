@@ -19,7 +19,15 @@ class PreparadoController extends Controller
 
         // dd($data);
 
-        $bresultado = Preparado::ModificarPreparado($data);
+        try {
+             DB::table('contiene')->where('preparado_id', '=', $data['id'])->delete();
+             DB::table('preparados')->where('id', '=', $data['id'])->delete();
+             $bresultado = Preparado::ModificarPreparado($data);
+        } catch (\Exception $e) {
+            $bresultado = false;
+        }
+        // dd($bresultado);
+        // $bresultado = Preparado::ModificarPreparado($data);
 
         if ($bresultado) {
             
@@ -27,7 +35,7 @@ class PreparadoController extends Controller
 
         } else {
             
-            return redirect('preparados/crud')->with('errors','La Datos No se actualizaron correctamente.');
+            return redirect('preparados/crud')->with('errors','No se puede actualizar porque esta siendo usada  en una reserva.');
 
         }
      }

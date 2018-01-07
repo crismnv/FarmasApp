@@ -24,7 +24,7 @@ class Preparado extends Model
             
              DB::beginTransaction();
 
-             DB::table('contiene')->where('preparado_id', '=', $datos['id'])->delete();
+            
                 
              $codigo_preparado_generado = DB::table('Preparados')->insertGetId(
                         [
@@ -64,7 +64,7 @@ class Preparado extends Model
 
             return true;  
         } catch (Exception $e) {
-            B::rollback();
+            DB::rollback();
 
             return false; 
         }
@@ -188,7 +188,7 @@ class Preparado extends Model
         }
         else
         {
-         $query .= ' ORDER BY preparados.id DESC ';
+         $query .= ' ORDER BY preparados.estado, preparados.id DESC ';
         }
 
         if($order_by != '')

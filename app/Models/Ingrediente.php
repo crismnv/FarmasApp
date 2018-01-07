@@ -191,7 +191,7 @@ class Ingrediente extends Model
         }
         else
         {
-         $query .= ' ORDER BY ingredientes.id DESC ';
+         $query .= ' ORDER BY ingredientes.estado, ingredientes.id DESC ';
         }
 
         if($order_by != '')

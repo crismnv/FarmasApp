@@ -70,38 +70,46 @@
 @section('main-content')
 
 <div class="container-fluid spark-screen">
+	<br>
+	<br>
+	<br>
+	<br>
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
-        		<h3 class="text-center color-azul"><strong><i class="fa fa-bars" aria-hdiden="true"></i>&nbsp;PREPARADO&nbsp;<i class="fa fa-bars" aria-hidden="true"></i></strong></h3>  
 	        	<form method="POST" action="{{url('preparados/añadir')}}" accept-charset="UTF-8" class="" id="FormPreparado">
 	        		<input name="_token" type="hidden" value="{{ csrf_token() }}">
-                    <div class="form-group row">
-                        <div class="col-sm-5 ">
-                          <label class="color-azul ">Descripcion</label>
-
-                          <input readonly type="text" class="form-control text-left"  id="descripcion" name="descripcion"  required placeholder="Descripcion" maxlength="250" value="{{$preparado[0]->descripcion}}">
-                          <span  id ="ErrorMensaje-descripcion" class="help-block" ></span>
-                        </div>
-
-
-                        <div class="col-sm-5 col-sm-offset-1">
-                          <label class="color-azul ">Precio</label>
-
-                          <input readonly type="text" class="form-control text-left"  id="precio" name="precio"  required placeholder="Precio" maxlength="250" value="{{$preparado[0]->precio}}" >
-                          <span  id ="ErrorMensaje-precio" class="help-block" ></span>
-                        </div>
-                    </div>
 
                     <div class="row">
                     	<div class="panel panel-primary">
+        					<h3 class="text-center text-uppercase color-azul"><strong><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;{{$reserva[0]->descripcion}}&nbsp;<i class="fa fa-bars" aria-hidden="true"></i></strong></h3>  
+                    		{{-- <div class="panel-heading">
+                    			
+			                    <div class="form-group row">
+			                        <div class="col-sm-5 ">
+			                          <label class="color-azul ">Descripcion</label>
+
+			                          <input readonly type="text" class="form-control text-left"  id="descripcion" name="descripcion"  required placeholder="Descripcion" maxlength="250" value="">
+			                          <span  id ="ErrorMensaje-descripcion" class="help-block" ></span>
+			                        </div>
+
+
+			                        <div class="col-sm-5 col-sm-offset-1">
+			                          <label class="color-azul ">Precio</label>
+
+			                          <input readonly type="text" class="form-control text-left"  id="precio" name="precio"  required placeholder="Precio" maxlength="250" value="{{$reserva[0]->precio}}" >
+			                          <span  id ="ErrorMensaje-precio" class="help-block" ></span>
+			                        </div>
+			                    </div>
+                    		</div> --}}
                     		<div class="panel-body">
                     		
 
 								<div class="col-lg-12 col-sm-12  col-md-12 col-xs-12 table-responsive">
 									<table id="lista_ingredientes" class="table table-striped table-bordered table-condensed">
 										<thead  style="background-color:#00a65a; color:#fff;">
-
+											@role('admin')
 											<th style="vertical-align:middle;text-align:center;">Accion</th>
+											@endrole
 											<th style="vertical-align:middle;text-align:center;">Ingrediente</th>
 											<th style="vertical-align:middle;text-align:center;">Cantidad</th>
 											<th style="vertical-align:middle;text-align:center;">Unidad De Medida</th>
@@ -117,10 +125,22 @@
 
 										<tbody>
 											@foreach($ingredientes as $ingrediente)
+											@role('admin')
 											<tr class="selected text-center" id="filacont"><td><a href="{{url("ingredientes/ver/" . $ingrediente->id)}}" target="_blank" class="btn btn-warning btn-info"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;</a></td><td><input type="hidden" id="idingrediente[]" name="idingrediente[]" value="ingrediente_id" class="filaagregada">{{$ingrediente->nombre}}</td><td><input type="number" id="cantidad[]" name="cantidad[]" value="{{$ingrediente->cantidad}}" class="text-center" readonly></td><td><input type="text" name="unidad_de_medida[]" value="{{$ingrediente->unidad_de_medida}}" class="text-center" readonly></td></tr>
+											@else
+											<tr class="selected text-center" id="filacont"><td><input type="hidden" id="idingrediente[]" name="idingrediente[]" value="ingrediente_id" class="filaagregada">{{$ingrediente->nombre}}</td><td><input type="number" id="cantidad[]" name="cantidad[]" value="{{$ingrediente->cantidad}}" class="text-center" readonly></td><td><input type="text" name="unidad_de_medida[]" value="{{$ingrediente->unidad_de_medida}}" class="text-center" readonly></td></tr>
+											@endrole
 							            	@endforeach
-											
 										</tbody>
+										<tfoot>
+											@role('admin')
+											<th style=""></th>
+											@endrole
+									    	 <th class="color-azul text-center text-center">PRECIO</th>
+									        <th><h4 class="color-azul text-right" id="total">{{$reserva[0]->precio}}</h4><input type="hidden" name="total_venta" id="total_venta"></th>
+									        <th><h4 class="color-azul text-center" id="total">Nuevos Soles</h4><input type="hidden" name="total_venta" id="total_venta"></th>
+									    </tfoot>
+										
 									</table>
 								</div>
 
@@ -139,7 +159,6 @@
         	</div>
 		</div>
 	</div>
-
 @endsection
 
 @section('script-fin')

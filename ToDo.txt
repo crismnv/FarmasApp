@@ -2,6 +2,7 @@ General:
 	Login - modificar el existente
 	Landing Page
 	Crear una pagina en facebook con farmasapp y hacer que se vea decente con info casi real
+	arreglar el side bar que siempre se queda seleccionado en home- es por la clase active
 
 DB:
 	Trigger:
@@ -16,10 +17,18 @@ DB:
 
 
 Modulo Reservas
+	UNICOS
+		crear
+		cotizacion
+		historial -- 
+		ver --
+		modificar
+		eliminar --
 	Cliente:
 		Crea reservas
 		Realiza cotizacion
-		Ve su historial de reservas
+		Ve su historial de reservas(Con la opcion de volver a pedirla - Parece que se hará con un bootgrid)
+		cancelar-> si es que queda tiempo, que pueda cancelar antes de que tenga el estado de aprobado
 	Empleado:
 		Ve Reservas
 		Modifica Reservas
@@ -29,11 +38,17 @@ Modulo Reservas
 	Admin:
 		Crea reservas 
 		Realiza cotizacion(Con la tabla hecha en añadir preparado)
-		Ve su historial de reservas(Con la opcion de volver a pedirla - Parece que se hará con un bootgrid)
+		Ve su historial de reservas
 		Modifica Reservas
 			Cada trabajador tendrá su bootgrid, con la diferencia de que solo se mostrará para el admin:Todo, para el quimico cambiar los que estan esperando a aprobado y a preparando, los trabajadores cambian de preparado a entregado.
 		Ver Reservas
 		Eliminar Reservas
+		>>>>estados de las reservas
+		PENDIENTE 
+		APROBADO
+		PREPARANDO
+		LISTO
+		ENTREGADO
 		
 
 Modulo Reportes

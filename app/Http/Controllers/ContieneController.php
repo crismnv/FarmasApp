@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB as DB;
-
+use App\Models\Contiene;
 
 
 class ContieneController extends Controller
 {
     //
 
+    public function Listar_Ingredientes_x_IdPreparado($id)
+    {
+        return Contiene::Listar_Ingredientes_x_IdPreparado($id);
+    }
 
     public function BuscarPreparado_x_Ingredientes($ingredientes, $cantidad)
     {
