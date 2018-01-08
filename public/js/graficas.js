@@ -1,6 +1,13 @@
 $(document).ready(function(){
-    cargar_grafica_barras_reservas(18, 1);
-    cargar_grafica_lineas_reservas(18, 1);
+    var f = new Date();
+    var año = f.getFullYear();
+
+    var mes = f.getMonth() + 1;
+    cargar_grafica_barras_reservas(año, mes);
+    cargar_grafica_lineas_reservas(año, mes);
+    $("#anio_sel").val(año);
+    $("#mes_sel").val(mes);
+    f = null;
 });
 function cambiar_fecha_grafica(){
 

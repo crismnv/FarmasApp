@@ -62,5 +62,6 @@ class Kernel extends HttpKernel
         'quimico' => \App\Http\Middleware\QuimicoMiddleware::class,
         'cliente' => \App\Http\Middleware\ClienteMiddleware::class,
         'todos' => \App\Http\Middleware\ClienteMiddleware::class,
+        'trabajador' => \App\Http\Middleware\TrabajadorMiddleware::class,
     ];
 }

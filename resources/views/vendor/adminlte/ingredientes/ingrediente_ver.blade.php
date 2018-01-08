@@ -58,7 +58,7 @@
 	<div class="container-fluid spark-screen">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
-        		<h3 class="text-center color-azul"><strong><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp; Editar Persona Natural&nbsp;<i class="fa fa-pencil-square" aria-hidden="true"></i></strong></h3>  
+        		<h3 class="text-center color-azul"><strong><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp; INGREDIENTE&nbsp;<i class="fa fa-pencil-square" aria-hidden="true"></i></strong></h3>  
 	        	<form method="POST" action="{{url('ingredientes/modificar')}}" accept-charset="UTF-8" class="" id="EditarFormCategorias">
 	        		<input name="_token" type="hidden" value="{{ csrf_token() }}">
 					<div class="form-group row">

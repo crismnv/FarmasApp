@@ -34,13 +34,15 @@ Route::group(['middleware' => 'auth'], function () {
 // ---------------------------------------------------------------------------------------------------------------------------
 
 // MODULO GRAFICAS
-Route::get('graficas/ver',['as' =>'graficas/ver','uses' =>  'GraficaController@Ver']);
+Route::get('graficas/ver',['as' =>'graficas/ver', 'middleware' => 'admin','uses' =>  'GraficaController@Ver']);
 
 
-Route::get('graficas/reservas/{anio}/{mes}',['as' =>'graficas/reservas' ,'uses' => 'GraficaController@Reservas']);
-Route::get('graficas/registros/{anio}/{mes}',['as' =>'graficas/registros' ,'uses' => 'GraficaController@Registros']);
+Route::get('graficas/reservas/{anio}/{mes}',['as' =>'graficas/reservas', 'middleware' => 'admin' ,'uses' => 'GraficaController@Reservas']);
+Route::get('graficas/registros/{anio}/{mes}',['as' =>'graficas/registros', 'middleware' => 'admin' ,'uses' => 'GraficaController@Registros']);
 
 // FIN MODULO GRAFICAS
+
+
 // MODULO INGREDIENTES
 
 Route::get('ingredientes/crud', ['as' => 'ingredientes/crud', 'middleware' => 'quimico', 'uses' => 'IngredienteController@MostrarCrud']);
@@ -120,12 +122,31 @@ Route::post('reservas/activar/{id}', ['as' => 'reservas/activar', 'middleware' =
 
 Route::post('reservas/RePedir/{id}', ['as' => 'reservas/RePedir', 'middleware' => 'cliente', 'uses' => 'ReservaController@RePedir']);
 
-Route::get('reservas/ver/{id}', ['as' => 'reservas/ver', 'middleware' => 'admin', 'uses' => 'ReservaController@Ver']);
+Route::get('reservas/ver/{id}', ['as' => 'reservas/ver', 'middleware' => 'admin', 'trabajador' => 'ReservaController@Ver']);
+
+Route::get('reservas/modificar/{id}', ['as' => 'reservas/modificar', 'middleware' => 'trabajador', 'uses' => 'ReservaController@Modificar']);
+Route::post('reservas/modificar', ['as' => 'reservas/modificar', 'middleware' => 'trabajador', 'uses' => 'ReservaController@ModificarGuardar']);
 
 Route::post('preparados/listaringredientes/{id}', ['as' => 'preparados/listaringredientes', 'middleware' => 'cliente', 'uses' => 'ContieneController@Listar_Ingredientes_x_IdPreparado']);
 
 
-// FIN MODULO RESERVAS
+// FIN MODULO PEDIDOS
+Route::get('pedidos/crear', ['as' => 'pedidos/crear', 'middleware' => 'admin', 'uses' => 'PedidoController@Crear']);
+Route::post('pedidos/crear', ['as' => 'pedidos/crear', 'middleware' => 'admin', 'uses' => 'PedidoController@CrearGuardar']);
+
+Route::get('predidos/crud', ['as' => 'predidos/crud', 'middleware' => 'admin', 'uses' => 'PedidoController@MostrarCrud']);
+
+Route::post('predidos/listar', ['as' => 'predidos/listar', 'middleware' => 'admin', 'uses' => 'PedidoController@ListarReservas']);
+
+
+
+// MODULO PEDIDOS
+
+
+
+
+// FIN MODULO PEDIDOS
+
 
 
 
@@ -155,10 +176,20 @@ Route::post('proveedores/desactivar/{id}', ['as' => 'proveedores/desactivar', 'm
 Route::post('proveedores/activar/{id}', ['as' => 'proveedores/activar', 'middleware' => 'admin', 'uses' => 'ProveedorController@ActivarProveedor']);
 // FIN MODULO PROVEEDORES
 
+
+// MODULO REPORTES
+Route::get('reportes/ver',['as' =>'reportes/ver', 'middleware' => 'admin','uses' =>  'ReporteController@Ver']);
+
+Route::get('reportes/usuarios/{tipo}', 'ReporteController@CrearReporteUsuarios');
+Route::get('reportes/reservas/{tipo}', 'ReporteController@CrearReporteReservas');
+
+// FIN MODULO REPORTES
+
 // PRUEBA DE ARRAY SQL
 
 Route::get('prueba', ['as' => 'prueba', 'uses' => 'ContieneController@prueba']);
 // FIN ARRAY
+
 //api de reniecc
 Route::post('consulta_dni/{dni}', ['as' => 'consulta_dni', 'uses' => 'DniController@getUsuario']);
 //registro

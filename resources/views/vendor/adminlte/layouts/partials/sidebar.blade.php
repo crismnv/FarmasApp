@@ -33,9 +33,9 @@
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
-            <li class="header">{{ trans('adminlte_lang::message.header') }}</li>
+            <li class="header">MISCELANEA</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
+            {{-- <li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li> --}}
             {{-- <li><a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.anotherlink') }}</span></a></li>
             <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.multilevel') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -78,22 +78,24 @@
 
             @role('quimico')
             <li class="treeview">
-                <a href="#"><i class='sidebar-seguridad fa fa-list-alt'></i> <span>Ingredientes</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#"><i class='sidebar-seguridad fa fa-list-alt'></i> <span>Preparados</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="{{url('ingredientes/crud')}}">Administrar</a></li>
                     {{-- <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li> --}}
                 </ul>
-                <li class="treeview">
+            
+            </li>
+            <li class="treeview">
                 <a href="#"><i class='sidebar-seguridad fa fa-flask'></i> <span>Preparados</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="{{url('preparados/crud')}}">Administrar</a></li>
                     {{-- <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li> --}}
                 </ul>
             </li>
-            </li>
             @endrole
 
             {{-- FIN DE MODULO INGREDIENTES --}}
+
 
             {{-- MODULO RESERVAS --}}
 
@@ -140,19 +142,23 @@
 
             {{-- FIN MODULO USUARIOS --}}
 
-
-
-            {{--  MODULO REPORTES --}}
             @role('admin')
-            <li class="treeview">
-                <a href="#"><i class='sidebar-reportes fa fa-area-chart'></i> <span>Reportes</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    {{-- <li><a href="{{url('Reportes')}}">Reportes</a></li> --}}
-                    <li><a href="{{url('graficas/ver')}}">Graficas</a></li>
-                </ul>
-            </li>
+            <li class="header">ADMINISTRACIÓN</li>
+            
+
+            {{--  MODULO GRAFICAS --}}
+            <li class=""><a href="{{ url('graficas/ver') }}"><i class='fa fa-area-chart'></i> <span>Graficas</span></a></li>
+            {{-- MODULO PEDIDOS --}}
+
+            <li class=""><a href="{{ url('pedidos/crear') }}"><i class='fa fa-handshake-o'></i> <span>Pedido</span></a></li>
+
+
+
+
+            {{-- FIN DE MODULO PEDIDOS --}}
+            <li class=""><a href="{{ url('reportes/ver') }}"><i class='fa fa-book'></i> <span>Reportes</span></a></li>
             @endrole
-            {{-- FIN MODULO REPORTES --}}
+            {{-- FIN MODULO GRAFICAS --}}
 
         </ul><!-- /.sidebar-menu -->
 

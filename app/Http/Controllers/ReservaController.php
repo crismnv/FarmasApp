@@ -48,21 +48,56 @@ class ReservaController extends Controller
                     return redirect('reservas/historial')->with('status','La reserva ha sido creada.');
                 }else{
                     
-                    return redirect('reservas/crear')->with('status','La reserva ha sido creada.');
+                    return redirect('reservas/crud')->with('status','La reserva ha sido creada.');
                 }
 
 
         } else {
-            return redirect('home')->with('errors','La reserva no ha podido sido creada.');
+            if(Auth::user()->hasRole('cliente'))
+                {
+                    return redirect('reservas/historial')->with('errors','La reserva no ha podido ser creada.');
+                }else{
+                    
+                    return redirect('reservas/crud')->with('errors','La reserva no ha podido ser creada.');
+                }
 
         }
 
+    }
+    public function Modificar($id)
+    {
+        $reserva = Reserva::ListarReserva_x_Id($id);
+        // $preparado = Preparado::Listar_Preparado_x_Id($id);
+        // $preparado_id = DB::table('preparados')
+        $ingredientes = Contiene::Listar_Ingredientes_x_IdPreparado($reserva[0]->preparado_id);
+        // dd($reserva, $ingredientes);
+        return view('adminlte::reservas.reservas_modificar', compact('reserva', 'ingredientes'));
+    }
+
+    public function ModificarGuardar(Request $request)
+    {
+        $data = $request->all();
+        // dd($data);
+       
+        $bresultado =  Reserva::Modificar($data);
+
+        if ($bresultado) {
+            
+            return redirect('reservas/crud')->with('status','Los Datos se actualizaron correctamente.');
+
+        } else {
+            
+            return redirect('reservas/crud')->with('errors','La Datos No se actualizaron correctamente.');
+
+        }
     }
     public function Ver($id)
     {
         $reserva = Reserva::ListarReserva_x_Id($id);
         // $preparado = Preparado::Listar_Preparado_x_Id($id);
-        $ingredientes = Contiene::Listar_Ingredientes_x_IdPreparado($id);
+        // $preparado_id = DB::table('preparados')
+        $ingredientes = Contiene::Listar_Ingredientes_x_IdPreparado($reserva[0]->preparado_id);
+        // dd($reserva, $ingredientes);
         return view('adminlte::reservas.reservas_ver', compact('reserva', 'ingredientes'));
     }
     public function prueba($reserva_id)

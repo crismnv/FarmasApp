@@ -183,7 +183,12 @@ return [
         Laraveles\Spanish\SpanishServiceProvider::class,
         // entrust -gui
        Acoustep\EntrustGui\EntrustGuiServiceProvider::class,     
-       
+ 
+        //Intervention/image
+        Intervention\Image\ImageServiceProvider::class,
+        
+        //DomPDF
+        Barryvdh\DomPDF\ServiceProvider::class,      
 
     ],
 
@@ -237,7 +242,8 @@ return [
         'AdminLTE' => Acacha\AdminLTETemplateLaravel\Facades\AdminLTE::class,
         //entrust-gui
         'Entrust' => Zizaco\Entrust\EntrustFacade::class,
-
+        'Image' => Intervention\Image\Facades\Image::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

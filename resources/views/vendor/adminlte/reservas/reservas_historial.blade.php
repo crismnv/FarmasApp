@@ -172,11 +172,10 @@ $(document).ready(function()
 
 		           
 		            // console.log(row.estado)
-		            if(row.estado == 'ACTIVO')
-		            {
+		            
 
 		            	return  "<button type=\"button\" class=\"btn btn-success\" data-toggle=\"modal\" onclick=\"mostrarVentanaParaPedir(" + row.id +");\" data-target=\"#termsModal\"><i class=\"fa fa-copy\"  aria-hidden=\"true\"></i> Volver a Pedir</button>";
-		            }
+		            
 
 		          
 	           		

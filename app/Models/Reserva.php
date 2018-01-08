@@ -12,6 +12,39 @@ class Reserva extends Model
     public $primarykey = 'id';
 
 
+    public static function Modificar($datos)
+    {
+      try {
+            
+            DB::beginTransaction();
+
+            $reserva = array('estado_reserva' => $datos['estado_reserva']
+                                    );
+
+
+           // $productos = array('precio' => 9999999);
+            Reserva::where('id',$datos['id'])
+                            ->update($reserva);
+
+            DB::commit();
+
+            $reserva = null;
+            // $categorias = null;
+                        
+            return true;
+
+        } catch (Exception $e) {
+            // echo "<script>alert('2');<\script>";
+
+            DB::rollback();
+            return false;
+
+        }
+    }
+    public static function Reporte()
+    {
+      return DB::select('call sp_reporte_reservas');
+    }
     public static function GuardarReserva($datos)
     {
         try {
@@ -46,7 +79,8 @@ class Reserva extends Model
     public static function ListarReserva_x_Id($id)
     {
         return Reserva::join('preparados', 'preparados.id', '=','reservas.preparado_id')
-        ->select('preparados.descripcion', 'preparados.precio', 'reservas.cliente_id', 'reservas.preparado_id', 'reservas.estado_reserva', 'reservas.fecha', 'reservas.fecha')->where('reservas.id', $id)->get();
+        ->join('clientes', 'clientes.id', '=', 'reservas.cliente_id')
+        ->select('preparados.descripcion','reservas.id' ,'clientes.nombres', 'clientes.apellido1', 'clientes.apellido2', 'preparados.precio', 'reservas.cliente_id', 'reservas.preparado_id', 'reservas.estado_reserva', 'reservas.fecha', 'reservas.fecha')->where('reservas.id', $id)->get();
     }
     public static function DesactivarReserva($id)
     {
@@ -245,7 +279,7 @@ class Reserva extends Model
                         inner join clientes on clientes.id = reservas.cliente_id 
                         inner join preparados on preparados.id = reservas.preparado_id ";
 
-        $query .= ' WHERE (clientes.id = ' . $usuario[0]->id ;
+        $query .= ' WHERE (clientes.id = ' . $usuario[0]->id . ' AND reservas.estado = \'ACTIVO\'' ;
         if(!empty($_POST["searchPhrase"]))
         {
 
@@ -288,7 +322,7 @@ class Reserva extends Model
 
         $tr = DB::table('reservas')
                      ->select(DB::raw('count(*) as conteo'))
-                     ->where('cliente_id',  intval($usuario[0]->id))
+                     ->where([['cliente_id', '=',  intval($usuario[0]->id)], ['estado', '=', 'ACTIVO']])
                      ->get();
         // $total_records = count($total_records);
         // $total_records = DB::table('reservas')->select(DB::raw('count(*)')->where('cliente_id', $usuario[0]->id)->get();
