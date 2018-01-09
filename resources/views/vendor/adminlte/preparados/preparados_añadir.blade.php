@@ -1,10 +1,8 @@
 @extends('adminlte::layouts.app')
 
 @section('htmlheader_title')
-	Añadir Ingrediente
 @endsection
 @section('contentheader_title')
-	Nueva Ingrediente
 @endsection
 
 @section('css')
@@ -63,7 +61,7 @@
 @endsection
 
 @section('script-inicio')
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBC-ueG56d4pm8xrNLlPssupxlCCuwWIOo&libraries=adsense&language=es"></script>
+	
 @endsection
 
 
@@ -77,7 +75,7 @@
 	        		<input name="_token" type="hidden" value="{{ csrf_token() }}">
                     <div class="form-group row">
                         <div class="col-sm-5 ">
-                          <label class="color-azul ">Descripcion</label>
+                          <label class="color-azul ">Nombre</label>
 
                           <input type="text" class="form-control text-left"  id="descripcion" name="descripcion"  required placeholder="Descripcion" maxlength="250" >
                           <span  id ="ErrorMensaje-descripcion" class="help-block" ></span>
@@ -87,7 +85,7 @@
                         <div class="col-sm-5 col-sm-offset-1">
                           <label class="color-azul ">Precio</label>
 
-                          <input type="text" class="form-control text-left"  id="precio" name="precio"  required placeholder="Precio" maxlength="250" >
+                          <input type="text" read class="form-control text-left"  id="precio" name="precio"  required placeholder="Precio" maxlength="250" >
                           <span  id ="ErrorMensaje-precio" class="help-block" ></span>
                         </div>
                     </div>

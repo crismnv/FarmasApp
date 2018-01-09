@@ -1,10 +1,8 @@
 @extends('adminlte::layouts.app')
 
 @section('htmlheader_title')
-	Añadir Ingrediente
 @endsection
 @section('contentheader_title')
-	Nueva Ingrediente
 @endsection
 
 @section('css')
@@ -65,7 +63,6 @@
 @endsection
 
 @section('script-inicio')
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBC-ueG56d4pm8xrNLlPssupxlCCuwWIOo&libraries=adsense&language=es"></script>
 @endsection
 
 
@@ -104,6 +101,15 @@
 
 	                                          <input type="text" class="form-control text-left"  id="unidad_de_medida" name="unidad_de_medida"  required placeholder="Unidad de Medida" maxlength="20" >
 	                                          <span  id ="ErrorMensaje-unidad_de_medida" class="help-block" ></span>
+	                                        </div>
+	                                        
+	                                    </div> 
+	                                    <div class="form-group row">
+	                                        <div class="col-sm-6 col-sm-offset-3">
+	                                          <label class="color-azul ">Precio Base:</label>
+
+	                                          <input type="number" class="form-control text-left"  id="precio_base" name="precio_base"  required placeholder="Precio Base" >
+	                                          <span  id ="ErrorMensaje-precio_base" class="help-block" ></span>
 	                                        </div>
 	                                        
 	                                    </div>

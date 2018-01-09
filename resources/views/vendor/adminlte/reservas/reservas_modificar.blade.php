@@ -1,10 +1,8 @@
 @extends('adminlte::layouts.app')
 
 @section('htmlheader_title')
-	{{-- Añadir Ingrediente --}}
 @endsection
 @section('contentheader_title')
-	{{-- Nueva Ingrediente --}}
 @endsection
 
 @section('css')
@@ -63,7 +61,6 @@
 @endsection
 
 @section('script-inicio')
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBC-ueG56d4pm8xrNLlPssupxlCCuwWIOo&libraries=adsense&language=es"></script>
 @endsection
 
 
@@ -107,7 +104,8 @@
                     							<div class="form-group">
 	                                          <label class="color-azul ">Cliente:</label>
 
-	                                          <input readonly type="text" name="stock" id="stock" class="form-control" placeholder="Cantidad" value="{{$reserva[0]->nombres . ' ' . $reserva[0]->apellido1 . ' ' . $reserva[0]->apellido2}}" min="0" max="999999" required="required" title="">
+	                                          <input readonly type="text" name="nombres" id="nombres" class="form-control" placeholder="Cantidad" value="{{$reserva[0]->nombres . ' ' . $reserva[0]->apellido1 . ' ' . $reserva[0]->apellido2}}" min="0" max="999999" required="required" title="">
+	                                          <input style="display: none;" type="text" name="email" value="{{$reserva[0]->email}}">
 
 	                                          <span  id ="ErrorMensaje-stock" class="help-block" ></span>
 	                                        </div>
@@ -119,10 +117,22 @@
                     				<label class="color-azul ">Estado de la Reserva:</label>
                     				
                     				<select name="estado_reserva" id="estado_reserva" class="form-control" required="required">
-                    					<option value="APROBADO">APROBADO</option>
-                    					<option value="ENTREGADO">ENTREGADO</option>
+                    					@if($reserva[0]->estado_reserva === 'PENDIENTE')
+                    					<option  value="APROBADO">APROBADO</option>
+                    					<option  selected value="PENDIENTE">PENDIENTE</option>
+                    					<option value="CANCELADO">CANCELADO</option>
+                    					@elseif($reserva[0]->estado_reserva === 'CANCELADO')
+                    					<option  value="APROBADO">APROBADO</option>
+                    					<option selected value="CANCELADO">CANCELADO</option>
+                    					@elseif($reserva[0]->estado_reserva === 'APROBADO')
+                    					<option selected value="APROBADO">APROBADO</option>
                     					<option value="LISTO">LISTO</option>
-                    					<option value="PENDIENTE">PENDIENTE</option>
+                    					@elseif($reserva[0]->estado_reserva === 'LISTO')
+                    					<option  selected value="LISTO">LISTO</option>
+                    					<option value="ENTREGADO">ENTREGADO</option>
+                    					@endif
+
+
                     				</select>
                     			</div>
 
@@ -178,19 +188,38 @@
 
 
 
-										<input type="text" name="id" id="id" class="form-control text-center" value="{{ $reserva[0]->id}}" style="display:none;">
-									          </form>
-								        	</div>
-										</div>
+							<input type="text" name="id" id="id" class="form-control text-center" value="{{ $reserva[0]->id}}" style="display:none;">
+						          </form>
+					        	</div>
+							</div>
+							<div class="row">
+                    	<div class="panel panel-primary">
+                    		<div class="panel-body">
+                    			<div class="panel-heading text-center">
+									<h2 style="font-weight: bold;" class="color-azul">RECETA:</h2><br>
+                    			</div>
+								<div class="col-md-8 col-md-offset-2">
+									
+									<img src="{{ asset('/reservas/' . $reserva[0]->imagen) }}" class="img-fluid img-rounded rounded mx-auto d-block" alt="Sample photo" name="imagen-vista" id="imagen-vista" width="500" height="500"><br>
+
+								</div>
+								<br>
+						    	
+                    		</div>
+                    		
+                    		
+                    	</div>
+					</div>
 
                     	</div>
+
                     </div>
 
 
 
 
 					{{-- <tr class="selected text-center" id =></tr> --}}
-
+					
 
 	          </form>
         	</div>

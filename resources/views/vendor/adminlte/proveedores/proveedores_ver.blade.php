@@ -1,7 +1,6 @@
 @extends('adminlte::layouts.app')
 
 @section('htmlheader_title')
-	Editar Categorías
 @endsection
 
 @section('css')
@@ -51,7 +50,6 @@
 @endsection
 
 @section('script-inicio')
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBC-ueG56d4pm8xrNLlPssupxlCCuwWIOo&libraries=adsense&language=es"></script>
 @endsection
 
 @section('main-content')

@@ -1,7 +1,6 @@
 @extends('adminlte::layouts.app')
 
 @section('htmlheader_title')
-	Editar Categorías
 @endsection
 
 @section('css')
@@ -51,7 +50,6 @@
 @endsection
 
 @section('script-inicio')
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBC-ueG56d4pm8xrNLlPssupxlCCuwWIOo&libraries=adsense&language=es"></script>
 @endsection
 
 @section('main-content')
@@ -91,6 +89,16 @@
 	                                        </div>
 	                                        
 	                                    </div> 
+
+	                                     <div class="form-group row">
+	                                        <div class="col-sm-6 col-sm-offset-3">
+	                                          <label class="color-azul ">Precio Base:</label>
+
+	                                          <input type="number" class="form-control text-left"  id="precio_base" name="precio_base"  required placeholder="Precio Base" value="{{$ingrediente[0]->precio_base}}">
+	                                          <span  id ="ErrorMensaje-precio_base" class="help-block" ></span>
+	                                        </div>
+	                                        
+	                                    </div>
 
 	                                   
 	                                    

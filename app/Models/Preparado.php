@@ -269,7 +269,7 @@ class Preparado extends Model
 
           	return true;  
     	} catch (Exception $e) {
-    		B::rollback();
+    		DB::rollback();
 
             return false; 
     	}

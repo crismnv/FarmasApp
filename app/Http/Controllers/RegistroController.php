@@ -6,12 +6,18 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\RegisterController as RegistroLaravel;
 use App\User;
 use App\Models\Cliente;
+use App\Models\Reserva;
 use Illuminate\Support\Facades\Auth;
 
 class RegistroController extends Controller
 {
     //
 
+    public function mail()
+    {
+    	$reserva = Reserva::select('*')->where('id', '51')->get();
+    	return view('adminlte::mail.mail', compact('reserva'));
+    }
     public function registro()
     {
     	// return view('registro::registro');

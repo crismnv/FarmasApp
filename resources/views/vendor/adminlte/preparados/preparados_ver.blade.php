@@ -1,10 +1,8 @@
 @extends('adminlte::layouts.app')
 
 @section('htmlheader_title')
-	{{-- Añadir Ingrediente --}}
 @endsection
 @section('contentheader_title')
-	{{-- Nueva Ingrediente --}}
 @endsection
 
 @section('css')
@@ -63,7 +61,6 @@
 @endsection
 
 @section('script-inicio')
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBC-ueG56d4pm8xrNLlPssupxlCCuwWIOo&libraries=adsense&language=es"></script>
 @endsection
 
 

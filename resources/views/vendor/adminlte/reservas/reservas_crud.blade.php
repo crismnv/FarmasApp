@@ -1,7 +1,6 @@
 @extends('adminlte::layouts.app')
 
 @section('htmlheader_title')
-	Listado de Clientes 
 @endsection
 
 @section('contentheader_title')
@@ -200,11 +199,18 @@ $(document).ready(function()
 		            console.log(row.estado)
 		            if(row.estado == 'INACTIVO')
 		            {
-
-		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../reservas/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../reservas/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a> <button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" onclick=\"mostrarVentanaParaActivar(" + row.id +");\" data-target=\"#termsModal\"><i class=\"fa fa-plus-square\"  aria-hidden=\"true\"></i></button>";
+		            	if(row.estado_reserva != 'ENTREGADO')
+		            		return  "<a  class=\"btn btn-default btn-info\" href=\"../reservas/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../reservas/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a> <button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" onclick=\"mostrarVentanaParaActivar(" + row.id +");\" data-target=\"#termsModal\"><i class=\"fa fa-plus-square\"  aria-hidden=\"true\"></i></button>";
+		            	else
+		            		return  "<a  class=\"btn btn-default btn-info\" href=\"../reservas/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a> <button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" onclick=\"mostrarVentanaParaActivar(" + row.id +");\" data-target=\"#termsModal\"><i class=\"fa fa-plus-square\"  aria-hidden=\"true\"></i></button>";
 		            }else{
 
-		            	return  "<a  class=\"btn btn-default btn-info\" href=\"../reservas/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../reservas/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a> <button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" onclick=\"mostrarVentanaParaDesactivar(" + row.id +");\" data-target=\"#termsModal\"><i class=\"fa fa-minus-square\"  aria-hidden=\"true\"></i></button>";
+		            	if(row.estado_reserva != 'ENTREGADO')
+
+		            		return  "<a  class=\"btn btn-default btn-info\" href=\"../reservas/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><a  class=\"btn btn-default btn-danger\" href=\"../reservas/modificar/" +   row.id + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>&nbsp;</a> <button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" onclick=\"mostrarVentanaParaDesactivar(" + row.id +");\" data-target=\"#termsModal\"><i class=\"fa fa-minus-square\"  aria-hidden=\"true\"></i></button>";
+		            	else
+		            		return  "<a  class=\"btn btn-default btn-info\" href=\"../reservas/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;</a><button type=\"button\" class=\"btn btn-default\" data-toggle=\"modal\" onclick=\"mostrarVentanaParaDesactivar(" + row.id +");\" data-target=\"#termsModal\"><i class=\"fa fa-minus-square\"  aria-hidden=\"true\"></i></button>";
+
 		            }
 
 		            @else

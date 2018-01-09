@@ -1,7 +1,6 @@
 @extends('adminlte::layouts.app')
 
 @section('htmlheader_title')
-	Reportes por PDF
 @endsection
 
 @section('css')

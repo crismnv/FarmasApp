@@ -21,7 +21,7 @@
         @endif
 
         <!-- search form (Optional) -->
-        <form action="#" method="get" class="sidebar-form">
+        <form action="#" method="get" class="sidebar-form" style="display:  none;">
             <div class="input-group">
                 <input type="text" name="q" class="form-control" placeholder="{{ trans('adminlte_lang::message.search') }}..."/>
               <span class="input-group-btn">
@@ -44,6 +44,10 @@
                     <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li>
                 </ul>
             </li> --}}
+
+
+
+
 
 
             {{-- MODULO INGREDIENTES --}}
@@ -74,32 +78,9 @@
                     {{-- <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li> --}}
                 </ul>
             </li>
-            @endrole
 
-            @role('quimico')
-            <li class="treeview">
-                <a href="#"><i class='sidebar-seguridad fa fa-list-alt'></i> <span>Preparados</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href="{{url('ingredientes/crud')}}">Administrar</a></li>
-                    {{-- <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li> --}}
-                </ul>
             
-            </li>
-            <li class="treeview">
-                <a href="#"><i class='sidebar-seguridad fa fa-flask'></i> <span>Preparados</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href="{{url('preparados/crud')}}">Administrar</a></li>
-                    {{-- <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li> --}}
-                </ul>
-            </li>
             @endrole
-
-            {{-- FIN DE MODULO INGREDIENTES --}}
-
-
-            {{-- MODULO RESERVAS --}}
-
-
             @role('cliente')
             <li class="treeview">
                 <a href="#"><i class='sidebar-seguridad fa fa-tags'></i> <span>Reservas</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -125,9 +106,6 @@
 
             @endrole
 
-            {{-- FIN MODULO RESERVAS --}}
-
-            {{-- MODULO USUARIOS --}}
             @role('admin')
             <li class="treeview">
                 <a href="#"><i class='sidebar-seguridad fa fa-users'></i> <span>Usuarios</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -139,6 +117,34 @@
                 </ul>
             </li>
             @endrole
+
+            @role('quimico')
+            <li class="treeview">
+                <a href="#"><i class='sidebar-seguridad fa fa-list-alt'></i> <span>Ingredientes</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="{{url('ingredientes/crud')}}">Administrar</a></li>
+                    {{-- <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li> --}}
+                </ul>
+            
+            </li>
+            <li class="treeview">
+                <a href="#"><i class='sidebar-seguridad fa fa-flask'></i> <span>Preparados</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="{{url('preparados/crud')}}">Administrar</a></li>
+                    {{-- <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li> --}}
+                </ul>
+            </li>
+            @endrole
+
+            {{-- FIN DE MODULO INGREDIENTES --}}
+
+
+            {{-- MODULO RESERVAS --}}
+
+
+            
+
+            {{-- FIN MODULO RESERVAS --}}
 
             {{-- FIN MODULO USUARIOS --}}
 

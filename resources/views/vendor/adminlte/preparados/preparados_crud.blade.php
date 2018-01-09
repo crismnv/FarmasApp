@@ -1,7 +1,6 @@
 @extends('adminlte::layouts.app')
 
 @section('htmlheader_title')
-	Listado de Clientes 
 @endsection
 
 @section('contentheader_title')

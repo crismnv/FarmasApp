@@ -15,15 +15,9 @@ DB:
 		Cada noche o semana, aun no estoy seguro, se revisará dentro de las reservas y las que tengan mas de 4 meses de antiguedad serán desactivadas o eliminadas(por ver la eliminacion). 
 
 
+>>>>>>>>>>>>>>>>REALIZADO - PARA RETOQUES<<<<<<<<<<<<<<<<<<<<<<<<
 
 Modulo Reservas
-	UNICOS
-		crear
-		cotizacion
-		historial -- 
-		ver --
-		modificar
-		eliminar --
 	Cliente:
 		Crea reservas
 		Realiza cotizacion
@@ -44,9 +38,13 @@ Modulo Reservas
 			Cada trabajador tendrá su bootgrid, con la diferencia de que solo se mostrará para el admin:Todo, para el quimico cambiar los que estan esperando a aprobado y a preparando, los trabajadores cambian de preparado a entregado.
 		Ver Reservas
 		Eliminar Reservas
+
+
+
 		>>>>estados de las reservas
 		PENDIENTE 
 		APROBADO
+		CANCELADO
 		PREPARANDO
 		LISTO
 		ENTREGADO
@@ -54,10 +52,9 @@ Modulo Reservas
 
 Modulo Reportes
 	Admin:
-		Buscar Reporte
+		Buscar Reporte -- faltan reportes por mes y año - después hago esto
 		Crear Reporte
 
->>>>>>>>>>>>>>>>REALIZADO - PARA RETOQUES<<<<<<<<<<<<<<<<<<<<<<<<
 
 Modulo Ingredientes
 	Admin:
@@ -77,6 +74,9 @@ Modulo Usuarios
 		Eliminar Usuario
 
 
+		CREAR USUARIO ARREGLARLO
+
+
 Modulo Proveedores
 	Admin:
 		Añadir Proveedor
@@ -90,3 +90,7 @@ Modulo Preparados
 		Ver Provedor
 		Modificar Proveedor
 		Borrar Proveedor
+
+Modulo Pedidos
+	Admin:
+		Crear Pedido

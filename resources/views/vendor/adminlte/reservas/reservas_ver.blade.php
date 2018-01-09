@@ -1,10 +1,8 @@
 @extends('adminlte::layouts.app')
 
 @section('htmlheader_title')
-	{{-- Añadir Ingrediente --}}
 @endsection
 @section('contentheader_title')
-	{{-- Nueva Ingrediente --}}
 @endsection
 
 @section('css')
@@ -63,7 +61,6 @@
 @endsection
 
 @section('script-inicio')
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBC-ueG56d4pm8xrNLlPssupxlCCuwWIOo&libraries=adsense&language=es"></script>
 @endsection
 
 
@@ -146,7 +143,28 @@
 
                     		</div>
 
+
+
                     	</div>
+
+                    	<div class="row">
+                    	<div class="panel panel-primary">
+                    		<div class="panel-body">
+                    			<div class="panel-heading text-center">
+									<h2 style="font-weight: bold;" class="color-azul">RECETA:</h2><br>
+                    			</div>
+								<div class="col-md-8 col-md-offset-2">
+									
+									<img src="{{ asset('/reservas/' . $reserva[0]->imagen) }}" class="img-fluid img-rounded rounded mx-auto d-block" alt="Sample photo" name="imagen-vista" id="imagen-vista" width="500" height="500"><br>
+
+								</div>
+								<br>
+						    	
+                    		</div>
+                    		
+                    		
+                    	</div>
+					</div>
                     </div>
 
 

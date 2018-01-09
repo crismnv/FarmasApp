@@ -1,10 +1,8 @@
 @extends('adminlte::layouts.app')
 
 @section('htmlheader_title')
-	Añadir Ingrediente
 @endsection
 @section('contentheader_title')
-	Nueva Ingrediente
 @endsection
 
 @section('css')
@@ -63,7 +61,6 @@
 @endsection
 
 @section('script-inicio')
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBC-ueG56d4pm8xrNLlPssupxlCCuwWIOo&libraries=adsense&language=es"></script>
 @endsection
 
 
@@ -72,8 +69,8 @@
 <div class="container-fluid spark-screen">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
-        		<h3 class="text-center color-azul"><strong><i class="fa fa-bars" aria-hidden="true"></i>&nbsp; Añadir Preparado&nbsp;<i class="fa fa-bars" aria-hidden="true"></i></strong></h3>  
-	        	<form method="POST" action="{{url('reservas/crear')}}" accept-charset="UTF-8" class="" id="FormPreparado">
+        		<h3 class="text-center color-azul"><strong><i class="fa fa-bars" aria-hidden="true"></i>&nbsp; RESERVAR&nbsp;<i class="fa fa-bars" aria-hidden="true"></i></strong></h3>  
+	        	<form method="POST" action="{{url('reservas/crear')}}" accept-charset="UTF-8" class="" enctype="multipart/form-data" id="FormPreparado">
 	        		<input name="_token" type="hidden" value="{{ csrf_token() }}">
                    
                     <div class="row">
@@ -91,6 +88,7 @@
                     					</select>
                     				</div>
                     			</div>
+                    			
                 			@else
 								<div class="row">
 	                    				<div class="form-group col-xs-12 col-md-4 col-md-offset-1">
@@ -113,6 +111,14 @@
 	                    			</div>
 
                 			@endrole
+
+                			<div class="row">
+									<div class=" col-xs-8 col-xs-offset-2" id="guardar" name="guardar">
+										<div class="form-group">
+								            	<a href="{{url('reservas/crear/detallado')}}" class="btn btn-warning btn-block" id="boton" type="submit">No encuentro mi preparado</a>
+								        </div>
+									</div>
+								</div>
                     			<br>
 
 
@@ -143,17 +149,45 @@
 
                     		</div>
 
+                    		
+                    	</div>
+                    </div>
+
+                    <div class="row">
+                    	<div class="panel panel-primary">
+                    		<div class="panel-body">
+                    			<div class="panel-heading text-center">
+									<h2 style="font-weight: bold;" class="color-azul">RECETA:</h2><br>
+                    			</div>
+								<div class="col-md-8 col-md-offset-2">
+									
+									<img style="display: none;" src="" class="img-fluid img-rounded rounded mx-auto d-block" alt="Sample photo" name="imagen-vista" id="imagen-vista" width="500" height="500"><br>
+
+								</div>
+								<br>
+						    	<div class="row">
+						    		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4">
+						    			<br>
+						    			<input type="file" name="imagen" id="foto" accept="image/*">
+										<span  id ="ErrorMensaje-imagen" class="help-block"></span>
+						    		</div>
+						    	</div>
+                    		</div>
                     		<div class="panel-footer">
                     			<div class="row">
 									<div class=" col-xs-8 col-xs-offset-2" id="guardar" name="guardar">
 										<div class="form-group">
-								            	<button class="btn btn-primary btn-block" id="boton" type="submit">Hacer Reserva</button>
+								            	<button class="btn btn-success btn-block" id="boton" type="submit">Hacer Reserva</button>
 								        </div>
 									</div>
 								</div>
+	                    		
                     		</div>
+                		</div>
+
+                    		
                     	</div>
-                    </div>
+					</div>
 
 
 
@@ -170,6 +204,23 @@
 
 @section('script-fin')
 <script>
+
+//actualizar imagen
+  function mostrarImagen(input) {
+	 if (input.files && input.files[0]) {
+	  var reader = new FileReader();
+	  reader.onload = function (e) {
+	   $('#imagen-vista').attr('src', e.target.result);
+	  }
+	  reader.readAsDataURL(input.files[0]);
+	 }
+	}
+
+$("#foto").change(function(){
+	$('#imagen-vista').show();
+ mostrarImagen(this);
+});
+
 
 
 	$(document).ready(function(){

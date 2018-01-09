@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -84,8 +85,8 @@ Route::post('users/modificarpersonales', ['as' => 'users/modificarpersonales', '
 
 Route::get('preparados/añadir', ['as' => 'preparados/añadir', 'middleware' => 'admin', 'uses' => 'PreparadoController@AñadirPreparado']);
 Route::post('preparados/añadir', ['as' => 'preparados/añadir', 'middleware' => 'admin', 'uses' => 'PreparadoController@AñadirGuardarPreparado']);
-Route::get('preparados/crud', ['as' => 'preparados/crud', 'middleware' => 'admin', 'uses' => 'PreparadoController@MostrarCrud']);
-Route::post('preparados/listar', ['as' => 'preparados/listar', 'middleware' => 'admin', 'uses' => 'PreparadoController@ListarPreparados']);
+Route::get('preparados/crud', ['as' => 'preparados/crud', 'middleware' => 'quimico', 'uses' => 'PreparadoController@MostrarCrud']);
+Route::post('preparados/listar', ['as' => 'preparados/listar', 'middleware' => 'quimico', 'uses' => 'PreparadoController@ListarPreparados']);
 
 Route::post('preparados/desactivar/{id}', ['as' => 'preparados/desactivar', 'middleware' => 'admin', 'uses' => 'PreparadoController@DesactivarPreparado']);
 
@@ -103,6 +104,8 @@ Route::post('preparados/modificar/', ['as' => 'preparados/modificar', 'middlewar
 // MODULO RESERVAS
 
 
+Route::get('reservas/crear/detallado', ['as' => 'reservas/crear/detallado', 'middleware' => 'todos', 'uses' => 'ReservaController@CrearDetallado']);
+Route::post('reservas/crear/detallado', ['as' => 'reservas/crear/detallado', 'middleware' => 'todos', 'uses' => 'ReservaController@GuardarReservaDetallado']);
 Route::get('reservas/crear', ['as' => 'reservas/crear', 'middleware' => 'todos', 'uses' => 'ReservaController@Crear']);
 Route::post('reservas/crear', ['as' => 'reservas/crear', 'middleware' => 'todos', 'uses' => 'ReservaController@GuardarReserva']);
 
@@ -122,7 +125,7 @@ Route::post('reservas/activar/{id}', ['as' => 'reservas/activar', 'middleware' =
 
 Route::post('reservas/RePedir/{id}', ['as' => 'reservas/RePedir', 'middleware' => 'cliente', 'uses' => 'ReservaController@RePedir']);
 
-Route::get('reservas/ver/{id}', ['as' => 'reservas/ver', 'middleware' => 'admin', 'trabajador' => 'ReservaController@Ver']);
+Route::get('reservas/ver/{id}', ['as' => 'reservas/ver', 'middleware' => 'todos','uses' => 'ReservaController@Ver']);
 
 Route::get('reservas/modificar/{id}', ['as' => 'reservas/modificar', 'middleware' => 'trabajador', 'uses' => 'ReservaController@Modificar']);
 Route::post('reservas/modificar', ['as' => 'reservas/modificar', 'middleware' => 'trabajador', 'uses' => 'ReservaController@ModificarGuardar']);
@@ -197,3 +200,21 @@ Route::get('registro',['as' => 'registro', 'uses' => 'RegistroController@registr
 // Route::post('registro', ['as' => 'registro', 'uses' => 'RegistroController@registrar']);
 Route::post('registro/registro', ['as' =>'registro/registro', 'uses' => 'RegistroController@registrar']);
 
+
+
+
+Route::get('mail', ['as' =>'mail', 'uses' => 'RegistroController@mail'] );
+// Route::get('mail', function()
+// {
+// 	// Mail::to('crisycochea@gmail.com')->send(new ClienteMail());
+
+// 	// $data = array(
+// 	// 	'name'=>"CrismnV",);
+
+// 	// Mail::send('adminlte::mail.mail', $data, function($message)
+// 	// {
+// 	// 	$message->from('cecomp.laravel@gmail.com', 'Listo');
+// 	// 	$message->to('crisycochea@gmail.com')->subject('test');
+// 	// });
+// 	// return "Correcto";
+// });

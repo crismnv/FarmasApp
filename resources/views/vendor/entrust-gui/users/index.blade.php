@@ -4,7 +4,7 @@
 
 @section('main-content')
 <div class="models--actions">
-    <a class="btn btn-labeled btn-primary" href="{{ route('entrust-gui::users.create') }}"><span class="btn-label"><i class="fa fa-plus"></i></span> Crear Usuario</a>
+    {{-- <a class="btn btn-labeled btn-primary" href="{{ route('entrust-gui::users.create') }}"><span class="btn-label"><i class="fa fa-plus"></i></span> Crear Usuario</a> --}}
 </div>
 <table class="table table-striped">
   <tr>

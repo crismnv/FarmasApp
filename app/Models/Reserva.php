@@ -5,6 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB as DB;
 use Illuminate\Support\Facades\Auth as Auth;
+use App\Http\Controllers\ImageController;
+use App\Mail\ClienteMail;
+use Mail;
+
 class Reserva extends Model
 {
     //
@@ -12,6 +16,69 @@ class Reserva extends Model
     public $primarykey = 'id';
 
 
+    public static function GuardarReservaDetallado($datos)
+    {
+        try {
+            
+             DB::beginTransaction();
+
+            
+                
+             $codigo_preparado_generado = DB::table('Preparados')->insertGetId(
+                        [
+                            'descripcion' => $datos['descripcion'],
+                            'precio'  =>  $datos['precio']
+                        ]
+                    );
+
+                // Insertando Preparado.
+
+                for ($i=0; $i < count($datos['idingrediente']); $i++) 
+                { 
+
+                    $cantidad = $datos['cantidad'][$i];                   
+                    $ingrediente = $datos['idingrediente'][$i];
+
+                    // $subtotal = floatval($datos['precio_venta'][$i])*intval($datos['cantidad'][$i]);
+
+                        $contiene = new Contiene();
+
+                        $contiene->preparado_id = $codigo_preparado_generado;
+                        $contiene->ingrediente_id = $ingrediente;
+                        $contiene->cantidad = $cantidad;
+
+
+                        $contiene->save();
+
+                        // Producto::ActualizarStockProducto($datos['idingrediente'][$i],$cantidad);
+
+                        // $total = $total + $subtotal;
+
+
+                }
+
+
+                
+                $ruta_imagen = ImageController::GuardarImagen($datos['imagen'], "P=" . $codigo_preparado_generado . ";C=" . $datos['cliente_id']);
+                $reserva = new Reserva();
+                $reserva->cliente_id = $datos['cliente_id'];
+                $reserva->preparado_id = $codigo_preparado_generado;
+                $reserva->fecha= date_create()->format('Y-m-d');
+                $reserva->imagen= $ruta_imagen;
+                $reserva->created_at = date_create()->format('Y-m-d H:i:s');
+                $reserva->updated_at = date_create()->format('Y-m-d H:i:s');
+                $reserva->save();
+
+
+            DB::commit();
+
+            return true;  
+        } catch (Exception $e) {
+            DB::rollback();
+
+            return false; 
+        }
+    }
     public static function Modificar($datos)
     {
       try {
@@ -25,6 +92,16 @@ class Reserva extends Model
            // $productos = array('precio' => 9999999);
             Reserva::where('id',$datos['id'])
                             ->update($reserva);
+
+
+//pendiente y aprobado
+            if($datos['estado_reserva'] !=  'PENDIENTE' && $datos['estado_reserva'] != 'ENTREGADO')
+            {
+                $ReservaParaMail = Reserva::select('*')->where('id', $datos['id'])->get();
+                
+                Mail::to($datos['email'])->send(new ClienteMail($ReservaParaMail[0]));
+                
+            }
 
             DB::commit();
 
@@ -45,18 +122,20 @@ class Reserva extends Model
     {
       return DB::select('call sp_reporte_reservas');
     }
+
     public static function GuardarReserva($datos)
     {
         try {
 
             // $usuario_id = Auth::user()->id;
             // $cliente = DB::table('clientes')->select('*')->where('user_id', $usuario_id)->get()->toArray();
-
             DB::beginTransaction();
+            $ruta_imagen = ImageController::GuardarImagen($datos['imagen'], "P=" . $datos['preparados'] . ";C=" . $datos['cliente_id']);
             $reserva = new Reserva();
             $reserva->cliente_id = $datos['cliente_id'];
             $reserva->preparado_id = $datos['preparados'];
             $reserva->fecha= date_create()->format('Y-m-d');
+            $reserva->imagen= $ruta_imagen;
             $reserva->created_at = date_create()->format('Y-m-d H:i:s');
             $reserva->updated_at = date_create()->format('Y-m-d H:i:s');
             $reserva->save();
@@ -80,7 +159,8 @@ class Reserva extends Model
     {
         return Reserva::join('preparados', 'preparados.id', '=','reservas.preparado_id')
         ->join('clientes', 'clientes.id', '=', 'reservas.cliente_id')
-        ->select('preparados.descripcion','reservas.id' ,'clientes.nombres', 'clientes.apellido1', 'clientes.apellido2', 'preparados.precio', 'reservas.cliente_id', 'reservas.preparado_id', 'reservas.estado_reserva', 'reservas.fecha', 'reservas.fecha')->where('reservas.id', $id)->get();
+        ->join('users', 'users.id', '=', 'clientes.user_id')
+        ->select('users.email', 'reservas.imagen', 'preparados.descripcion','reservas.id' ,'clientes.nombres', 'clientes.apellido1', 'clientes.apellido2', 'preparados.precio', 'reservas.cliente_id', 'reservas.preparado_id', 'reservas.estado_reserva', 'reservas.fecha', 'reservas.fecha')->where('reservas.id', $id)->get();
     }
     public static function DesactivarReserva($id)
     {
@@ -365,7 +445,6 @@ class Reserva extends Model
             $nueva_reserva->updated_at = date_create()->format('Y-m-d H:i:s');    
             $nueva_reserva->save();
             DB::commit();
-
             $reserva = null;
             $nueva_reserva = null;
             // $categorias = null;

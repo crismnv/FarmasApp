@@ -1,7 +1,6 @@
 @extends('adminlte::layouts.app')
 
 @section('htmlheader_title')
-	Listado de Clientes 
 @endsection
 
 @section('contentheader_title')
@@ -87,6 +86,7 @@
 						      <th class="text-center" style="vertical-align:middle;" data-column-id="nombre">Nombre</th>
 						      <th class="text-center" style="vertical-align:middle;" data-column-id="stock">Stock</th>
 						      <th class="text-center" style="vertical-align:middle;" data-column-id="unidad_de_medida">U. de Medida</th>
+						      <th class="text-center" style="vertical-align:middle;" data-column-id="precio_base">Precio Base</th>
 						      <th class="text-center" style="vertical-align:middle;" data-column-id="estado">estado</th>
 						      <th class="text-center" style="vertical-align:middle;" data-column-id="commands" data-formatter="commands" data-sortable="false">Acciones</th>
 						    </tr>

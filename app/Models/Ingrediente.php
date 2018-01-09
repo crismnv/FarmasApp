@@ -73,7 +73,7 @@ class Ingrediente extends Model
 
     public static function Listar_Ingrediente_Id($id)
     {
-    	return Ingrediente::select('ingredientes.id', 'ingredientes.nombre', 'ingredientes.stock', 'ingredientes.unidad_de_medida', 'ingredientes.estado')
+    	return Ingrediente::select('ingredientes.id','ingredientes.precio_base' , 'ingredientes.nombre', 'ingredientes.stock', 'ingredientes.unidad_de_medida', 'ingredientes.estado')
     	->where('ingredientes.id', $id)->get();
     }
 
@@ -86,7 +86,8 @@ class Ingrediente extends Model
             $ingrediente = array('nombre' => $data['nombre'],
                                     'unidad_de_medida' => $data['unidad_de_medida'],
                                     'stock' => $data['stock'],
-                                    'estado' => $data['estado']
+                                    'estado' => $data['estado'],
+                                    'precio_base' => $data['precio_base']
                                     );
 
 
@@ -117,7 +118,8 @@ class Ingrediente extends Model
             $ingrediente = new Ingrediente();
             $ingrediente->nombre = $datos['nombre'];	
             $ingrediente->unidad_de_medida = $datos['unidad_de_medida'];	
-            $ingrediente->stock = $datos['stock'];	
+            $ingrediente->stock = $datos['stock'];  
+            $ingrediente->precio_base = $datos['precio_base'];	
             $ingrediente->created_at = date_create()->format('Y-m-d H:i:s');
 			$ingrediente->updated_at = date_create()->format('Y-m-d H:i:s');	
 			$ingrediente->save();
@@ -167,6 +169,7 @@ class Ingrediente extends Model
         
         $query .= " SELECT ingredientes.id, ingredientes.nombre, 
                           ingredientes.unidad_de_medida,
+                          ingredientes.precio_base,
                           ingredientes.estado,
                           ingredientes.stock
                     FROM ingredientes ";
@@ -176,6 +179,7 @@ class Ingrediente extends Model
          $query .= ' WHERE (ingredientes.id LIKE "%'.$_POST["searchPhrase"].'%" ';
          $query .= 'OR ingredientes.nombre LIKE "%'.$_POST["searchPhrase"].'%" ';
          $query .= 'OR ingredientes.stock LIKE "%'.$_POST["searchPhrase"].'%" ';
+         $query .= 'OR ingredientes.precio_base LIKE "%'.$_POST["searchPhrase"].'%" ';
          $query .= 'OR ingredientes.unidad_de_medida LIKE "%'.$_POST["searchPhrase"].'%" ';
          $query .= 'OR ingredientes.estado LIKE "%'.$_POST["searchPhrase"].'%" )';
         }

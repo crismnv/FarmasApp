@@ -1,7 +1,6 @@
 @extends('adminlte::layouts.app')
 
 @section('htmlheader_title')
-	Listado de Clientes 
 @endsection
 
 @section('contentheader_title')
@@ -123,7 +122,6 @@
 				</div>
 			</div>
 		
-
 		{{-- <button type="button" class="btn btn-default" onclick="ocultarVentana();">button</button> --}}
 	</div>
 
@@ -174,7 +172,7 @@ $(document).ready(function()
 		            // console.log(row.estado)
 		            
 
-		            	return  "<button type=\"button\" class=\"btn btn-success\" data-toggle=\"modal\" onclick=\"mostrarVentanaParaPedir(" + row.id +");\" data-target=\"#termsModal\"><i class=\"fa fa-copy\"  aria-hidden=\"true\"></i> Volver a Pedir</button>";
+		            	return  "<button type=\"button\" class=\"btn btn-success\" data-toggle=\"modal\" onclick=\"mostrarVentanaParaPedir(" + row.id +");\" data-target=\"#termsModal\"><i class=\"fa fa-copy\"  aria-hidden=\"true\"></i> Volver a Pedir</button> <a  class=\"btn btn-default btn-info\" href=\"../reservas/ver/" +   row.id + "\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i>&nbsp;Ver Reserva</a>";
 		            
 
 		          

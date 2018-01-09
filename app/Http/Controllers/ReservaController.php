@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Reserva;
 use App\Models\Contiene;
 use App\Models\Preparado;
+use App\Models\Ingrediente;
 use Illuminate\Support\Facades\DB as DB;
 use Illuminate\Support\Facades\Auth as Auth;
 
@@ -14,6 +15,54 @@ class ReservaController extends Controller
     //
 
 
+    public function CrearDetallado()
+    {
+        $ingredientes = Ingrediente::select('*')->get();
+        // $preparados = Preparado::select('id' ,'descripcion')->get();
+
+        if(Auth::user()->hasRole('cliente'))
+        {
+            $usuario_id = Auth::user()->id;
+            $cliente = DB::table('clientes')->select('id')->where('user_id', $usuario_id)->get();
+            // dd($cliente);
+            // $cliente = DB::table('clientes')->select()->get();
+            
+            return view('adminlte::reservas.reservas_crear2', compact('ingredientes', 'cliente'));
+
+        }else{
+            $clientes = DB::table('clientes')->select('id', 'nombres', 'apellido1', 'apellido2')->get();
+            return view('adminlte::reservas.reservas_crear2', compact('ingredientes', 'clientes'));
+            
+        }
+    }
+    public function GuardarReservaDetallado(Request $request)
+    {
+        $data = $request->all();
+                    
+        // dd($data);
+        $bresultado = Reserva::GuardarReservaDetallado($data);
+
+        if ($bresultado) {
+            if(Auth::user()->hasRole('cliente'))
+                {
+                    return redirect('reservas/historial')->with('status','La reserva ha sido creada.');
+                }else{
+                    
+                    return redirect('reservas/crud')->with('status','La reserva ha sido creada.');
+                }
+
+
+        } else {
+            if(Auth::user()->hasRole('cliente'))
+                {
+                    return redirect('reservas/historial')->with('errors','La reserva no ha podido ser creada.');
+                }else{
+                    
+                    return redirect('reservas/crud')->with('errors','La reserva no ha podido ser creada.');
+                }
+
+        }
+    }
     public function Crear()
     {
         $preparados = Preparado::select('id' ,'descripcion')->get();
