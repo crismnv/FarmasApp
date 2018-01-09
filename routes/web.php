@@ -110,8 +110,8 @@ Route::get('reservas/crear', ['as' => 'reservas/crear', 'middleware' => 'todos',
 Route::post('reservas/crear', ['as' => 'reservas/crear', 'middleware' => 'todos', 'uses' => 'ReservaController@GuardarReserva']);
 
 
-Route::get('reservas/crud', ['as' => 'reservas/crud', 'middleware' => 'admin', 'uses' => 'ReservaController@MostrarCrud']);
-Route::post('reservas/listar', ['as' => 'reservas/listar', 'middleware' => 'admin', 'uses' => 'ReservaController@ListarReservas']);
+Route::get('reservas/crud', ['as' => 'reservas/crud', 'middleware' => 'trabajador', 'uses' => 'ReservaController@MostrarCrud']);
+Route::post('reservas/listar', ['as' => 'reservas/listar', 'middleware' => 'trabajador', 'uses' => 'ReservaController@ListarReservas']);
 
 Route::get('reservas/prueba/{id}', ['as' => 'reservas/prueba', 'middleware' => 'cliente', 'uses' => 'ReservaController@Prueba']);
 
@@ -183,9 +183,18 @@ Route::post('proveedores/activar/{id}', ['as' => 'proveedores/activar', 'middlew
 // MODULO REPORTES
 Route::get('reportes/ver',['as' =>'reportes/ver', 'middleware' => 'admin','uses' =>  'ReporteController@Ver']);
 
-Route::get('reportes/usuarios/{tipo}', 'ReporteController@CrearReporteUsuarios');
-Route::get('reportes/reservas/{tipo}', 'ReporteController@CrearReporteReservas');
+// Route::get('reportes/usuarios/{tipo}/{año}/{mes}', 'ReporteController@CrearReporteUsuarios');
+// Route::get('reportes/reservas/{tipo}/{año}/{mes}', 'ReporteController@CrearReporteReservas');
 
+// Route::get('reporteusuarios/{tipo}/año/{año}/mes/{mes}', function($tipo, $año, $mes){
+// 	dd( $tipo);
+// });
+// Route::get('reporteusuarios/{post}/comments/{comment}/pars/{par}', function ($postId, $commentId, $parId) {
+//     //
+//     dd($postId, $commentId, $parId);
+// });
+Route::get('reportes/reservas/{post}/comments/{comment}/pars/{par}','ReporteController@CrearReporteReservas');
+Route::get('reportes/usuarios/{post}/comments/{comment}/pars/{par}','ReporteController@CrearReporteUsuarios');
 // FIN MODULO REPORTES
 
 // PRUEBA DE ARRAY SQL

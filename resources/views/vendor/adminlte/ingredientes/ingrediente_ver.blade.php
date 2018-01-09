@@ -15,11 +15,11 @@
 		}
 		.color-azul
 		{
-			color: #337ab7;
+			color: #009688;
 		}
 		.fa-pencil-square
 		{
-			color: #00a65a;
+			color: #009688;
 		}
 		.form-control
 		{
@@ -43,7 +43,7 @@
 	 	
 	 	.boton-azul
 		{
-			background-color: #E64A19;
+			background-color: #009688;
 			color: #ffffff;
 		}
 	</style>

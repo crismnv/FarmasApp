@@ -151,12 +151,37 @@ class ReservaController extends Controller
     }
     public function prueba($reserva_id)
     {
-        $reserva = Reserva::select('cliente_id', 'preparado_id')->where('id', $reserva_id);
-        dd($reserva);
+
+        $reserva = Reserva::select('cliente_id', 'preparado_id', 'imagen')->where('id', $reserva_id)->get();
+        
+
+        try {
+            DB::beginTransaction();
+            $nueva_reserva = new Reserva();
+            $nueva_reserva->cliente_id = $reserva[0]->cliente_id;
+            $nueva_reserva->preparado_id = $reserva[0]->preparado_id;
+            $nueva_reserva->imagen = $reserva[0]->imagen;
+            $nueva_reserva->fecha = date_create()->format('Y-m-d');
+            $nueva_reserva->created_at = date_create()->format('Y-m-d H:i:s');
+            $nueva_reserva->updated_at = date_create()->format('Y-m-d H:i:s');   
+            dd($reserva, $nueva_reserva);   
+            $nueva_reserva->save();
+            DB::commit();
+            $reserva = null;
+            $nueva_reserva = null;
+            // $categorias = null;
+                        
+            return true;
+            
+        } catch (Exception $e) {
+            DB::rollback();
+            return false;
+        }
 
     }
     public function RePedir($reserva_id)
     {
+        // dd($reserva_id);
         // $data = $request->all();
         Reserva::RePedir($reserva_id);
     }

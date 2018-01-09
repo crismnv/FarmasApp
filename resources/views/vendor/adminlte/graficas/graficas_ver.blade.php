@@ -1,7 +1,7 @@
 @extends('adminlte::layouts.app') @section('htmlheader_title') Reportes Graficos @endsection @section('css')
 <style>
     .color-azul {
-        color: #337ab7;
+        color: #009688;
     }
     .sidebar-reportes
         {
@@ -12,7 +12,7 @@
     }
 
     .fa-bar-chart {
-        color: #00a65a;
+        color: #009688;
     }
 
     .form-control {

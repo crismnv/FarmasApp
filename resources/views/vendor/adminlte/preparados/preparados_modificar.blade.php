@@ -196,6 +196,52 @@
 
 @section('script-fin')
 <script>
+
+	$('#descripcion').on("keypress", function(){
+		$("#ErrorMensaje-descripcion").hide();
+
+	}) 
+
+	$('#precio').on("keypress", function(){
+		$("#ErrorMensaje-precio").hide();
+
+	}) 
+
+
+
+
+	$('#boton').click( function()
+	{
+		var descripcion = $('#descripcion').val().trim();
+
+		if( descripcion == null || descripcion.length == 0)
+		{
+			descripcion = null;
+			$("#ErrorMensaje-descripcion").text("Este campo no puede estar vacio");
+			$("#ErrorMensaje-descripcion").show();
+			$("#descripcion").focus();	
+			// alert();
+			return false;
+		}
+
+		var precio = $('#precio').val().trim();
+		if(precio == null || precio.length == 0 )
+		{
+			$("#ErrorMensaje-precio").text("El precio no puede estar vacia");
+			$("#ErrorMensaje-precio").show();
+			$("#precio").focus();
+			return false;
+		}
+		
+		if(precio <= 0 || precio >=999999.99)
+		{
+			$("#ErrorMensaje-precio").text("Ingrese un numero valido");
+			$("#ErrorMensaje-precio").show();
+			$("#precio").focus();
+			return false;
+		}
+	});
+
 	var ingredientes = {{$contador}};
 	var cont = {{$contador}};
 

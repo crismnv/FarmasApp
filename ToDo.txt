@@ -94,3 +94,24 @@ Modulo Preparados
 Modulo Pedidos
 	Admin:
 		Crear Pedido
+
+
+
+
+VALIDACIONES
+
+	INGREDIENTES
+		añadir ingrediente -> precio base
+		modificar ingrediente -> 
+	PREPARADOS
+		añadir
+		modificar
+	PROVEEDORES
+		añadir
+		modificar
+	RESERVAS
+		añadir -> la foto
+	PEDIDOS
+		crear -> el dia 
+		
+

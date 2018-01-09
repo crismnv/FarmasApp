@@ -118,9 +118,19 @@ class Reserva extends Model
 
         }
     }
-    public static function Reporte()
+    public static function Reporte($año, $mes)
     {
-      return DB::select('call sp_reporte_reservas');
+        if ($año == 0 || $mes == 0) 
+        {
+            return DB::select('call sp_reporte_reservas');
+        }else{
+
+           // return Reserva::join('clientes', 'clientes.id', 'reservas.cliente_id')
+           //  ->join('preparados', 'preparados.id', 'reservas.preparado_id')
+           //  ->select('reservas.id', 'clientes.apellido1', 'clientes.apellido2', 'preparados.descripcion', 'reservas.estado_reserva', 'reservas.fecha')
+           //  ->where(DB::raw('year(reservas.fecha)'), $año)->get();
+            return DB::select('call sp_reporte_reservas_mes(' . $año . ', ' . $mes .')');
+        }
     }
 
     public static function GuardarReserva($datos)
@@ -433,13 +443,15 @@ class Reserva extends Model
     public static function RePedir($reserva_id)
     {
 
-        $reserva = Reserva::select('cliente_id', 'preparado_id')->where('id', $reserva_id)->get();
+        $reserva = Reserva::select('cliente_id', 'preparado_id', 'imagen')->where('id', $reserva_id)->get();
+        
 
         try {
             DB::beginTransaction();
             $nueva_reserva = new Reserva();
             $nueva_reserva->cliente_id = $reserva[0]->cliente_id;
             $nueva_reserva->preparado_id = $reserva[0]->preparado_id;
+            $nueva_reserva->imagen = $reserva[0]->imagen;
             $nueva_reserva->fecha = date_create()->format('Y-m-d');
             $nueva_reserva->created_at = date_create()->format('Y-m-d H:i:s');
             $nueva_reserva->updated_at = date_create()->format('Y-m-d H:i:s');    

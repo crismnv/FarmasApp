@@ -71,7 +71,7 @@
 	<div class="container-fluid spark-screen">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
-				<h3 class="text-center color-azul"><strong><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp; Registrar Boletas&nbsp;<i class="fa fa-pencil-square" aria-hidden="true"></i></strong></h3>  
+				<h3 class="text-center color-azul"><strong><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp; REGISTRAR PEDIDO&nbsp;<i class="fa fa-pencil-square" aria-hidden="true"></i></strong></h3>  
 
 				<form method="POST" action="{{url('pedidos/crear')}}" accept-charset="UTF-8" class="" id="RegistroFormFactura">
 	        		<input name="_token" type="hidden" value="{{ csrf_token() }}">
@@ -117,6 +117,8 @@
 	                <div class="col-sm-4">
 	                    <label class="color-azul">Dia</label>
 	                    <input type="number" name="dia" id="dia" value="" min="1" max="31" class="form-control text-center" />
+	                    <span  id ="ErrorMensaje-dia" class="help-block" ></span>
+
 	                </div>                          
            		</div>
 					
@@ -223,12 +225,64 @@
 	// 	evaluar();
 	// }
 
+// var numero_mes = 1;
+	$('#dia').on("keypress", function(){
+		$("#ErrorMensaje-dia").hide();
+
+	})
+
+	$('#guardar').on("click", function(evt)
+	{
+		var dia = $('#dia').val().trim();
+		var max;
+
+		if( dia == null || dia.length == 0)
+		{
+			dia = null;
+			$("#ErrorMensaje-dia").text("Este campo no puede  estar vacio");
+			$("#ErrorMensaje-dia").show();
+			$("#dia").focus();	
+			// alert();
+			return false;
+		}
+		numero_mes = $('#mes_id').val();
+
+		switch(numero_mes)
+			{
+				case '2':
+					max=29;
+					break;
+				case '1':
+				case '3':
+				case '5':
+				case '7':
+				case '8':
+				case '10':
+				case '12':
+					max=31;
+					break;
+				default:
+					max=30;
+			}
+			if( dia > max)
+			{
+				$("#ErrorMensaje-dia").text("Este campo debe estar entre 1 y ".concat(max));
+				$("#ErrorMensaje-dia").show();
+				$("#dia").focus();	
+				dia = null;
+				// alert();
+				return false;
+			}
+
+
+			max = null;
+	});
 	var ingredientes = 0;
 	var cont = 0;
-
+	
 	$('#mes_id').change( function()
 		{
-			var numero_mes = $('#mes_id').val();
+			numero_mes = $('#mes_id').val();
 			$('#pago_dia').val('1');
 			switch(numero_mes)
 			{

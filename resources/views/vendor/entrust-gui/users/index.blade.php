@@ -18,8 +18,8 @@
         <form action="{{ route('entrust-gui::users.destroy', $user->id) }}" method="post">
           <input type="hidden" name="_method" value="DELETE">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          <a class="btn btn-labeled btn-default" href="{{ route('entrust-gui::users.edit', $user->id) }}"><span class="btn-label"><i class="fa fa-pencil"></i></span>Editar</a>
-          <a class="btn btn-labeled btn-default" href="{{ url('users/modificarpersonales/' . $user->id)  }}"><span class="btn-label"><i class="fa fa-pencil"></i></span>Editar Datos Personales</a>
+          <a  style= "color: #FFF;" class="btn btn-labeled btn-success btn-default" href="{{ route('entrust-gui::users.edit', $user->id) }}"><span  class="btn-label"><i class="fa fa-pencil"></i></span>Editar</a>
+          <a class="btn btn-labeled btn-warning" href="{{ url('users/modificarpersonales/' . $user->id)  }}"><span class="btn-label"><i class="fa fa-pencil"></i></span>Editar Datos Personales</a>
           {{-- <button type="submit" class="btn btn-labeled btn-danger"><span class="btn-label"><i class="fa fa-trash"></i></span>Ver Datos Personales</button> --}}
           <button type="submit" class="btn btn-labeled btn-danger"><span class="btn-label"><i class="fa fa-trash"></i></span>Borrar</button>
         </form>

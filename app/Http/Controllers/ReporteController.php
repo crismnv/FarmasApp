@@ -21,19 +21,30 @@ class ReporteController extends Controller
         return view("adminlte::reportes.reportes_ver",compact('reportes'));
     }
 
-    public function CrearReporteUsuarios($tipo)
+    public function CrearReporteUsuarios($tipo, $año, $mes)
     {
-    	$vistaurl="adminlte::reportes.reportes_usuarios";
-        $usuarios=DB::select('call sp_reporte_usuarios');
+        if ($año == 0 || $mes == 0) 
+        {
+            $usuarios = DB::select('call sp_reporte_usuarios');
+        }else{
+
+           // return Reserva::join('clientes', 'clientes.id', 'reservas.cliente_id')
+           //  ->join('preparados', 'preparados.id', 'reservas.preparado_id')
+           //  ->select('reservas.id', 'clientes.apellido1', 'clientes.apellido2', 'preparados.descripcion', 'reservas.estado_reserva', 'reservas.fecha')
+           //  ->where(DB::raw('year(reservas.fecha)'), $año)->get();
+            $usuarios =  DB::select('call sp_reporte_usuarios_mes(' . $año . ', ' . $mes .')');
+        }
+        $vistaurl="adminlte::reportes.reportes_usuarios";
      
      	return $this->CrearUsuarioPDF($usuarios, $vistaurl,$tipo);
 
     }
 
-    public function CrearReporteReservas($tipo)
+    public function CrearReporteReservas($tipo, $año, $mes)
     {
+
         $vistaurl="adminlte::reportes.reportes_reservas";
-        $reservas=Reserva::Reporte();
+        $reservas=Reserva::Reporte($año, $mes);
      
      return $this->CrearReservasPDF($reservas, $vistaurl,$tipo);
 

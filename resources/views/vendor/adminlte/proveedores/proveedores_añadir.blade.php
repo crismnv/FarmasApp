@@ -34,7 +34,7 @@
 	    }
 	    .boton-azul
 		{
-			background-color: #E64A19;
+			background-color: #009688;
 			color: #ffffff;
 		}
 		.form-control[readonly]{
@@ -71,14 +71,14 @@
 <div class="container-fluid spark-screen">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
-        		<h3 class="text-center color-azul"><strong><i class="fa fa-bars" aria-hidden="true"></i>&nbsp; Añadir Ingrediente&nbsp;<i class="fa fa-bars" aria-hidden="true"></i></strong></h3>  
+        		<h3 class="text-center color-azul"><strong><i class="fa fa-bars" aria-hidden="true"></i>&nbsp; AÑADIR PROVEEDOR&nbsp;<i class="fa fa-bars" aria-hidden="true"></i></strong></h3>  
 	        	<form method="POST" action="{{url('proveedores/añadir')}}" accept-charset="UTF-8" class="" id="RegistroFormCategoria">
 	        		<input name="_token" type="hidden" value="{{ csrf_token() }}">
 	                                    <div class="form-group row">
 	                                        <div class="col-sm-6 col-sm-offset-3">
 	                                          <label class="color-azul ">RUC:</label>
 
-	                                          <input type="text" class="form-control text-left"  id="ruc" name="ruc"  required placeholder="12345678910" maxlength="250" >
+	                                          <input type="text" class="form-control text-left"  id="ruc" name="ruc"  required placeholder="12345678910" maxlength="11" >
 	                                          <span  id ="ErrorMensaje-ruc" class="help-block" ></span>
 	                                        </div>
 	                                        
@@ -88,7 +88,7 @@
 	                                        <div class="col-sm-6 col-sm-offset-3">
 	                                          <label class="color-azul ">Razon Social:</label>
 
-	                                          <input type="text" name="razon_social" id="razon_social" class="form-control" placeholder="Cantidad" value="" required="required" title="">
+	                                          <input type="text" name="razon_social" id="razon_social" class="form-control" placeholder="Razon Social" value="" required="required" title="">
 
 	                                          <span  id ="ErrorMensaje-razon_social" class="help-block" ></span>
 	                                        </div>
@@ -99,7 +99,7 @@
 	                                        <div class="col-sm-6 col-sm-offset-3">
 	                                          <label class="color-azul ">Telefono:</label>
 
-	                                          <input type="text" class="form-control text-left"  id="telefono" name="telefono"  required placeholder="Unidad de Medida" maxlength="20" >
+	                                          <input type="text" class="form-control text-left"  id="telefono" name="telefono"  required placeholder="987654321" maxlength="20" >
 	                                          <span  id ="ErrorMensaje-telefono" class="help-block" ></span>
 	                                        </div>
 	                                    </div>
@@ -111,7 +111,7 @@
 
 	                                    		<input type="email" name="correo" id="correo" class="form-control text-left" value="" placeholder="proveedor@provee.com" required="required" title="">
 	                                          
-	                                          <span  id ="ErrorMensaje-telefono" class="help-block" ></span>
+	                                          <span  id ="ErrorMensaje-correo" class="help-block" ></span>
 	                                        </div>
 	                                    </div>
 
@@ -119,7 +119,7 @@
                                    
 	                                    <div class="row"> 
 	                                      <div class="col-xs-6 col-xs-push-3">
-	                                       <button type="submit" id="btnAñadirCategoria" class="btn btn-block pull-left boton-azul"><i class="fa fa-plus fa-2x" aria-hidden="true"></i><span style="font-size:20px;">&nbsp; Añadir Ingrediente</span></button>
+	                                       <button type="submit" id="boton" class="btn btn-block pull-left boton-azul"><i class="fa fa-plus fa-2x" aria-hidden="true"></i><span style="font-size:20px;">&nbsp; Añadir Proveedor</span></button>
 	                                      </div>
 	                                    </div>
 	          </form>
@@ -131,65 +131,103 @@
 
 @section('script-fin')
 <script>
-	$('#nombre').on("keypress", function(){
-		$("#ErrorMensaje-nombre").hide();
+
+
+	$('#ruc').on("keypress", function(){
+		$("#ErrorMensaje-ruc").hide();
 
 	}) 
 
-	$('#stock').on("keypress", function(){
-		$("#ErrorMensaje-stock").hide();
-
-	}) 
-
-	$('#unidad_de_medida').on("keypress", function(){
-		$("#ErrorMensaje-unidad_de_medida").hide();
+	$('#razon_social').on("keypress", function(){
+		$("#ErrorMensaje-razon_social").hide();
 
 	}) 
 
 	
+	$('#telefono').on("keypress", function(){
+		$("#ErrorMensaje-telefono").hide();
 
-	$('#btnAñadirCategoria').on("click", function(evt)
+	}) 
+
+	$('#correo').on("keypress",function (){
+		$("#ErrorMensaje-correo").hide();
+	})
+
+	
+
+	$('#boton').on("click", function(evt)
 	{
-		var nombre = $('#nombre').val().trim();
+		var ruc = $('#ruc').val().trim();
 
-		if( nombre == null || nombre.length == 0)
+		if( ruc == null || ruc.length == 0)
 		{
-			nombre = null;
-			$("#ErrorMensaje-nombre").text("El Nombre no puede ser vacio");
-			$("#ErrorMensaje-nombre").show();
-			$("#nombre").focus();	
+			ruc = null;
+			$("#ErrorMensaje-ruc").text("Este campo no  puede estar vacio");
+			$("#ErrorMensaje-ruc").show();
+			$("#ruc").focus();	
 			// alert();
 			return false;
 		}
-
-		var stock = $('#stock').val().trim();
-		if(stock == null || stock.length == 0 )
+		if(ruc.length != 11 )
 		{
-			$("#ErrorMensaje-stock").text("La stock no puede ser vacia");
-			$("#ErrorMensaje-stock").show();
-			$("#stock").focus();
+			$("#ErrorMensaje-ruc").text("Este campo debe tener 11 numeros");
+			$("#ErrorMensaje-ruc").show();
+			$("#ruc").focus();
+			return false;
+		}
+	
+
+		var razon_social = $('#razon_social').val().trim();
+		if(razon_social == null || razon_social.length == 0 )
+		{
+			$("#ErrorMensaje-razon_social").text("Este campo no  puede estar vacio");
+			$("#ErrorMensaje-razon_social").show();
+			$("#razon_social").focus();
 			return false;
 		}
 		
-		if(stock <= 0 || stock >=999999.99)
+		
+		
+		var telefono = $('#telefono').val().trim();
+		if(telefono == null || telefono.length == 0 )
 		{
-			$("#ErrorMensaje-stock").text("Ingrese un numero valido");
-			$("#ErrorMensaje-stock").show();
-			$("#stock").focus();
+			$("#ErrorMensaje-telefono").text("Este campo no  puede estar vacio");
+			$("#ErrorMensaje-telefono").show();
+			$("#telefono").focus();
 			return false;
 		}
 
-		var unidad_de_medida = $('#unidad_de_medida').val().trim();
-		if(unidad_de_medida == null || unidad_de_medida.length == 0)
-		{
-			
-			$("#ErrorMensaje-unidad_de_medida").text("La Unidad de Medida no puede ser vacia");
-			$("#ErrorMensaje-unidad_de_medida").show();
-			$("#unidad_de_medida").focus();
-			return false;
-		}
+		var correo = $('#correo').val().trim();
+
+	    if( correo == null || correo.length == 0  ) {
+	       correo = null;
+	       $("#ErrorMensaje-correo").text('El Correo Electrónico no puede ser vacío.');
+	         $("#ErrorMensaje-correo").show();
+	         $("#correo").focus();
+	         return false;
+	       }
+
+	     if (!ValidarEmail(correo)) {
+		    	correo=null;
+		       $("#ErrorMensaje-correo").text('Debe Ingresar un Email valido.');
+  				$("#ErrorMensaje-correo").show();
+  				$("#correo").focus();
+  				return false;
+		    }
+
 		
 	});	
+
+	function ValidarEmail(email){
+		var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+		 if (!regex.test(email)) {
+		 	return false; //email incorrecto
+		 }
+		 else
+		 {
+		 	return true; // email correcto
+		 }
+}
 
 </script>
 @endsection

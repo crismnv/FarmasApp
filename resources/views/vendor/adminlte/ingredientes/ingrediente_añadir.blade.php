@@ -34,7 +34,7 @@
 	    }
 	    .boton-azul
 		{
-			background-color: #E64A19;
+			background-color: #009688;
 			color: #ffffff;
 		}
 		.form-control[readonly]{
@@ -146,6 +146,10 @@
 		$("#ErrorMensaje-unidad_de_medida").hide();
 
 	}) 
+	$('#precio_base').on("keypress", function(){
+		$("#ErrorMensaje-precio_base").hide();
+
+	}) 
 
 	
 
@@ -156,17 +160,18 @@
 		if( nombre == null || nombre.length == 0)
 		{
 			nombre = null;
-			$("#ErrorMensaje-nombre").text("El Nombre no puede ser vacio");
+			$("#ErrorMensaje-nombre").text("El Nombre no puede estar vacio");
 			$("#ErrorMensaje-nombre").show();
 			$("#nombre").focus();	
 			// alert();
 			return false;
 		}
+	
 
 		var stock = $('#stock').val().trim();
 		if(stock == null || stock.length == 0 )
 		{
-			$("#ErrorMensaje-stock").text("La stock no puede ser vacia");
+			$("#ErrorMensaje-stock").text("La stock no puede estar vacia");
 			$("#ErrorMensaje-stock").show();
 			$("#stock").focus();
 			return false;
@@ -184,11 +189,23 @@
 		if(unidad_de_medida == null || unidad_de_medida.length == 0)
 		{
 			
-			$("#ErrorMensaje-unidad_de_medida").text("La Unidad de Medida no puede ser vacia");
+			$("#ErrorMensaje-unidad_de_medida").text("La Unidad de Medida no puede estar vacia");
 			$("#ErrorMensaje-unidad_de_medida").show();
 			$("#unidad_de_medida").focus();
 			return false;
 		}
+
+		var precio_base = $('#precio_base').val().trim();
+
+			if( precio_base == null || precio_base.length == 0)
+			{
+				precio_base = null;
+				$("#ErrorMensaje-precio_base").text("El precio base no puede estar vacio");
+				$("#ErrorMensaje-precio_base").show();
+				$("#precio_base").focus();	
+				// alert();
+				return false;
+			}
 		
 	});	
 

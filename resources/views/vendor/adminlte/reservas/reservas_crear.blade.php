@@ -115,7 +115,7 @@
                 			<div class="row">
 									<div class=" col-xs-8 col-xs-offset-2" id="guardar" name="guardar">
 										<div class="form-group">
-								            	<a href="{{url('reservas/crear/detallado')}}" class="btn btn-warning btn-block" id="boton" type="submit">No encuentro mi preparado</a>
+								            	<a href="{{url('reservas/crear/detallado')}}" class="btn btn-warning btn-block" id="boton-detallado" type="submit">No encuentro mi preparado</a>
 								        </div>
 									</div>
 								</div>
@@ -168,7 +168,7 @@
 						    	<div class="row">
 						    		<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4">
 						    			<br>
-						    			<input type="file" name="imagen" id="foto" accept="image/*">
+						    			<input type="file" name="imagen" id="imagen" accept="image/*">
 										<span  id ="ErrorMensaje-imagen" class="help-block"></span>
 						    		</div>
 						    	</div>
@@ -176,8 +176,10 @@
                     		<div class="panel-footer">
                     			<div class="row">
 									<div class=" col-xs-8 col-xs-offset-2" id="guardar" name="guardar">
+
 										<div class="form-group">
-								            	<button class="btn btn-success btn-block" id="boton" type="submit">Hacer Reserva</button>
+								            	{{-- <button class="btn btn-success btn-block" id="boton" type="submit"></button> --}}
+												<button  class="btn btn-success btn-block" id="pelotas" type="submit" >Hacer Reserva</button>
 								        </div>
 									</div>
 								</div>
@@ -205,7 +207,41 @@
 @section('script-fin')
 <script>
 
+	$('#imagen').on("change", function(){
+		$("#ErrorMensaje-imagen").hide();
+
+	});
+
+
+$('#pelotas').click(function(event) {
+	var imagen = $('#imagen').val().trim();
+	// alert(imagen);
+	if( imagen == null || imagen.length == 0)
+	{
+		imagen = null;
+		$("#ErrorMensaje-imagen").text("Usted debe subir la foto de su receta");
+		$("#ErrorMensaje-imagen").show();
+		$("#imagen").focus();	
+		// alert();
+		return false;
+	}
+});
+
+// $('#pelotas').on("click", function(evt)
+// {
+// 	// alert();
+	
+
+// });
+
+
+
+
 //actualizar imagen
+
+
+
+
   function mostrarImagen(input) {
 	 if (input.files && input.files[0]) {
 	  var reader = new FileReader();
@@ -216,9 +252,9 @@
 	 }
 	}
 
-$("#foto").change(function(){
+$("#imagen").change(function(){
 	$('#imagen-vista').show();
- mostrarImagen(this);
+ 	mostrarImagen(this);
 });
 
 

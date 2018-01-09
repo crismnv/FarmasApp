@@ -207,7 +207,7 @@
                     			<div class="row">
 									<div class=" col-xs-8 col-xs-offset-2" id="guardar" name="guardar">
 										<div class="form-group">
-								            	<button class="btn btn-primary btn-block" id="boton" type="submit">Hacer Reserva</button>
+								            	<button class="btn btn-success btn-block" id="boton" type="submit">Hacer Reserva</button>
 								        </div>
 									</div>
 								</div>

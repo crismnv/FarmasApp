@@ -59,7 +59,7 @@
           </tr>
           
           <tr></tr>
-          <
+          
           <tr>
             <td align="left" valign="middle" style="font-family:Georgia, 'Times New Roman', Times, serif; font-size:12px; color:#000000;">
             <div style="color:#b30467; font-size:15px;"><b>CONTACTANOS</b></div>
