@@ -58,10 +58,10 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'entrust-gui.admin' => \Acoustep\EntrustGui\Http\Middleware\AdminAuth::class,
-        'admin' => \App\Http\Middleware\AdminMiddleware::class,
-        'quimico' => \App\Http\Middleware\QuimicoMiddleware::class,
+        'admin' => \App\Http\Middleware\AdminMiddleWare::class,
+        'quimico' => \App\Http\Middleware\QuimicoMiddleWare::class,
         'cliente' => \App\Http\Middleware\ClienteMiddleware::class,
-        'todos' => \App\Http\Middleware\TodosMiddleware::class,
-        'trabajador' => \App\Http\Middleware\TrabajadorMiddleware::class,
+        'todos' => \App\Http\Middleware\TodosMiddleWare::class,
+        'trabajador' => \App\Http\Middleware\TrabajadorMiddleWare::class,
     ];
 }
