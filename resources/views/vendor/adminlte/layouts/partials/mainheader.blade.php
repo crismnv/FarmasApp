@@ -21,7 +21,7 @@
                 <!-- Messages: style can be found in dropdown.less-->
                 <li class="dropdown messages-menu"  style=" display: none;">
                     <!-- Menu toggle button -->
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="display: none;">
                         <i class="fa fa-envelope-o"></i>
                         <span class="label label-success">4</span>
                     </a>
@@ -135,22 +135,22 @@
                             </li>
                             <!-- Menu Body -->
                             <li class="user-body">
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">{{ trans('adminlte_lang::message.followers') }}</a>
+                                <div class="col-xs-4 text-center" style="display: none;">
+                                    <a  style="display: none;"  href="#">{{ trans('adminlte_lang::message.followers') }}</a>
                                 </div>
                                 <div class="col-xs-4 text-center">
-                                    <a href="#">{{ trans('adminlte_lang::message.sales') }}</a>
+                                    <a  style="display: none;" href="#">{{ trans('adminlte_lang::message.sales') }}</a>
                                 </div>
                                 <div class="col-xs-4 text-center">
-                                    <a href="#">{{ trans('adminlte_lang::message.friends') }}</a>
+                                    <a  style="display: none;" href="#">{{ trans('adminlte_lang::message.friends') }}</a>
                                 </div>
                             </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="{{ url('/settings') }}" class="btn btn-default btn-flat">{{ trans('adminlte_lang::message.profile') }}</a>
+                                    <a  style="display: none;" href="{{ url('/settings') }}" class="btn btn-default btn-flat">{{ trans('adminlte_lang::message.profile') }}</a>
                                 </div>
-                                <div class="pull-right">
+                                <div class="col-xs-4 col-xs-offset-4">
                                     <a href="{{ url('/logout') }}" class="btn btn-default btn-flat" id="logout"
                                        onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
