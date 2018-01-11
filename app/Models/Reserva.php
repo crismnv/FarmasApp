@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB as DB;
 use Illuminate\Support\Facades\Auth as Auth;
 use App\Http\Controllers\ImageController;
 use App\Mail\ClienteMail;
-use App\Models\iIngrediente;
+use App\Models\Ingrediente;
 use App\Models\Preparado;
 use Mail;
 
@@ -26,7 +26,7 @@ class Reserva extends Model
 
             
                 
-             $codigo_preparado_generado = DB::table('Preparados')->insertGetId(
+             $codigo_preparado_generado = DB::table('preparados')->insertGetId(
                         [
                             'descripcion' => $datos['descripcion'],
                             'precio'  =>  $datos['precio']

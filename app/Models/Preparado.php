@@ -57,7 +57,7 @@ class Preparado extends Model
 
             
                 
-             $codigo_preparado_generado = DB::table('Preparados')->insertGetId(
+             $codigo_preparado_generado = DB::table('preparados')->insertGetId(
                         [
                             'descripcion' => $datos['descripcion'],
                             'precio'  =>  $datos['precio']
@@ -262,7 +262,7 @@ class Preparado extends Model
     		
              DB::beginTransaction();
     			
-             $codigo_preparado_generado = DB::table('Preparados')->insertGetId(
+             $codigo_preparado_generado = DB::table('preparados')->insertGetId(
 		     			[
 		     				'descripcion' => $datos['descripcion'],
 		     				'precio'  =>  $datos['precio']
