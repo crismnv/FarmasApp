@@ -126,9 +126,14 @@ class ReservaController extends Controller
     public function ModificarGuardar(Request $request)
     {
         $data = $request->all();
-        // dd($data);
+        // $bresultado = DB::table('ingredientes')->whereId(1)->decrement('stock', 800);
+        // $reserva = Reserva::ListarReserva_x_Id($data['id']);
+        // dd($reserva[0]->preparado_id);
+        // $reserva = Reserva::ListarReserva_x_Id($datos['id']);
        
         $bresultado =  Reserva::Modificar($data);
+        // $bresultado =  Preparado::DescontarIngredientes_x_IdPreparado(14);
+
 
         if ($bresultado) {
             
@@ -136,7 +141,7 @@ class ReservaController extends Controller
 
         } else {
             
-            return redirect('reservas/crud')->with('errors','La Datos No se actualizaron correctamente.');
+            return redirect('reservas/crud')->with('errors','Compruebe que tenga suficientes ingredientes para el preparado.');
 
         }
     }

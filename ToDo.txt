@@ -115,3 +115,5 @@ VALIDACIONES
 		crear -> el dia 
 		
 
+
+RUTA -> CONTROLADOR -> VISTA | MODELO 

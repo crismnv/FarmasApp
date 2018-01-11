@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB as DB;
 use Illuminate\Support\Facades\Auth as Auth;
 use App\Http\Controllers\ImageController;
 use App\Mail\ClienteMail;
+use App\Models\iIngrediente;
+use App\Models\Preparado;
 use Mail;
 
 class Reserva extends Model
@@ -99,8 +101,18 @@ class Reserva extends Model
             {
                 $ReservaParaMail = Reserva::select('*')->where('id', $datos['id'])->get();
                 
-                Mail::to($datos['email'])->send(new ClienteMail($ReservaParaMail[0]));
+                // Mail::to($datos['email'])->send(new ClienteMail($ReservaParaMail[0]));
                 
+            }
+
+            if($datos['estado_reserva'] == 'LISTO')
+            {
+
+                $reserva = Reserva::ListarReserva_x_Id($datos['id']);
+                if(!Preparado::DescontarIngredientes_x_IdPreparado($reserva[0]->preparado_id))
+                {
+                    return false;       
+                }
             }
 
             DB::commit();
@@ -110,7 +122,7 @@ class Reserva extends Model
                         
             return true;
 
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             // echo "<script>alert('2');<\script>";
 
             DB::rollback();

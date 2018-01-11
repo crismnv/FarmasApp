@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Contiene;
+use App\Models\Ingrediente;
 use Illuminate\Support\Facades\DB as DB;
 
 class Preparado extends Model
@@ -16,6 +17,36 @@ class Preparado extends Model
 
     // public static function Listar 
 
+    public static function DescontarIngredientes_x_IdPreparado($id)
+    {
+        $ingredientes = Contiene::select('ingrediente_id', 'cantidad')->where('preparado_id', $id)->get();
+
+
+        try {
+            
+             DB::beginTransaction();
+
+            foreach ($ingredientes as $ingrediente)
+            {
+                // Ingrediente::decrement('stock', $ingrediente['cantidad'])->where('id', $ingrediente['ingrediente_id']);
+                // $query = 'UPDATE ingredientes SET stock = stock - ' . $ingredientes[0]->
+                DB::table('ingredientes')->whereId($ingrediente->ingrediente_id)->decrement('stock', $ingrediente->cantidad);
+                
+            }
+
+                
+
+
+            DB::commit();
+
+            return true;  
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            return false; 
+        }
+        
+    }
     
     public static function ModificarPreparado($datos)
     {

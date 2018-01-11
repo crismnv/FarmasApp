@@ -25,7 +25,7 @@ Route::group(['middleware' => 'auth'], function () {
     #adminlte_routes
 });
 
-// Auth::routes();
+Auth::routes();
 // Route::get('registro', function () {
 //     return view('registro::registro');
 // });
@@ -34,6 +34,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 // ---------------------------------------------------------------------------------------------------------------------------
 
+Route::get('login/error', function()
+{
+	return view('adminlte::auth.login_error');
+});
 // MODULO GRAFICAS
 Route::get('graficas/ver',['as' =>'graficas/ver', 'middleware' => 'admin','uses' =>  'GraficaController@Ver']);
 
