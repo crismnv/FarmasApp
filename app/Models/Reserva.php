@@ -105,7 +105,7 @@ class Reserva extends Model
                 
             }
 
-            if($datos['estado_reserva'] == 'LISTO')
+            if($datos['estado_reserva'] == 'APROBADO')
             {
 
                 $reserva = Reserva::ListarReserva_x_Id($datos['id']);
