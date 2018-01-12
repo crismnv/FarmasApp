@@ -150,7 +150,7 @@
 			                    <div class="col-lg-2 col-sm-2 col-xs-12">
 									<div class="form-group">
 						            	<label class="color-azul">Unidad de Medida</label>
-						            	<input type="text" name="punidad_de_medida" id="punidad_de_medida" class="form-control text-center" placeholder="Cantidad"  value="{{$ingredientes[0]->unidad_de_medida}}">
+						            	<input type="text"  readonly name="punidad_de_medida" id="punidad_de_medida" class="form-control text-center" placeholder="Cantidad"  value="{{$ingredientes[0]->unidad_de_medida}}">
 						            </div>
 								</div>
 

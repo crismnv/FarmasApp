@@ -376,7 +376,7 @@ class Reserva extends Model
 
         $start_from = ($current_page_number - 1) * $records_per_page;
         
-        $query .= " SELECT reservas.id, clientes.nombres, CONCAT(clientes.apellido1, ' ', clientes.apellido2) as 'apellidos',preparados.descripcion, reservas.estado_reserva, reservas.fecha, reservas.estado
+        $query .= " SELECT reservas.id, clientes.nombres, preparados.descripcion, reservas.estado_reserva, reservas.fecha, reservas.estado
                     FROM reservas
                         inner join clientes on clientes.id = reservas.cliente_id 
                         inner join preparados on preparados.id = reservas.preparado_id ";
@@ -387,7 +387,6 @@ class Reserva extends Model
 
          $query .= ' AND (reservas.id LIKE "%'.$_POST["searchPhrase"].'%" ';
          $query .= 'OR clientes.nombres LIKE "%'.$_POST["searchPhrase"].'%" ';
-         $query .= 'OR apellidos LIKE "%'.$_POST["searchPhrase"].'%" ';
          $query .= 'OR preparados.descripcion LIKE "%'.$_POST["searchPhrase"].'%" ';
          $query .= 'OR reservas.estado_reserva LIKE "%'.$_POST["searchPhrase"].'%" ';
          $query .= 'OR reservas.fecha LIKE "%'.$_POST["searchPhrase"].'%" ';

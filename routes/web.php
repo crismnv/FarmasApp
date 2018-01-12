@@ -134,7 +134,7 @@ Route::get('reservas/ver/{id}', ['as' => 'reservas/ver', 'middleware' => 'todos'
 Route::get('reservas/modificar/{id}', ['as' => 'reservas/modificar', 'middleware' => 'trabajador', 'uses' => 'ReservaController@Modificar']);
 Route::post('reservas/modificar', ['as' => 'reservas/modificar', 'middleware' => 'trabajador', 'uses' => 'ReservaController@ModificarGuardar']);
 
-Route::post('preparados/listaringredientes/{id}', ['as' => 'preparados/listaringredientes', 'middleware' => 'cliente', 'uses' => 'ContieneController@Listar_Ingredientes_x_IdPreparado']);
+Route::post('preparados/listaringredientes/{id}', ['as' => 'preparados/listaringredientes', 'middleware' => 'todos', 'uses' => 'ContieneController@Listar_Ingredientes_x_IdPreparado']);
 
 
 // FIN MODULO PEDIDOS

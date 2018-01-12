@@ -135,7 +135,7 @@
 			                    <div class="col-lg-2 col-sm-2 col-xs-12">
 									<div class="form-group">
 						            	<label class="color-azul">Unidad de Medida</label>
-						            	<input type="text" name="punidad_de_medida" id="punidad_de_medida" class="form-control text-center" placeholder="Cantidad"  value="{{$ingredientes[0]->unidad_de_medida}}">
+						            	<input type="text" name="punidad_de_medida" id="punidad_de_medida" class="form-control text-center" placeholder="Cantidad"  value="{{$ingredientes[0]->unidad_de_medida}}" readonly>
 						            </div>
 								</div>
 
@@ -365,7 +365,7 @@ $("#foto").change(function(){
 
 		console.log(cantidad);
 
-		if(cantidad != "" && cantidad >= 1)
+		if(cantidad != "" && cantidad >= 1 && cantidad < 1000000)
 		{
 			var fila = '<tr class="selected text-center" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td><td><input type="hidden" id="idingrediente[]" name="idingrediente[]" value="'+ingrediente_id+'" class="filaagregada">'+ingrediente+'</td><td><input type="number" id="sub_total[]" name="sub_total[]" style="display: none;" value="'+sub_total+'" class="text-center" readonly> <input type="number" id="cantidad[]" name="cantidad[]" value="'+cantidad+'" class="text-center" readonly></td><td><input type="text" name="unidad_de_medida[]" value="'+unidad_de_medida+'" class="text-center" readonly></td></tr>';
 			AñadirPrecio(cont);

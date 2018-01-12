@@ -29,7 +29,7 @@ class PedidoController extends Controller
 
         } else {
             
-            return redirect('home')->with('errors','La Datos No se guardaron correctamente.');
+            return redirect('home')->with('errors','No se pudo guardar.');
 
         }
     }
@@ -37,7 +37,7 @@ class PedidoController extends Controller
     {
         $ingredientes = Ingrediente::select('*')->get();
 
-    	$proveedores = DB::table('proveedores')->select('*')->get();
+    	$proveedores = DB::table('proveedores')->select('*')->where('estado', '!=', 'INACTIVO')->get();
     	// dd($proveedores);
     	return view('adminlte::pedidos.pedidos_crear', compact('proveedores', 'ingredientes'));
     }

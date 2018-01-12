@@ -91,7 +91,7 @@ class Proveedor extends Model
 
 	          	return true;  
 
-	         } catch(Exception $e)
+	         } catch(\Exception $e)
 	         {
 	            DB::rollback();
 
@@ -130,7 +130,7 @@ class Proveedor extends Model
                         
             return true;
 
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             // echo "<script>alert('2');<\script>";
 
             DB::rollback();

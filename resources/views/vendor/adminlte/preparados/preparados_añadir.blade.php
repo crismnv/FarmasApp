@@ -85,7 +85,7 @@
                         <div class="col-sm-5 col-sm-offset-1">
                           <label class="color-azul ">Precio</label>
 
-                          <input type="text" read class="form-control text-left"  id="precio" name="precio"  required placeholder="Precio" maxlength="250" >
+                          <input type="number" read class="form-control text-left"  id="precio" name="precio"  required placeholder="Precio" maxlength="250" >
                           <span  id ="ErrorMensaje-precio" class="help-block" ></span>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
 			                    <div class="col-lg-2 col-sm-2 col-xs-12">
 									<div class="form-group">
 						            	<label class="color-azul">Unidad de Medida</label>
-						            	<input type="text" name="punidad_de_medida" id="punidad_de_medida" class="form-control text-center" placeholder="Cantidad"  value="{{$ingredientes[0]->unidad_de_medida}}">
+						            	<input type="text" name="punidad_de_medida" id="punidad_de_medida" class="form-control text-center" placeholder="Cantidad" readonly  value="{{$ingredientes[0]->unidad_de_medida}}">
 						            </div>
 								</div>
 

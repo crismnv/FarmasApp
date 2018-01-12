@@ -118,18 +118,26 @@
                     				
                     				<select name="estado_reserva" id="estado_reserva" class="form-control" required="required">
                     					@if($reserva[0]->estado_reserva === 'PENDIENTE')
+
                     					<option  value="APROBADO">APROBADO</option>
                     					<option  selected value="PENDIENTE">PENDIENTE</option>
                     					<option value="CANCELADO">CANCELADO</option>
+
                     					@elseif($reserva[0]->estado_reserva === 'CANCELADO')
+
                     					<option  value="APROBADO">APROBADO</option>
                     					<option selected value="CANCELADO">CANCELADO</option>
+
                     					@elseif($reserva[0]->estado_reserva === 'APROBADO')
+
                     					<option selected value="APROBADO">APROBADO</option>
                     					<option value="LISTO">LISTO</option>
+
                     					@elseif($reserva[0]->estado_reserva === 'LISTO')
+
                     					<option  selected value="LISTO">LISTO</option>
                     					<option value="ENTREGADO">ENTREGADO</option>
+                    					
                     					@endif
 
 

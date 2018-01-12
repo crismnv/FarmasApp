@@ -21,7 +21,7 @@ class ClienteMiddleware
             return;
         }else{
             
-            if ($request->user()->hasRole('admin') || $request->user()->hasRole('cliente')) 
+            if ($request->user()->hasRole('admin') || $request->user()->hasRole('cliente') ) 
             {
                 return $next($request);
             }

@@ -17,7 +17,7 @@ class ReservaController extends Controller
 
     public function CrearDetallado()
     {
-        $ingredientes = Ingrediente::select('*')->get();
+        $ingredientes = Ingrediente::select('*')->where('estado', '!=', 'INACTIVO')->get();
         // $preparados = Preparado::select('id' ,'descripcion')->get();
 
         if(Auth::user()->hasRole('cliente'))
@@ -65,7 +65,7 @@ class ReservaController extends Controller
     }
     public function Crear()
     {
-        $preparados = Preparado::select('id' ,'descripcion')->get();
+        $preparados = Preparado::select('id' ,'descripcion', 'precio')->get();
 
         if(Auth::user()->hasRole('cliente'))
         {

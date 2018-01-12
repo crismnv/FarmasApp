@@ -117,3 +117,13 @@ VALIDACIONES
 
 
 RUTA -> CONTROLADOR -> VISTA | MODELO 
+
+cuentas:
+	Admin:
+		admin@gmail.com -> adminadmin
+	Quimico
+		quimico@gmail.com -> secret
+	Trabajador
+		aris.moncada@gmail.com -> secret
+	Cliente
+		laura.melgarejo@gmail.com -> secret

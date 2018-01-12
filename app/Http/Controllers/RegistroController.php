@@ -64,12 +64,13 @@ class RegistroController extends Controller
 
 	        } else {
 	            
-	            return redirect('/registro');
+	            return redirect('/registro')->with('errors', 'No se pudo registrar');
 
 	        }
         	
-        } catch (Exception $e) {
-        	var_dump($e);
+        } catch (\Exception $e) {
+        	// var_dump($e);
+        	return redirect('/registro')->with('errors', 'No se pudo registrar, Intentelo más tarde');
         }
 
 

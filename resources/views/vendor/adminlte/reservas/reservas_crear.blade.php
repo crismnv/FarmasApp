@@ -91,7 +91,7 @@
                     			
                 			@else
 								<div class="row">
-	                    				<div class="form-group col-xs-12 col-md-4 col-md-offset-1">
+	                    				<div class="form-group col-xs-12 col-md-4 ">
 							            	<label class="color-azul">Selecciona el preparado</label>
 	                    					<select name="cliente_id" id="clientes" class="form-control" required="required">
 		                    					@foreach($clientes as $cliente)
@@ -100,13 +100,18 @@
 	                    					</select>
 	                    				</div>
 
-	                    				<div class="form-group col-xs-12 col-md-4 col-md-offset-1">
+	                    				<div class="form-group col-xs-12 col-md-4 ">
 							            	<label class="color-azul">Selecciona el preparado</label>
 	                    					<select name="preparados" id="preparados" class="form-control" required="required">
 		                    					@foreach($preparados as $preparado)
 									            	 <option value="{{$preparado->id}}">{{$preparado->descripcion}}</option>
 								            	@endforeach
 	                    					</select>
+	                    				</div>
+
+	                    				<div class="form-group col-xs-12 col-md-4 "></label>
+							            	<label class="color-azul">Precio del preparado</label>
+	                    					<input type="number" name="precio" id="precio" class="form-control" readonly value="{{$preparados[0]->precio}}"  readonly>
 	                    				</div>
 	                    			</div>
 
@@ -326,7 +331,7 @@ var contador = 0;
 		                            //     value:respuesta[index].id,
 		                            //     text : respuesta[index].cNomZona
 		                            // }));
-		                           	var fila = '<tr id="fila'+contador+'" class="selected text-center"><td><input readonly value= "'+ respuesta[index].nombre +'" type="text"></td><td><input readonly value= "'+ respuesta[index].cantidad +'" type="number"></td><td><input readonly value= "'+ respuesta[index].nombre +'" type="text"></td></tr>';
+		                           	var fila = '<tr id="fila'+contador+'" class="selected text-center"><td><input readonly value= "'+ respuesta[index].nombre +'" type="text"></td><td><input readonly value= "'+ respuesta[index].cantidad +'" type="number"></td><td><input readonly value= "'+ respuesta[index].unidad_de_medida +'" type="text"></td></tr>';
 		                           	$('#lista_ingredientes').append(fila);
                     				// contador++;
 		                            // console.log(contador);
